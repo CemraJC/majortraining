@@ -119,12 +119,15 @@ body {
 
 
 .settings {
+    display: flex;
     background: #111;
     padding: 0.8em 0.4em;
 }
 
-.settings input[type=button] {
+.settings input[name=theme], .settings input[name=reset] {
+    flex: 1;
     cursor: pointer;
+    margin: 0 0.2em;
     background: #040404;
     padding: 0.5em;
     color: #D7D7D7;
@@ -132,8 +135,17 @@ body {
     border-radius: 0.2em;
     transition: all 200ms;
 }
-.settings input[type=button]:hover {
-    color: #909090;
+
+.settings input[name=reset]:active {
+    color: #8F0000 !important;
+}
+.settings input[name=reset]:hover {
+    color: #fff;
+    font-weight: 600;
+    background: #FF0000 !important;
+}
+.settings input[name=theme]:hover {
+    color: #909090 !important;
 }
 
 /* MAIN BODY STYLING */

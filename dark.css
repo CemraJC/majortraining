@@ -11,6 +11,16 @@ body[dark] {
     background: #020202;
 }
 
+body[dark] .menucolumn .settings input[type=button] {
+    color: #000;
+    background: #C7C7C7;
+}
+
+body[dark] .settings input[name=theme]:hover {
+    color: #000 !important;
+    background: #D8D8D8 !important;
+}
+
 body[dark] .maincolumn {
     border-left: 0.2em solid #aaa;
 }
