@@ -1,10 +1,10 @@
 var app_consts = {
         // Note that 'h' is only valid because it is a part of ch, sh and th
-    valid_letters : ['b', 'c', 'd', 'f', 'g', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'z', 'h']
+    valid_letters : ['b', 'c', 'd', 'f', 'g', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'z', 'h'],
 
     // Forward and reverse lookup tables
     letter_to_num : {
-        s  : 0
+        s  : 0,
         // Uh oh. Need to know if it's a soft or hard C!
         // Soft
         c  : 0,
@@ -31,7 +31,7 @@ var app_consts = {
         v  : 8,
         p  : 9,
         b  : 9
-    }
+    },
     num_to_letter : [
         // 0
         ['s', 'c', 'z'],
@@ -54,4 +54,10 @@ var app_consts = {
         // 9
         ['b', 'p']
     ]
-}
+};
+
+var app_id = "major_training_12138772344";
+
+var settings = {
+    dark_theme_active : false
+};
