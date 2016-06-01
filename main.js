@@ -44,9 +44,12 @@ document.addEventListener("DOMContentLoaded", function(){
         clicked.setAttribute('selected', '');
         selected_level.removeAttribute('selected');
         settings.current_level = clicked;
-
-        console.log(generateNumFromFormat(clicked.getAttribute('format')));
     })
+
+    // Display logic
+    var generated_box = document.querySelector('p.generated');
+    var readout = document.querySelector('.menucolumn .readout');
+
 
 });
 

@@ -156,6 +156,15 @@ main {
     max-width: 40em;
 }
 
+main div.skip {
+    text-align: right;
+    font-size: 70%;
+    margin-bottom: 0.2em;
+}
+main div.skip a {
+    cursor: pointer;
+}
+
 main p.generated {
     margin-bottom: 0.2em;
     text-align: center;
