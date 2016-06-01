@@ -46,10 +46,28 @@ document.addEventListener("DOMContentLoaded", function(){
         settings.current_level = clicked;
     })
 
+    // Game logic (playing, indicating and score)
+
+        // Need to implement a separate script here.
+
+    // Memory logic
+
+
     // Display logic
     var generated_box = document.querySelector('p.generated');
-    var readout = document.querySelector('.menucolumn .readout');
+    var readout = {
+        score: document.querySelector('.readout .score'),
+        highscore: document.querySelector('.readout .highscore'),
+        level: document.querySelector('.readout .level'),
+        level_info: document.querySelector('.readout .levelinfo')
+    }
 
+
+    display(generated_box, "Display");
+    display(readout.score,  0);
+    display(readout.highscore,  0);
+    display(readout.level, "Level " + 1);
+    display(readout.level_info, "Germany");
 
 });
 
@@ -96,6 +114,10 @@ function generate_word() {
     UTILITY FUNCTIONS
 
 */
+
+function display(element, content) {
+    element.innerHTML = content;
+}
 
 function toggleTheme() {
     var body = document.body;
