@@ -1,0 +1,94 @@
+Stage 1:
+
+    >> If the user ever presses skip, go back to the beginning (do not touch the score value)
+
+First, we have a save_file object with the following variables:
+
+    * Current stage (number)
+    * Current level (number)
+        - This gets auto-selected when the page loads
+
+    * Theme state (dark theme active, or no?)
+
+    * All level information
+        - The tagline / description / info
+        - Highest score acheived
+        - Passed / Not passed / Not even tried
+
+    * Format string for generation
+    * Current score (for this level)
+        - Note that this variable is manually reset whenever the user clicks to another level. This way, browser crashes should hopefully retain their score.
+    * Highest score (for this level)
+    * State of level (complete, incomplete, pending)
+
+
+Also, there is are a few consolidation points for variables.
+    * The `save_file` object stores variables that are remembered between refreshes / runs.
+        - The entire object is saved under a unique key
+        - This object also has builtin functions to save and retrieve values.
+    * the `elements` object stores all the elements in the document that may need to be constantly referenced. This way, queries are cached.
+
+
+Other objects (for functionality) are as follows:
+
+    * Display object
+        - Has functions to manipulate the UI
+        > Turn the level info (in save_file) into HTML for the list.
+            > Calls on a function that individuall builds list HTML li's
+        > Removes the "No Javascript! :c" warning / banner
+        > Changes the theme (if asked)
+        > Can pop up transient notifications
+        > Can change the content of individual "variable" holders in the HTML flow
+
+        - This is the object that pretty much solely uses the `elements` object
+
+    * Inputs object
+        - Listens for button presses / keydown or whatever and calls the appropriate function
+        - Also uses the `elements` object to attach event handlers
+        - Listens for the following:
+        > Pressing the "Change theme" button
+            - Updates the save_file
+            - Calls the display object's theme toggler
+        > Pressing 'reset'
+            - Calls the save_file's reset function
+        > Clicking a level link in the list of levels
+            - Updates the save_file
+            - Reset current score
+            - Calls the display object's level switching function (gives it the level clicked on)
+        > Clicking 'skip'
+            - Calls the `game` object's skip function
+        > Pressing enter inside the input bar
+            - Calls the `game` object's checking function (gives it the value)
+
+    * Game object
+        - Handles game logic such as:
+            - Score calculation (current score and high score)
+            - Number and Word generation
+                - Relies on the save_file's format string
+            - Number and Word checking
+            - Updates the save_file with the above values
+
+
+Game Logic Flow
+===============
+
+* Generate the number in question
+    - Pass in the level state parameters.
+* User enters a word (and any number of other characters)
+    - First time? Then record a timestamp as soon as keypress detected.
+> User presses enter
+    - Program detects the press
+    - Grab the inputted value
+    > Check if the inputted value is correct / works (must be in dictionary, sorry)
+        1. If correct:
+            - Add number of digits working with to the score
+            - Calculate the words-per-minute of the last word (1 / [time taken / 60])
+            - Add the word to the list of submitted words along with its timestamp.
+            - If applicable, calculate the wpm for the last 5 words
+            - If wpm for last 5 words is less than or equal to "pass score" then pass the stage
+                - Pop up a little notification, and change the badge
+            - Clear the input box
+        2. If incorrect:
+            - Pop up an "incorrect" notification.
+            - Do nothing else (do not clear the input box)
+

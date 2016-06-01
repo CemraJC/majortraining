@@ -46,67 +46,7 @@ document.addEventListener("DOMContentLoaded", function(){
         settings.current_level = clicked;
     })
 
-    // Game logic (playing, indicating and score)
-
-        // Need to implement a separate script here.
-
-    // Memory logic
-
-
-    // Display logic
-    var generated_box = document.querySelector('p.generated');
-    var readout = {
-        score: document.querySelector('.readout .score'),
-        highscore: document.querySelector('.readout .highscore'),
-        level: document.querySelector('.readout .level'),
-        level_info: document.querySelector('.readout .levelinfo')
-    }
-
-
-    display(generated_box, "Display");
-    display(readout.score,  0);
-    display(readout.highscore,  0);
-    display(readout.level, "Level " + 1);
-    display(readout.level_info, "Germany");
-
 });
-
-/*
-
-    Generator and Checker functions
-
- */
-
-
-function generateNumFromFormat(format) {
-    var groups = format.split('|');
-    var result = [];
-    for (var i = 0; i < groups.length; i++) {
-        var digit_range = groups[i].split('-');
-        result[i] = generateDigitGroup(digit_range);
-    };
-    return result.join(' ');
-}
-
-function generateDigitGroup(range_array) {
-    var single_digit, result = "";
-    if (!range_array[1]) { range_array[1] = range_array[0]; }
-    var break_probability = 1 / (range_array[1] - range_array[0] + 1);
-    for (var i = 1; i <= range_array[1]; i++) {
-        single_digit = Math.round(Math.random()*9);
-        result += single_digit;
-        if (i >= range_array[0] && Math.random() <= break_probability) {
-            break;
-        };
-    };
-    return result;
-}
-
-function generate_word() {
-    return "bung"
-}
-
-
 
 
 /*
