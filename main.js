@@ -22,6 +22,7 @@ var elements = new (function() {
         text: {
             generated: this.__s.mainsection + " p.generated",
             readout: {
+                container: this.__s.readout,
                 score: this.__s.readout + " .score",
                 highscore: this.__s.readout + " .highscore",
                 level: this.__s.readout + " .level",
@@ -200,8 +201,19 @@ var display = new (function() {
         }
     }
 
-    this.getReadout = function(){
+    this.updateReadout = function(){
+        var obj = {
+            current_level: save_file.get('current_level'),
+            current_score: save_file.get('current_score')
+        }
+        obj.level = save_file.get('levels')[obj.current_level];
 
+        /* NEED TO REPLACE WITH SPECIFICS */
+        this.replaceElementContent(elements.list.text.readout.score, obj.current_score)
+        this.replaceElementContent(elements.list.text.readout.highscore, obj.level.highscore)
+        this.replaceElementContent(elements.list.text.readout.level, "Level " + obj.current_level)
+        this.replaceElementContent(elements.list.text.readout.levelinfo, obj.level.info)
+        return true;
     }
 
     this.toggleTheme = function() {
@@ -244,7 +256,7 @@ var display = new (function() {
         return list
     }
 
-    this.buildMenuList = function() {
+    this.updateMenuList = function() {
         this.replaceElementContent(elements.list.text.select, this.getMenuList());
     }
 
@@ -270,7 +282,8 @@ var display = new (function() {
     this.init = function(){
         // this.__generateSpecifics()
         if ( save_file.get('dark_theme') ) { this.toggleTheme() }
-        this.buildMenuList();
+        this.updateMenuList();
+        this.updateReadout();
         this.selectMenuItem(save_file.get('current_level'), true);
     }
     this.init();
@@ -307,6 +320,7 @@ var inputs = new (function(){
                 current_score: 0,
                 current_level: new_level
             });
+            display.updateReadout();
         }
     }
 
