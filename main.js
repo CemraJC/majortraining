@@ -109,8 +109,20 @@ var elements = {
         main: __selectors__.mainsection + " input[name=main_input]"
     },
 
-    init: function(){
-        // Replaces element selector strings with the actualy DOM object.
+    init: function(obj, lvl){
+        obj = obj || this;
+        lvl = lvl || 1;
+        if (lvl > 10) {return false} // Recursion limiter - something has gone pretty wrong.
+
+
+        for (item in obj){
+            if (typeof(obj[item]) == "string") {
+                obj[item] = document.querySelector(obj[item]);
+            } else if (typeof(obj[item]) == "object") {
+                // console.log(obj[item])
+                this.init(obj[item], lvl + 1)
+            }
+        }
     }
 }
 
