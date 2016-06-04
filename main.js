@@ -64,7 +64,7 @@ var save_file = new (function() {
         current_stage: 1,
         current_level: 1,
         current_score: 0,
-        dark_theme: true,
+        dark_theme: false,
 
         levels: {
             1: {
@@ -135,7 +135,7 @@ var save_file = new (function() {
     }
     this.load = function() {
         var read = JSON.parse(window.localStorage.getItem(this.__appdata__.storage_key));
-        if (typeof(read) == "object") {
+        if (typeof(read) == "object" && read !== null) {
             this.__appdata__ = read;
         } else {
             this.save();
@@ -245,14 +245,9 @@ var display = new (function() {
 
     this.init = function(){
         // this.__generateSpecifics()
-        debugger
-
         if ( save_file.get('dark_theme') ) { this.toggleTheme() }
     }
     this.init();
 
 })()
 
-
-console.log(display);
-console.log(display.generated())
