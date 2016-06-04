@@ -145,7 +145,13 @@ var save_file = new (function() {
         return (this.__appdata__[key] === undefined) ? false : this.__appdata__[key];
     }
     this.set = function(key, value) {
-        this.__appdata__[key] = value;
+        if (typeof(key) == 'object' && !value) {
+            for (i in key){
+                this.__appdata__[i] = key[i]
+            }
+        } else {
+            this.__appdata__[key] = value;
+        }
         this.save();
     }
     this.reset = function(){
@@ -251,6 +257,7 @@ var display = new (function() {
     this.init = function(){
         // this.__generateSpecifics()
         if ( save_file.get('dark_theme') ) { this.toggleTheme() }
+        this.selectMenuItem(save_file.get('current_level'));
     }
     this.init();
 
@@ -270,9 +277,29 @@ var inputs = new (function(){
         }
     }
 
+    this.levelSelectListener = function(e) {
+        var clicked;
+        for (var i = 0; i < e.path.length; i++) {
+            if (e.path[i].nodeName == "LI"){
+                clicked = e.path[i];
+                break
+            }
+        }
+        if (!clicked) { return false; }
+
+        var new_level = clicked.getAttribute('levelnum');
+        if (display.selectMenuItem(new_level)) {
+            save_file.set({
+                current_score: 0,
+                current_level: new_level
+            });
+        }
+    }
+
     this.init = function(){
         elements.list.buttons.theme.addEventListener('click', this.themeListener);
         elements.list.buttons.reset.addEventListener('click', this.resetListener);
+        elements.list.text.select.addEventListener('click', this.levelSelectListener);
     }
 
     this.init();

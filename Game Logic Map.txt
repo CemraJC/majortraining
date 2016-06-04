@@ -42,6 +42,7 @@ Other objects (for functionality) are as follows:
         > Turn the level info (in save_file) into HTML for the list.
             > Calls on a function that individuall builds list HTML li's
         > Changes the theme (if asked)
+        > Highlights the selected level item
         > Can pop up transient notifications
         > Can change the content of individual "variable" holders in the HTML flow
 
