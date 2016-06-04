@@ -26,7 +26,7 @@ body {
     border: 1px solid #111;
     color: #eee;
 
-    box-shadow: 0 0 0.4em #000 inset;
+    box-shadow: 0.1em 0 0.2em #444;
 }
 .maincolumn {
     flex: 7;
@@ -39,54 +39,55 @@ body {
 
 /* MENU BLOCK */
 
-.logo {
-    padding: 0.5em 0.8em;
+.menucolumn .logo {
+    padding: 0.9em 0.8em;
     background: #111;
 
     text-align: center;
     font-family: Arial;
+    font-size: 150%;
     font-weight: 600;
+    line-height: 0.8;
 
     text-shadow: 0.1em 0.1em 0.3em #000;
 }
 
-.logo small {
-    font-size: 70%;
+.menucolumn .logo small {
+    font-size: 50%;
     font-weight: normal;
 }
-.logo small a { color: #B0DDFF; }
+.menucolumn .logo small a { color: #B0DDFF; }
 
-.readout, .stagebanner {
+.menucolumn .readout, .menucolumn .stagebanner {
     line-height: 1.4;
     background: #222;
     padding: 0.5em 0.8em;
 }
 
-.readout h3.level { text-decoration: overline; }
-.readout p.levelinfo {
+.menucolumn .readout p.levelinfo {
     color: #ccc;
     font-size: 80%;
 }
 
-.stagebanner { cursor: pointer; }
-.stagebanner:hover { background: #1E1E1E; }
-.stagebanner:active { background: #0E0E0E; }
+.menucolumn .stagebanner { cursor: pointer; }
+.menucolumn .stagebanner:hover { background: #1E1E1E; }
+.menucolumn .stagebanner:active { background: #0E0E0E; }
 
     /* Scores */
 
-.readout .highscore, .readout .score  {
+.menucolumn .readout .highscore, .menucolumn .readout .score  {
     line-height: 1.2;
     color: #999;
     margin-bottom: 0.2em;
     font-size: 75%;
     font-weight: bold;
 }
-.readout .score { font-size: 90%; }
-.readout .score::before {
+.menucolumn .readout .score { font-size: 90%; }
+.menucolumn .readout .score::before {
     content: "Score: ";
     color: #777;
 }
-.readout .highscore::before {
+.menucolumn .readout .highscore::before {
     content: "Highest score: ";
     color: #777;
 }
@@ -97,54 +98,55 @@ body {
     -webkit-user-select: none;
 }
 
-.select i { font-size: 80%; letter-spacing: 1px; }
-.select ul { list-style: none; }
+.menucolumn .select i { font-size: 80%; letter-spacing: 1px; }
+.menucolumn .select ul { list-style: none; }
 
-.select ul li { transition: all 100ms; }
-.select ul li:hover { color: #ccc; text-shadow: 0 0 1px #000; }
-.select ul li:active { color: #6D92B8; text-shadow: 0 0 1px #16528A; }
-.select ul li[selected] { color: #eee; }
-.select ul li { margin: 0.5em 0; color: #aaa; cursor: pointer; }
+.menucolumn .select ul li { transition: all 100ms; }
+.menucolumn .select ul li:hover { color: #ccc; text-shadow: 0 0 1px #000; }
+.menucolumn .select ul li:active { color: #6D92B8; text-shadow: 0 0 1px #16528A; }
+.menucolumn .select ul li[selected] { color: #eee; }
+.menucolumn .select ul li { margin: 0.5em 0; color: #aaa; cursor: pointer; }
 
-.select ul li[selected] small { color: #bbb; }
-.select ul li small { color: #999; }
+.menucolumn .select ul li[selected] small { color: #bbb; }
+.menucolumn .select ul li small { color: #999; }
 
-.select ul li span { vertical-align: middle; font-size: 50%; }
-.select ul li span[done]::before { content: 'passed'; color: #87E911; }
-.select ul li span[not-done]::before { content: 'incomplete'; color: #E9AF11; }
-.select ul li span[not-tried]::before { content: ''; color: #868686; }
+.menucolumn .select ul li span { vertical-align: middle; font-size: 50%; }
+.menucolumn .select ul li span[done]::before { content: 'passed'; color: #87E911; }
+.menucolumn .select ul li span[not-done]::before { content: 'incomplete'; color: #E9AF11; }
+.menucolumn .select ul li span[not-tried]::before { content: ''; color: #868686; }
 
-.select ul li h4 span::before { content: "Highest score: "; }
-.select ul li h4 span { font-size: 60%; }
+.menucolumn .select ul li h4 span::before { content: "Highest score: "; }
+.menucolumn .select ul li h4 span { font-size: 60%; }
 
 
-.settings {
+.menucolumn .settings {
     display: flex;
     background: #111;
     padding: 0.8em 0.4em;
 }
 
-.settings input[name=theme], .settings input[name=reset] {
+.menucolumn .settings input[name=theme], .menucolumn .settings input[name=reset] {
     flex: 1;
     cursor: pointer;
     margin: 0 0.2em;
     background: #040404;
     padding: 0.5em;
     color: #D7D7D7;
-    border: 1px solid #FFFFFF;
+    border-width: 1px;
+    border-color: #888;
     border-radius: 0.2em;
-    transition: all 200ms;
+    transition: all 70ms;
 }
 
-.settings input[name=reset]:active {
+.menucolumn .settings input[name=reset]:active {
     color: #8F0000 !important;
 }
-.settings input[name=reset]:hover {
+.menucolumn .settings input[name=reset]:hover {
     color: #fff;
     font-weight: 600;
     background: #FF0000 !important;
 }
-.settings input[name=theme]:hover {
+.menucolumn .settings input[name=theme]:hover {
     color: #909090 !important;
 }
 

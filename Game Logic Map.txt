@@ -11,15 +11,14 @@ First, we have a save_file object with the following variables:
     * Theme state (dark theme active, or no?)
 
     * All level information
+        - Format string
         - The tagline / description / info
         - Highest score acheived
         - Passed / Not passed / Not even tried
 
-    * Format string for generation
     * Current score (for this level)
         - Note that this variable is manually reset whenever the user clicks to another level. This way, browser crashes should hopefully retain their score.
     * Highest score (for this level)
-    * State of level (complete, incomplete, pending)
 
 
 Also, there is are a few consolidation points for variables.

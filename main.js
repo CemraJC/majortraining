@@ -1,104 +1,86 @@
-document.addEventListener("DOMContentLoaded", function(){
+// This is the save file DATA. Functions are in the other one.
+var __save_file__ = {
+    storage_key: "major_training6123537497129",
+    current_stage: 1,
+    current_level: 1,
+    current_score: 0,
+    dark_theme: false,
 
-    // Initialization block
-    loadSettings();
-    applySettings();
-
-
-    // Buttons logic
-    var theme_button = document.querySelector('.menucolumn .settings input[name=theme]');
-    var reset_button = document.querySelector('.menucolumn .settings input[name=reset]');
-
-    theme_button.addEventListener('click', function(){
-        toggleTheme();
-        saveSettings();
-    });
-
-    reset_button.addEventListener('click', function(event){
-        if (event.detail == 2) {
-            clearSettings();
+    levels: {
+        1: {
+            format: "2",
+            info: "2 digit numbers only",
+            highscore: 0,
+            state: false
+        },
+        2: {
+            format: "3",
+            info: "3 digit numbers only",
+            highscore: 0,
+            state: null
+        },
+        3: {
+            format: "2-3",
+            info: "2 and 3 digit numbers",
+            highscore: 0,
+            state: null
+        },
+        4: {
+            format: "3|3",
+            info: "2 groups of 3 digit numbers",
+            highscore: 0,
+            state: null
+        },
+        5: {
+            format: "4",
+            info: "4 digit numbers only",
+            highscore: 0,
+            state: null
+        },
+        6: {
+            format: "2-4|2-4",
+            info: "2 groups of 2-4 digit numbers",
+            highscore: 0,
+            state: null
+        },
+        7: {
+            format: "2-3|2-3|2-3|2-3",
+            info: "4 groups of 2-3 digit numbers",
+            highscore: 0,
+            state: null
+        },
+        8: {
+            format: "4|3|3",
+            info: "Phone numbers",
+            highscore: 0,
+            state: null
+        },
+        9: {
+            format: "5|5|5|5|5",
+            info: "Credit card numbers",
+            highscore: 0,
+            state: null
+        },
+        10: {
+            format: "40",
+            info: "40 digit mega numbers",
+            highscore: 0,
+            state: null
         }
-    });
+    },
 
-    // Level select logic
-    var level_list = document.querySelector('.select ul');
+    get: function(key) {
 
-    level_list.addEventListener('click', function(event){
-        var clicked, found;
-        var selected_level = settings.current_level || document.querySelector('.select ul li[selected]');
-        event.preventDefault();
-
-        for (var i = 0; i < event.path.length - 1; i++) {
-            if (event.path[i].nodeName === "LI") {
-                found = true;
-                clicked = event.path[i];
-                break;
-            }
-        };
-        if(!found) { return }
-
-        if (clicked == selected_level) {
-            return;
-        }
-
-        clicked.setAttribute('selected', '');
-        selected_level.removeAttribute('selected');
-        settings.current_level = clicked;
-    })
-
-});
-
-
-/*
-
-    UTILITY FUNCTIONS
-
-*/
-
-function display(element, content) {
-    element.innerHTML = content;
-}
-
-function toggleTheme() {
-    var body = document.body;
-    if (body.getAttribute('dark') == 'true') {
-        body.removeAttribute('dark');
-        settings.dark_theme_active = false;
-    } else {
-        body.setAttribute('dark', true);
-        settings.dark_theme_active = true;
+    },
+    set: function(key, value) {
+        this[key] = value;
+        this.save();
+    },
+    save: function() {
+        console.log(this);
+        window.localStorage.setItem(this.storage_key, JSON.stringify(this));
+    },
+    reset: function(){
+        window.localStorage.removeItem(this.storage_key);
     }
-}
-
-function applySettings() {
-    settings.dark_theme_active ? toggleTheme() : false;
-}
-
-function clearSettings() {
-    window.localStorage.removeItem(app_id + "settings");
-}
-
-function saveSettings() {
-    setLocalStore("settings", JSON.stringify(settings));
-}
-
-function loadSettings() {
-    var read_buffer = getLocalStore("settings");
-    try {
-        temp = JSON.parse(read_buffer);
-        if (temp === null) { return; }
-        settings = temp;
-    } catch(e) {
-        console.error("Settings corruption detected!!!", e)
-        console.log("Sorry, we have to clear your settings... :c")
-        clearSettings();
-    }
-}
-
-function setLocalStore(key, value){
-    window.localStorage.setItem(app_id + key, value);
-}
-
-function getLocalStore(key){
-    return window.localStorage.getItem(app_id + key);
 }
