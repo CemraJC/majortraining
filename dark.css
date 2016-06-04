@@ -12,8 +12,8 @@ body[dark] {
 }
 
 body[dark] .menucolumn .settings input[type=button] {
-    color: #000;
-    background: #C7C7C7;
+    color: #ECECEC;
+    background: #535353;
 }
 
 body[dark] .settings input[name=theme]:hover {
