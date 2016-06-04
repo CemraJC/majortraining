@@ -97,7 +97,7 @@ var elements = {
             level: __selectors__.readout + " .level",
             levelinfo: __selectors__.readout + " .levelinfo"
         },
-        level_select: __selectors__.menusection + " .select"
+        level_select: __selectors__.menusection + " .select ul"
     },
     buttons: {
         skip: __selectors__.mainsection + " .skip a",
@@ -149,7 +149,7 @@ var display = {
     getElementContent: function(element) {
         return element.innerHTML;
     },
-    relaceOrGetContent: function(element, content) {
+    replaceOrGetContent: function(element, content) {
         if (content === undefined){
             return this.getElementContent(element);
         } else {
@@ -159,11 +159,26 @@ var display = {
     },
     toggleTheme: function() {
         (document.body.dark === undefined) ? document.body.setAttribute('dark', true) : document.body.removeAttribute('dark');
+    },
+
+    getMenuItem: function(level_num) {
+        var obj = save_file.get('levels')[level_num], status;
+        return "<li><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span " + obj.state + "></span></li>\n";
+    },
+
+    getMenuList: function() {
+        var obj = save_file.get('levels');
+        var list = "";
+        console.log(obj);
+        for (i in obj) {
+            list += this.getMenuItem(i);
+        }
+        return list
     }
 
     /* Element specifics are auto-generated on init*/
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-    display.toggleTheme();
+    console.log(display.getMenuList());
 })

@@ -111,11 +111,11 @@ body {
 .menucolumn .select ul li small { color: #999; }
 
 .menucolumn .select ul li span { vertical-align: middle; font-size: 50%; }
-.menucolumn .select ul li span[done]::before { content: 'passed'; color: #87E911; }
-.menucolumn .select ul li span[not-done]::before { content: 'incomplete'; color: #E9AF11; }
-.menucolumn .select ul li span[not-tried]::before { content: ''; color: #868686; }
+.menucolumn .select ul li span[true]::before { content: ' passed'; color: #87E911; }
+.menucolumn .select ul li span[false]::before { content: ' incomplete'; color: #E9AF11; }
+.menucolumn .select ul li span[null]::before { content: ''; color: #868686; }
 
-.menucolumn .select ul li h4 span::before { content: "Highest score: "; }
+.menucolumn .select ul li h4 span::before { content: " Highest score: "; }
 .menucolumn .select ul li h4 span { font-size: 60%; }
 
 
