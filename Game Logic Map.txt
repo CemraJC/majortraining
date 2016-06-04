@@ -37,9 +37,10 @@ Other objects (for functionality) are as follows:
 
     * Display object
         - Has functions to manipulate the UI
+            - replaces or gets the content of an element based on if new content is passed
+            - The element specific methods are built on init
         > Turn the level info (in save_file) into HTML for the list.
             > Calls on a function that individuall builds list HTML li's
-        > Removes the "No Javascript! :c" warning / banner
         > Changes the theme (if asked)
         > Can pop up transient notifications
         > Can change the content of individual "variable" holders in the HTML flow
@@ -82,6 +83,7 @@ The following actions must happend before the game is ready (IN THIS ORDER).
     - If nothing to load, then defaults are used and immediately saved in.
 * The theme gets applied from appdata (defaults or otherwise).
 * `elements` gets transformed into the DOM objects instead of just strings.
+* Build an element-specific method for each member of `elements`
 * The select menu is built and displayed.
 * The current_level in appdata gets selected in the menu (visibly)
 * The readout is initialized to the appropriate state

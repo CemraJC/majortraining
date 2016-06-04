@@ -90,7 +90,7 @@ var __selectors__ = {
 
 var elements = {
     text: {
-        main: __selectors__.mainsection + " p.generated",
+        generated: __selectors__.mainsection + " p.generated",
         readout: {
             score: __selectors__.readout + " .score",
             highscore: __selectors__.readout + " .highscore",
@@ -137,4 +137,33 @@ var save_file = {
 
     Display Methods
 
+    - replace and get content
+
 */
+
+
+var display = {
+    replaceElementContent: function(element, content) {
+        element.innerHTML = content;
+    },
+    getElementContent: function(element) {
+        return element.innerHTML;
+    },
+    relaceOrGetContent: function(element, content) {
+        if (content === undefined){
+            return this.getElementContent(element);
+        } else {
+            this.replaceElementContent(element, content);
+            return true;
+        }
+    },
+    toggleTheme: function() {
+        (document.body.dark === undefined) ? document.body.setAttribute('dark', true) : document.body.removeAttribute('dark');
+    }
+
+    /* Element specifics are auto-generated on init*/
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+    display.toggleTheme();
+})
