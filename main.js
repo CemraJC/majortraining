@@ -88,6 +88,7 @@ var __selectors__ = {
         settings: ".menucolumn .settings"
     }
 
+// Do we need separate elements for each level item??
 var elements = {
     text: {
         generated: __selectors__.mainsection + " p.generated",
@@ -97,7 +98,7 @@ var elements = {
             level: __selectors__.readout + " .level",
             levelinfo: __selectors__.readout + " .levelinfo"
         },
-        level_select: __selectors__.menusection + " .select ul"
+        select: __selectors__.menusection + " .select ul"
     },
     buttons: {
         skip: __selectors__.mainsection + " .skip a",
@@ -106,6 +107,10 @@ var elements = {
     },
     inputs: {
         main: __selectors__.mainsection + " input[name=main_input]"
+    },
+
+    init: function(){
+        // Replaces element selector strings with the actualy DOM object.
     }
 }
 
@@ -136,8 +141,10 @@ var save_file = {
 /*
 
     Display Methods
-
     - replace and get content
+    - toggle the theme
+    - build the level-select list
+    - select a level
 
 */
 
@@ -162,23 +169,45 @@ var display = {
     },
 
     getMenuItem: function(level_num) {
-        var obj = save_file.get('levels')[level_num], status;
-        return "<li><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span " + obj.state + "></span></li>\n";
+        var obj = save_file.get('levels')[level_num],
+            status;
+
+        return "<li levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span " + obj.state + "></span></li>\n";
+    },
+
+    selectMenuItem: function(level_num){
+        // If these were separate, would have to pass them around in an object and probably save which one?? (maybe just init)
+        var current = document.querySelector('li[selected]'),
+            next = document.querySelector('li[levelnum="' + level_num + '"]');
+
+        if (current == next || !next) {
+            return false
+        } else {
+            current.removeAttribute('selected');
+            next.setAttribute('selected', '');
+            return true
+        };
     },
 
     getMenuList: function() {
-        var obj = save_file.get('levels');
-        var list = "";
-        console.log(obj);
+        var obj = save_file.get('levels'),
+            list = "";
+
         for (i in obj) {
             list += this.getMenuItem(i);
         }
         return list
+    },
+
+    buildMenuList: function() {
+        this.replaceElementContent(elements.text.select, this.getMenuList());
     }
 
     /* Element specifics are auto-generated on init*/
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-    console.log(display.getMenuList());
+    elements.init()
+    console.log(elements);
+        // console.log(display.getMenuList())
 })
