@@ -64,7 +64,7 @@ var save_file = new (function() {
         current_stage: 1,
         current_level: 1,
         current_score: 0,
-        dark_theme: false,
+        dark_theme: true,
 
         levels: {
             1: {
@@ -224,5 +224,35 @@ var display = new (function() {
         this.replaceElementContent(elements.text.select, this.getMenuList());
     }
 
-    /* Element specifics are auto-generated on init*/
+    /* Element specifics are auto-generated on init */
+    this.__generateSpecifics = function(obj, lvl) {
+        obj = obj || elements.list;
+        lvl = lvl || 1;
+        if (lvl > 10) { return false; }
+
+        for (i in obj) {
+            if (obj[i].nodeType !== undefined) {
+                this[i] = function(content){
+                    console.log(this)
+                    this.replaceOrGetContent(bung , content);
+                }
+                this[i].bung = obj[i];
+            } else {
+                this.__generateSpecifics(obj[i], lvl + 1);
+            }
+        }
+    }
+
+    this.init = function(){
+        // this.__generateSpecifics()
+        debugger
+
+        if ( save_file.get('dark_theme') ) { this.toggleTheme() }
+    }
+    this.init();
+
 })()
+
+
+console.log(display);
+console.log(display.generated())
