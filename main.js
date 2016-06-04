@@ -175,13 +175,22 @@ var save_file = new (function() {
 
 
 var display = new (function() {
+    this.getContentProperty = function(element){
+        if (element.nodeName == "INPUT") {
+            return 'value'
+        } else {
+            return 'innerHTML'
+        }
+    }
 
     this.replaceElementContent = function(element, content) {
-        element.innerHTML = content;
+        element[this.getContentProperty(element)] = content;
     }
+
     this.getElementContent = function(element) {
-        return element.innerHTML;
+        return element[this.getContentProperty(element)];
     }
+
     this.replaceOrGetContent = function(element, content) {
         if (content === undefined){
             return this.getElementContent(element);
