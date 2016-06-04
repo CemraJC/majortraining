@@ -192,7 +192,6 @@ var display = new (function() {
         } else {
             document.body.removeAttribute('dark');
         }
-        console.log("Toggle theme")
     }
 
     this.getMenuItem = function(level_num) {
