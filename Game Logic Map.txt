@@ -55,7 +55,9 @@ Other objects (for functionality) are as follows:
             - Updates the save_file
             - Calls the display object's theme toggler
         > Pressing 'reset'
+            // Should probably ask for certainty, but notifications system isn't implemented...
             - Calls the save_file's reset function
+            - Calls 'reload' to refresh the page
         > Clicking a level link in the list of levels
             - Updates the save_file
             - Reset current score

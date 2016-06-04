@@ -186,7 +186,13 @@ var display = new (function() {
     }
 
     this.toggleTheme = function() {
-        (document.body.dark === undefined) ? document.body.setAttribute('dark', true) : document.body.removeAttribute('dark');
+        var a = document.body.getAttribute('dark');
+        if(a == false || a == undefined){
+            document.body.setAttribute('dark', true)
+        } else {
+            document.body.removeAttribute('dark');
+        }
+        console.log("Toggle theme")
     }
 
     this.getMenuItem = function(level_num) {
@@ -251,3 +257,29 @@ var display = new (function() {
 
 })()
 
+var inputs = new (function(){
+    this.themeListener = function(){
+        save_file.set('dark_theme', !save_file.get('dark_theme'));
+        display.toggleTheme();
+    }
+
+    this.resetListener = function(e){
+        console.log(e)
+        if (e.detail >= 2) {
+            save_file.reset();
+            reload();
+        }
+    }
+
+    this.init = function(){
+        elements.list.buttons.theme.addEventListener('click', this.themeListener);
+        elements.list.buttons.reset.addEventListener('click', this.resetListener);
+    }
+
+    this.init();
+})()
+
+
+function reload() {
+    window.location.reload();
+}
