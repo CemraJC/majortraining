@@ -200,6 +200,10 @@ var display = new (function() {
         }
     }
 
+    this.getReadout = function(){
+
+    }
+
     this.toggleTheme = function() {
         var a = document.body.getAttribute('dark');
         if(a == false || a == undefined){
@@ -216,12 +220,12 @@ var display = new (function() {
         return "<li levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span " + obj.state + "></span></li>\n";
     }
 
-    this.selectMenuItem = function(level_num){
+    this.selectMenuItem = function(level_num, override){
         // If these were separate, would have to pass them around in an object and probably save which one?? (maybe just init)
-        var current = document.querySelector('li[selected]'),
+        var current = document.querySelector('li[selected]') || elements.list.text.select.firstChild,
             next = document.querySelector('li[levelnum="' + level_num + '"]');
 
-        if (current == next || !next) {
+        if ((current == next || !next) && !override) {
             return false
         } else {
             current.removeAttribute('selected');
@@ -241,7 +245,7 @@ var display = new (function() {
     }
 
     this.buildMenuList = function() {
-        this.replaceElementContent(elements.text.select, this.getMenuList());
+        this.replaceElementContent(elements.list.text.select, this.getMenuList());
     }
 
     /* Element specifics are auto-generated on init */
@@ -266,7 +270,8 @@ var display = new (function() {
     this.init = function(){
         // this.__generateSpecifics()
         if ( save_file.get('dark_theme') ) { this.toggleTheme() }
-        this.selectMenuItem(save_file.get('current_level'));
+        this.buildMenuList();
+        this.selectMenuItem(save_file.get('current_level'), true);
     }
     this.init();
 
