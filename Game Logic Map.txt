@@ -23,9 +23,14 @@ First, we have a save_file object with the following variables:
 
 Also, there is are a few consolidation points for variables.
     * The `save_file` object stores variables that are remembered between refreshes / runs.
-        - The entire object is saved under a unique key
+        - Actually "__appdata__" stores the data that is saved between sessions. "save_file" just provides methods for doing so.
+        - The entire object is saved under a unique key (UUID)
         - This object also has builtin functions to save and retrieve values.
     * the `elements` object stores all the elements in the document that may need to be constantly referenced. This way, queries are cached.
+        - Relies on __selectors (for maintainability's sake)
+        - On program load, this is simply an object that stores strings
+        - When the initialization routine is called, this object is transformed to containing the actual DOM objects.
+            - This waits till init because it's fairly intensive on the queries.
 
 
 Other objects (for functionality) are as follows:
@@ -66,6 +71,24 @@ Other objects (for functionality) are as follows:
                 - Relies on the save_file's format string
             - Number and Word checking
             - Updates the save_file with the above values
+
+
+Initialization Routine
+======================
+
+The following actions must happend before the game is ready (IN THIS ORDER).
+
+* `save_file` loads in the appdata from localstorage.
+    - If nothing to load, then defaults are used and immediately saved in.
+* The theme gets applied from appdata (defaults or otherwise).
+* `elements` gets transformed into the DOM objects instead of just strings.
+* The select menu is built and displayed.
+* The current_level in appdata gets selected in the menu (visibly)
+* The readout is initialized to the appropriate state
+    - level => current_level
+    - levelinfo => levels[current_level].info
+    - highscore => levels[current_level].highscore
+    - score => current_score  (should be zero, unless the browser crashed.)
 
 
 Game Logic Flow

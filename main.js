@@ -1,6 +1,16 @@
-// This is the save file DATA. Functions are in the other one.
-var __save_file__ = {
-    storage_key: "major_training6123537497129",
+
+/*
+
+    Game data logic and methods
+    - Persistent memory
+    - Save and load functionality
+    - Document elements (cached queries)
+
+*/
+
+// This is the data that gets saved between game states. Functions for manipulating are in save_file.
+var __appdata__ = {
+    storage_key: "major_training_242e9989-ffa2-48b6-8f46-4b7dfc6c590a",
     current_stage: 1,
     current_level: 1,
     current_score: 0,
@@ -68,19 +78,63 @@ var __save_file__ = {
             state: null
         }
     },
+}
 
-    get: function(key) {
+var __selectors__ = {
+        mainsection: ".maincolumn main",
+        menusection: ".menucolumn",
+        readout: ".menucolumn .readout",
+        select: ".menucolumn .select",
+        settings: ".menucolumn .settings"
+    }
 
+var elements = {
+    text: {
+        main: __selectors__.mainsection + " p.generated",
+        readout: {
+            score: __selectors__.readout + " .score",
+            highscore: __selectors__.readout + " .highscore",
+            level: __selectors__.readout + " .level",
+            levelinfo: __selectors__.readout + " .levelinfo"
+        },
+        level_select: __selectors__.menusection + " .select"
     },
-    set: function(key, value) {
-        this[key] = value;
-        this.save();
+    buttons: {
+        skip: __selectors__.mainsection + " .skip a",
+        theme: __selectors__.settings + " input[name=theme]",
+        reset: __selectors__.settings + " input[name=reset]"
     },
-    save: function() {
-        console.log(this);
-        window.localStorage.setItem(this.storage_key, JSON.stringify(this));
-    },
-    reset: function(){
-        window.localStorage.removeItem(this.storage_key);
+    inputs: {
+        main: __selectors__.mainsection + " input[name=main_input]"
     }
 }
+
+var save_file = {
+    save: function() {
+        console.log("Saving:", __appdata__);
+        window.localStorage.setItem(__appdata__.storage_key, JSON.stringify(__appdata__));
+    },
+    load: function() {
+        var read = JSON.parse(window.localStorage.getItem(__appdata__.storage_key));
+        if (typeof(read) == "object") {
+            __appdata__ = read;
+        }
+    },
+    get: function(key) {
+        return (__appdata__[key] === undefined) ? false : __appdata__[key];
+    },
+    set: function(key, value) {
+        __appdata__[key] = value;
+        this.save();
+    },
+    reset: function(){
+        window.localStorage.removeItem(__appdata__.storage_key);
+    }
+}
+
+
+/*
+
+    Display Methods
+
+*/
