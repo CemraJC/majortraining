@@ -13,8 +13,10 @@ body {
     display: flex;
     flex-direction: row;
     min-height: 100vh;
+    /*min-width: 50em;*/
 
     font-family: Trebuchet MS, Arial, sans-serif;
+    transition: background 150ms;
 }
 
 .menucolumn {
@@ -25,13 +27,13 @@ body {
     background: #3B3B3B;
     border: 1px solid #111;
     color: #eee;
-    min-width: 15em;
+    /*min-width: 15em;*/
 
     box-shadow: 0.1em 0 0.2em #444;
 }
 .maincolumn {
     flex: 7;
-    min-width: 23em;
+    /*min-width: 23em;*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,21 +98,31 @@ body {
 
 .menucolumn .select {
     flex: 1;
-    padding: 0.5em 0.8em;
+    padding: 0.5em 0;
     -webkit-user-select: none;
 }
 
-.menucolumn .select i { font-size: 80%; letter-spacing: 1px; }
+.menucolumn .select i { font-size: 80%; letter-spacing: 1px; margin: 0.7em 0.8em; }
 .menucolumn .select ul { list-style: none; }
 
-.menucolumn .select ul li { transition: all 100ms; }
-.menucolumn .select ul li:hover { color: #ccc; text-shadow: 0 0 1px #000; }
-.menucolumn .select ul li:active { color: #6D92B8; text-shadow: 0 0 1px #16528A; }
-.menucolumn .select ul li[selected] { color: #eee; }
-.menucolumn .select ul li { margin: 0.5em 0; color: #aaa; cursor: pointer; }
+.menucolumn .select ul li {
+    font-size: 90%;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid #222;
+    margin: 0;
+    padding: 0.6em 0.8em;
+    line-height: 0.9;
+    color: #aaa;
+    cursor: pointer;
+    transition: all 100ms;
+    text-shadow: 0 0.01em 0.01em #222;
+}
+.menucolumn .select ul li:hover { background: #444; color: #ccc; text-shadow: 0 0 0.2em #000; }
+.menucolumn .select ul li:active { color: #6D92B8; text-shadow: 0 0 0.01em #16528A; }
+.menucolumn .select ul li[selected] { color: #eee; text-shadow: 0 0 0.01em #000; }
 
 .menucolumn .select ul li[selected] small { color: #bbb; }
-.menucolumn .select ul li small { color: #999; }
+.menucolumn .select ul li small { color: #999; font-family: monospace; }
 
 .menucolumn .select ul li span { vertical-align: middle; font-size: 50%; }
 .menucolumn .select ul li span[true]::before { content: ' passed'; color: #87E911; }
@@ -118,7 +130,7 @@ body {
 .menucolumn .select ul li span[null]::before { content: ''; color: #868686; }
 
 .menucolumn .select ul li h4 span::before { content: " Highest score: "; }
-.menucolumn .select ul li h4 span { font-size: 60%; }
+.menucolumn .select ul li h4 span { font-size: 60%; color: #959595; }
 
 
 .menucolumn .settings {
@@ -129,6 +141,8 @@ body {
 
 .menucolumn .settings input[name=theme], .menucolumn .settings input[name=reset] {
     flex: 1;
+    font-family: monospace;
+    font-size: 70%;
     cursor: pointer;
     margin: 0 0.2em;
     background: #040404;
@@ -153,7 +167,7 @@ body {
 
 main {
     width: 50%;
-    min-width: 20em;
+    /*min-width: 20em;*/
     max-width: 40em;
 }
 
@@ -192,6 +206,8 @@ footer {
     font-style: italic;
     letter-spacing: 1px;
     color: #bbb;
+    width: 80%;
+    text-align: center;
 }
 
 
@@ -217,4 +233,22 @@ noscript .no-js {
 
 noscript .no-js a {
     color: #007DCC;
+}
+
+
+/* MEDIA BREAKPOINTS */
+
+@media screen and (max-width: 20em) {
+    body {
+        display: flex;
+        flex-direction: column !important;
+    }
+    .menucolumn {
+        order: 2;
+    }
+    .maincolumn {
+        order: 1;
+        border: none !important;
+        margin: 5em 0;
+    }
 }
