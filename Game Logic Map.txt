@@ -111,8 +111,7 @@ Game Logic Flow
     > Check if the inputted value is correct / works (must be in dictionary, sorry)
         1. If correct:
             * Update score
-                - Add number of digits working with to the score
-                - Calculate the words-per-minute of the last word (1 / [time taken / 60])
+                - See main.js funciton
             * Update readout
             * Update level list
             - Add the word to the list of submitted words along with its timestamp.

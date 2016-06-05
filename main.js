@@ -65,7 +65,7 @@ var save_file = new (function() {
         current_stage: 1,
         current_level: 1,
         current_score: 0,
-        last_play_time: timestamp(),
+        times: [timestamp()],
         dark_theme: false,
 
         levels: {
@@ -167,11 +167,12 @@ var save_file = new (function() {
         var a = this.__appdata__.levels;
         for (i in a){
             a[i].state = function(){
+                if (this.highscore >= this.pass) {
+                    return true
+                };
                 switch (this.highscore) {
                     case 0:
                         return null
-                    case (this.highscore >= this.pass):
-                        return true
                     default:
                         return false
                 }
@@ -352,10 +353,12 @@ var inputs = new (function(){
             if (game.checkNum(display.replaceOrGetContent(elements.list.text.generated), display.replaceOrGetContent(elements.list.inputs.main))){
                 display.replaceElementContent(elements.list.inputs.main, '');
                 game.generateNum();
+                game.addTimestamp();
                 game.updateScore();
                 display.updateReadout();
                 display.updateMenuList();
             } else {
+                /* NEED NOTIFICATIONS */
                 console.log("Nope, soz");
             }
         }
@@ -433,7 +436,7 @@ var game = new (function(){
     }
 
     this.__wordToLetters = function(word) {
-        exploded = removeDuplicates(word.trim().toLowerCase().split(''));
+        exploded = removeSuccessiveDuplicates(word.trim().toLowerCase().split(''));
         var letters = [],
             index;
 
@@ -471,16 +474,30 @@ var game = new (function(){
         return true;
     }
 
+    this.addTimestamp = function(){
+        save_file.get('times').push(timestamp());
+    }
 
     this.updateScore = function(){
         var obj = {
-            score: save_file.get('current_score') + 1,
-            level: save_file.get('levels')[save_file.get('current_level')]
+            score: save_file.get('current_score'),
+            level: save_file.get('levels')[save_file.get('current_level')],
+            times: save_file.get('times')
         };
+        obj.score = this.__calculateScore(obj)
+        // Set high score if current is higher
         if (obj.score > obj.level.highscore){
             save_file.get('levels')[save_file.get('current_level')].highscore = obj.score;
         }
         save_file.set('current_score', obj.score);
+    }
+
+    this.__calculateScore = function(obj) {
+        var scaler = display.replaceOrGetContent(elements.list.text.generated).length,
+            timelen = obj.times.length,
+            timediff = obj.times[timelen-1] - obj.times[timelen-2],
+            wpm = Math.round(Math.max(60/timediff, 1));
+        return Math.max(Math.round(obj.score + wpm*scaler - timediff), 0);
     }
 
     this.init = function(){
@@ -497,10 +514,10 @@ function reload() {
     window.location.reload();
 }
 
-function removeDuplicates(array){
+function removeSuccessiveDuplicates(array){
     var result = []
     for (var i = 0; i < array.length; i++) {
-        if(result.indexOf(array[i]) < 0){
+        if(array[i-1] != array[i]){
             result.push(array[i]);
         }
     };
