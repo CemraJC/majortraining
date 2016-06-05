@@ -73,61 +73,61 @@ var save_file = new (function() {
                 format: "2",
                 info: "2 digit numbers only",
                 highscore: 0,
-                pass: 50
+                pass: 220
             },
             2: {
                 format: "3",
                 info: "3 digit numbers only",
                 highscore: 0,
-                pass: 50
+                pass: 340
             },
             3: {
                 format: "2-3",
                 info: "2 and 3 digit numbers",
                 highscore: 0,
-                pass: 50
+                pass: 280
             },
             4: {
                 format: "3|3",
                 info: "2 groups of 3 digit numbers",
                 highscore: 0,
-                pass: 50
+                pass: 500
             },
             5: {
                 format: "4",
                 info: "4 digit numbers only",
                 highscore: 0,
-                pass: 50
+                pass: 300
             },
             6: {
                 format: "2-4|2-4",
                 info: "2 groups of 2-4 digit numbers",
                 highscore: 0,
-                pass: 50
+                pass: 450
             },
             7: {
                 format: "2-3|2-3|2-3|2-3",
                 info: "4 groups of 2-3 digit numbers",
                 highscore: 0,
-                pass: 50
+                pass: 600
             },
             8: {
                 format: "4|3|3",
                 info: "Phone numbers",
                 highscore: 0,
-                pass: 50
+                pass: 650
             },
             9: {
                 format: "5|5|5|5|5",
                 info: "Credit card numbers",
                 highscore: 0,
-                pass: 50
+                pass: 750
             },
             10: {
                 format: "40",
                 info: "40 digit mega numbers",
                 highscore: 0,
-                pass: 50
+                pass: 800
             }
         },
     }
@@ -245,10 +245,12 @@ var display = new (function() {
     }
 
     this.getMenuItem = function(level_num) {
-        var obj = save_file.get('levels')[level_num],
-            status;
+        var obj = save_file.get('levels')[level_num], s;
+        if (save_file.get('current_level') == level_num){
+            s = "selected";
+        }
 
-        return "<li levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span " + obj.state() + "></span></li>\n";
+        return "<li " + s + " levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span " + obj.state() + "></span></li>\n";
     }
 
     this.selectMenuItem = function(level_num, override){
@@ -343,6 +345,8 @@ var inputs = new (function(){
                 current_score: 0,
                 current_level: new_level
             });
+            save_file.set('times', [])
+            display.replaceElementContent(elements.list.inputs.main, '');
             game.generateNum();
             display.updateReadout();
         }
@@ -495,9 +499,13 @@ var game = new (function(){
     this.__calculateScore = function(obj) {
         var scaler = display.replaceOrGetContent(elements.list.text.generated).length,
             timelen = obj.times.length,
-            timediff = obj.times[timelen-1] - obj.times[timelen-2],
-            wpm = Math.round(Math.max(60/timediff, 1));
-        return Math.max(Math.round(obj.score + wpm*scaler - timediff), 0);
+            pastinterval = Math.max(Math.min(4, timelen), 1),
+            timediff = (obj.times[timelen-1] - obj.times[timelen-pastinterval]) / 1000,
+            wpm = Math.round(Math.min(Math.max((60)/(timediff/pastinterval), 1), 300));
+        if (pastinterval <= 2){
+            return 10;
+        }
+        return Math.max(Math.round(wpm*scaler), 0);
     }
 
     this.init = function(){
@@ -525,7 +533,7 @@ function removeSuccessiveDuplicates(array){
 }
 
 function timestamp(){
-    return Math.floor(Date.now() / 1000)
+    return Math.floor(Date.now() / 1)
 }
 
 // Shim for unsupporting browsers
