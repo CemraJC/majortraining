@@ -67,6 +67,7 @@ Other objects (for functionality) are as follows:
             - Calls the `game` object's skip function
         > Pressing enter inside the input bar
             - Calls the `game` object's checking function (gives it the value)
+            - See below for everything else
 
     * Game object
         - Stores the major-system lookup object
@@ -109,8 +110,11 @@ Game Logic Flow
     - Grab the inputted value
     > Check if the inputted value is correct / works (must be in dictionary, sorry)
         1. If correct:
-            - Add number of digits working with to the score
-            - Calculate the words-per-minute of the last word (1 / [time taken / 60])
+            * Update score
+                - Add number of digits working with to the score
+                - Calculate the words-per-minute of the last word (1 / [time taken / 60])
+            * Update readout
+            * Update level list
             - Add the word to the list of submitted words along with its timestamp.
             - If applicable, calculate the wpm for the last 5 words
             - If wpm for last 5 words is less than or equal to "pass score" then pass the stage

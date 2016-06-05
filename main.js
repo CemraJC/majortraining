@@ -354,6 +354,7 @@ var inputs = new (function(){
                 game.generateNum();
                 game.updateScore();
                 display.updateReadout();
+                display.updateMenuList();
             } else {
                 console.log("Nope, soz");
             }
@@ -472,7 +473,14 @@ var game = new (function(){
 
 
     this.updateScore = function(){
-        save_file.set('current_score', save_file.get('current_score') + 1);
+        var obj = {
+            score: save_file.get('current_score') + 1,
+            level: save_file.get('levels')[save_file.get('current_level')]
+        };
+        if (obj.score > obj.level.highscore){
+            save_file.get('levels')[save_file.get('current_level')].highscore = obj.score;
+        }
+        save_file.set('current_score', obj.score);
     }
 
     this.init = function(){
