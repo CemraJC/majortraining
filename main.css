@@ -106,7 +106,7 @@ body {
 .menucolumn .select ul { list-style: none; }
 
 .menucolumn .select ul li {
-    font-size: 90%;
+    font-size: 95%;
     letter-spacing: 0.02em;
     border-bottom: 1px solid #222;
     margin: 0;
@@ -142,7 +142,7 @@ body {
 .menucolumn .settings input[name=theme], .menucolumn .settings input[name=reset] {
     flex: 1;
     font-family: monospace;
-    font-size: 70%;
+    font-size: 85%;
     cursor: pointer;
     margin: 0 0.2em;
     background: #040404;
