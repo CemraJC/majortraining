@@ -73,68 +73,70 @@ var save_file = new (function() {
                 format: "2",
                 info: "2 digit numbers only",
                 highscore: 0,
-                state: null
+                pass: 50
             },
             2: {
                 format: "3",
                 info: "3 digit numbers only",
                 highscore: 0,
-                state: null
+                pass: 50
             },
             3: {
                 format: "2-3",
                 info: "2 and 3 digit numbers",
                 highscore: 0,
-                state: null
+                pass: 50
             },
             4: {
                 format: "3|3",
                 info: "2 groups of 3 digit numbers",
                 highscore: 0,
-                state: null
+                pass: 50
             },
             5: {
                 format: "4",
                 info: "4 digit numbers only",
                 highscore: 0,
-                state: null
+                pass: 50
             },
             6: {
                 format: "2-4|2-4",
                 info: "2 groups of 2-4 digit numbers",
                 highscore: 0,
-                state: null
+                pass: 50
             },
             7: {
                 format: "2-3|2-3|2-3|2-3",
                 info: "4 groups of 2-3 digit numbers",
                 highscore: 0,
-                state: null
+                pass: 50
             },
             8: {
                 format: "4|3|3",
                 info: "Phone numbers",
                 highscore: 0,
-                state: null
+                pass: 50
             },
             9: {
                 format: "5|5|5|5|5",
                 info: "Credit card numbers",
                 highscore: 0,
-                state: null
+                pass: 50
             },
             10: {
                 format: "40",
                 info: "40 digit mega numbers",
                 highscore: 0,
-                state: null
+                pass: 50
             }
         },
     }
+
     this.save = function() {
         console.log("Saving:", this.__appdata__);
         window.localStorage.setItem(this.__appdata__.storage_key, JSON.stringify(this.__appdata__));
     }
+
     this.load = function() {
         var read = JSON.parse(window.localStorage.getItem(this.__appdata__.storage_key));
         if (typeof(read) == "object" && read !== null) {
@@ -160,8 +162,23 @@ var save_file = new (function() {
         window.localStorage.removeItem(this.__appdata__.storage_key);
     }
 
-    /* INIT ROUTINE */
-    this.load()
+    this.init = function(){
+        this.load();
+        var a = this.__appdata__.levels;
+        for (i in a){
+            a[i].state = function(){
+                switch (this.highscore) {
+                    case 0:
+                        return null
+                    case (this.highscore >= this.pass):
+                        return true
+                    default:
+                        return false
+                }
+            }
+        }
+    }
+    this.init()
 })();
 
 
@@ -230,7 +247,7 @@ var display = new (function() {
         var obj = save_file.get('levels')[level_num],
             status;
 
-        return "<li levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span " + obj.state + "></span></li>\n";
+        return "<li levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span " + obj.state() + "></span></li>\n";
     }
 
     this.selectMenuItem = function(level_num, override){
