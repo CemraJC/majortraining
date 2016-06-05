@@ -69,6 +69,7 @@ Other objects (for functionality) are as follows:
             - Calls the `game` object's checking function (gives it the value)
 
     * Game object
+        - Stores the major-system lookup object
         - Handles game logic such as:
             - Score calculation (current score and high score)
             - Number and Word generation

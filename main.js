@@ -56,7 +56,7 @@ var elements = new (function() {
         }
     }
     this.init();
-})()
+})();
 
 var save_file = new (function() {
     // This is the data that gets saved between game states. Functions for manipulating are in save_file.
@@ -65,6 +65,7 @@ var save_file = new (function() {
         current_stage: 1,
         current_level: 1,
         current_score: 0,
+        last_play_time: timestamp(),
         dark_theme: false,
 
         levels: {
@@ -72,7 +73,7 @@ var save_file = new (function() {
                 format: "2",
                 info: "2 digit numbers only",
                 highscore: 0,
-                state: false
+                state: null
             },
             2: {
                 format: "3",
@@ -161,7 +162,7 @@ var save_file = new (function() {
 
     /* INIT ROUTINE */
     this.load()
-})()
+})();
 
 
 /*
@@ -288,12 +289,16 @@ var display = new (function() {
     }
     this.init();
 
-})()
+})();
 
 var inputs = new (function(){
     this.themeListener = function(){
         save_file.set('dark_theme', !save_file.get('dark_theme'));
         display.toggleTheme();
+    }
+
+    this.skipListener = function(e){
+        game.generateNum();
     }
 
     this.resetListener = function(e){
@@ -320,20 +325,168 @@ var inputs = new (function(){
                 current_score: 0,
                 current_level: new_level
             });
+            game.generateNum();
             display.updateReadout();
+        }
+    }
+
+    this.mainInputListener = function(e){
+        if (e.code == "Enter") {
+            if (game.checkNum(display.replaceOrGetContent(elements.list.text.generated), display.replaceOrGetContent(elements.list.inputs.main))){
+                display.replaceElementContent(elements.list.inputs.main, '');
+                game.generateNum();
+                game.updateScore();
+                display.updateReadout();
+            } else {
+                console.log("Nope, soz");
+            }
         }
     }
 
     this.init = function(){
         elements.list.buttons.theme.addEventListener('click', this.themeListener);
         elements.list.buttons.reset.addEventListener('click', this.resetListener);
+        elements.list.buttons.skip.addEventListener('click', this.skipListener);
         elements.list.text.select.addEventListener('click', this.levelSelectListener);
+        elements.list.inputs.main.addEventListener('keyup', this.mainInputListener);
     }
 
     this.init();
-})()
+})();
 
+var game = new (function(){
+
+    this.ms = {
+        0: ['s', 'c', 'z'],
+        1: ['d', 't', 'th'],
+        2: ['n'],
+        3: ['m'],
+        4: ['r'],
+        5: ['l'],
+        6: ['ch', 'sh', 'j', 'g'],
+        7: ['c', 'g', 'ch', 'k', 'ng'],
+        8: ['f', 'v'],
+        9: ['b', 'p'],
+        valid: ['s', 'c', 'z', 'd', 't', 'th', 'n', 'm', 'r', 'l', 'ch', 'sh', 'j', 'g', 'k', 'ng', 'f', 'v', 'b', 'p'],
+        multi: ['ch', 'sh', 'th',  'ng']
+    }
+
+    this.generateWord = 'bung';
+    this.generateNum = function() {
+        display.replaceElementContent(elements.list.text.generated, this.__generateNumFromFormat(save_file.get('levels')[save_file.get('current_level')].format));
+    }
+
+    this.__generateNumFromFormat = function(format){
+        format = format || "2-12"
+        var groups = format.split('|');
+        var result = [];
+
+        for (var i = 0; i < groups.length; i++) {
+            var digit_range = groups[i].split('-');
+            result[i] = this.__generateDigitGroup(digit_range);
+        };
+
+        return result.join(' ');
+    }
+    this.__generateDigitGroup = function(range) {
+        var single_digit, result = "";
+        if (!range[1]) { range[1] = range[0]; }
+        var break_probability = 1 / (range[1] - range[0] + 1);
+
+        for (var i = 1; i <= range[1]; i++) {
+            single_digit = Math.round(Math.random()*9);
+            result += single_digit;
+            if (i >= range[0] && Math.random() <= break_probability) {
+                break;
+            };
+        };
+
+        return result;
+    }
+
+    this.checkNum = function(num, word) {
+        letters = this.__wordToLetters(word);
+        var possible_num = [];
+        for (var i = 0; i < letters.length; i++) {
+            if ( this.ms.valid.indexOf(letters[i]) < 0 ) { continue; }
+            possible_num.push(game.__letterToNums(letters[i]));
+        };
+        return this.__matchPossibleNum(num, possible_num);
+    }
+
+    this.__wordToLetters = function(word) {
+        exploded = removeDuplicates(word.trim().toLowerCase().split(''));
+        var letters = [],
+            index;
+
+        for (var i = 0; i < exploded.length; i++) {
+            index = this.ms.multi.indexOf(exploded[i] + exploded[i + 1]);
+            if (index >= 0) {
+                letters.push(this.ms.multi[index]);
+                i++ // Skip the already-processed letter
+            } else {
+                letters.push(exploded[i])
+            }
+        };
+
+        return letters
+    }
+    this.__letterToNums = function(letter) {
+        nums = [];
+        for (i in this.ms) {
+            if (i >= 0 && this.ms[i].indexOf(letter) >= 0) {
+                nums.push(i);
+            }
+        };
+        return nums;
+    }
+    this.__matchPossibleNum = function(num, possible_num){
+        exploded_num = num.split('');
+        if (exploded_num.length != possible_num.length) {
+            return false;
+        }
+        for (var i = 0; i < exploded_num.length; i++) {
+            if (possible_num[i].indexOf(exploded_num[i]) < 0){
+                return false
+            }
+        };
+        return true;
+    }
+
+
+    this.updateScore = function(){
+        save_file.set('current_score', save_file.get('current_score') + 1);
+    }
+
+    this.init = function(){
+        this.generateNum();
+    }
+    this.init()
+
+})();
+
+
+/* UTILITY FUNCTIONS */
 
 function reload() {
     window.location.reload();
+}
+
+function removeDuplicates(array){
+    var result = []
+    for (var i = 0; i < array.length; i++) {
+        if(result.indexOf(array[i]) < 0){
+            result.push(array[i]);
+        }
+    };
+    return result
+}
+
+function timestamp(){
+    return Math.floor(Date.now() / 1000)
+}
+
+// Shim for unsupporting browsers
+if (!Date.now) {
+    Date.now = function() { return new Date().getTime(); }
 }
