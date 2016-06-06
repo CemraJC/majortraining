@@ -27,7 +27,7 @@ body {
     background: #3B3B3B;
     border: 1px solid #111;
     color: #eee;
-    /*min-width: 15em;*/
+    min-width: 13em;
 
     box-shadow: 0.1em 0 0.2em #444;
 }
@@ -244,6 +244,7 @@ noscript .no-js a {
         flex-direction: column !important;
     }
     .menucolumn {
+        min-width: none;
         order: 2;
     }
     .maincolumn {
