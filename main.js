@@ -300,21 +300,6 @@ var display = new (function() {
         }
     }
 
-    this.scaleFont = function(element){
-        var container = element.parentElement;
-        element.style.fontSize = 'medium';
-        var w1 = container.innerWidth()-10;
-        var w2 = element.innerWidth;
-        var wRatio = Math.round(w1 / w2 * 10) / 10;
-
-        var h1 = container.innerHeight-10;
-        var h2 = element.innerHeight;
-        var hRatio = Math.round(h1 / h2 * 10) / 10;
-
-        var constraint = Math.min(wRatio, hRatio);
-
-        element.style.fontSize = constraint + 'em';
-    }
 
     this.init = function(){
         // this.__generateSpecifics()
@@ -371,8 +356,8 @@ var inputs = new (function(){
 
     this.mainInputListener = function(e){
         if (e.code == "Enter") {
-            display.scaleFont(elements.list.text.generated);
-            if (game.checkNum(display.replaceOrGetContent(elements.list.text.generated), display.replaceOrGetContent(elements.list.inputs.main))){
+            var check = display.replaceOrGetContent(elements.list.text.generated.firstChild) || display.replaceOrGetContent(elements.list.text.generated);
+            if (game.checkNum(check, display.replaceOrGetContent(elements.list.inputs.main))){
                 display.replaceElementContent(elements.list.inputs.main, '');
                 game.generateNum();
                 game.addTimestamp();
@@ -407,11 +392,11 @@ var game = new (function(){
         4: ['r'],
         5: ['l'],
         6: ['ch', 'sh', 'j', 'g'],
-        7: ['c', 'g', 'ch', 'k', 'ng'],
+        7: ['c', 'g', 'ch', 'k', 'ng', 'ck'],
         8: ['f', 'v'],
         9: ['b', 'p'],
-        valid: ['s', 'c', 'z', 'd', 't', 'th', 'n', 'm', 'r', 'l', 'ch', 'sh', 'j', 'g', 'k', 'ng', 'f', 'v', 'b', 'p'],
-        multi: ['ch', 'sh', 'th',  'ng']
+        valid: ['s', 'c', 'z', 'd', 't', 'th', 'n', 'm', 'r', 'l', 'ch', 'ck', 'sh', 'j', 'g', 'k', 'ng', 'f', 'v', 'b', 'p'],
+        multi: ['ch', 'ck', 'sh', 'th',  'ng']
     }
 
     this.generateWord = 'bung';
