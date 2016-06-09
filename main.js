@@ -248,6 +248,8 @@ var display = new (function() {
         var obj = save_file.get('levels')[level_num], s;
         if (save_file.get('current_level') == level_num){
             s = "selected";
+        } else {
+            s = "";
         }
 
         return "<li " + s + " levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span " + obj.state() + "></span></li>\n";
