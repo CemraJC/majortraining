@@ -331,11 +331,14 @@ var inputs = new (function(){
     }
 
     this.levelSelectListener = function(e) {
-        var clicked;
-        for (var i = 0; i < e.path.length; i++) {
-            if (e.path[i].nodeName == "LI"){
-                clicked = e.path[i];
+        var clicked, target = e.target;
+
+        for (var i = 0; i < 3; i++) {
+            if (target.nodeName == "LI"){
+                clicked = target;
                 break
+            } else {
+                target = target.parentElement;
             }
         }
         if (!clicked) { return false; }
