@@ -124,7 +124,7 @@ var save_file = new (function() {
                 pass: 750
             },
             10: {
-                format: "20|20",
+                format: "40",
                 info: "40 digit mega numbers",
                 highscore: 0,
                 pass: 800
