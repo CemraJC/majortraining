@@ -181,6 +181,7 @@ main div.skip a {
 }
 
 main p.generated {
+    white-space: nowrap;
     margin-bottom: 0.2em;
     text-align: center;
     font-size: 500%;
