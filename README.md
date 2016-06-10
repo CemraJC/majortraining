@@ -1,5 +1,5 @@
 # Major Training
-*[A training website](cemrajc.github.io/majortraining) by Jason Cemra ([repository link](github.com/cemrajc/majortraining))*
+*[A training website](https://cemrajc.github.io/majortraining) by Jason Cemra ([repository link](https://github.com/cemrajc/majortraining))*
 
 ### What is this?
 
