@@ -291,11 +291,8 @@ var display = new (function() {
 
         for (i in obj) {
             if (obj[i].nodeType !== undefined) {
-                this[i] = function(content){
-                    console.log(this)
-                    this.replaceOrGetContent(bung , content);
-                }
-                this[i].bung = obj[i];
+                this[i] = new Function('content', 'return this.replaceOrGetContent(this.' + i + '__element, content);');
+                this[i + "__element"] = obj[i];
             } else {
                 this.__generateSpecifics(obj[i], lvl + 1);
             }
@@ -304,7 +301,7 @@ var display = new (function() {
 
 
     this.init = function(){
-        // this.__generateSpecifics()
+        this.__generateSpecifics()
         if ( save_file.get('dark_theme') ) { this.toggleTheme() }
         this.updateMenuList();
         this.updateReadout();
@@ -352,7 +349,7 @@ var inputs = new (function(){
                 current_level: new_level
             });
             save_file.set('times', [])
-            display.replaceElementContent(elements.list.inputs.main, '');
+            display.main('');
             game.generateNum();
             display.updateReadout();
             fontScale.recalculate();
@@ -361,9 +358,9 @@ var inputs = new (function(){
 
     this.mainInputListener = function(e){
         if (e.code == "Enter") {
-            var check = display.replaceOrGetContent(elements.list.text.generated.firstChild) || display.replaceOrGetContent(elements.list.text.generated);
-            if (game.checkNum(check, display.replaceOrGetContent(elements.list.inputs.main))){
-                display.replaceElementContent(elements.list.inputs.main, '');
+            var check = display.replaceOrGetContent(elements.list.text.generated.firstChild) || display.generated();
+            if (game.checkNum(check, display.main())){
+                display.main('');
                 game.generateNum();
                 game.addTimestamp();
                 game.updateScore();
@@ -406,7 +403,7 @@ var game = new (function(){
 
     this.generateWord = 'bung';
     this.generateNum = function() {
-        display.replaceElementContent(elements.list.text.generated, this.__generateNumFromFormat(save_file.get('levels')[save_file.get('current_level')].format));
+        display.generated(this.__generateNumFromFormat(save_file.get('levels')[save_file.get('current_level')].format));
     }
 
     this.__generateNumFromFormat = function(format){
@@ -505,7 +502,7 @@ var game = new (function(){
     }
 
     this.__calculateScore = function(obj) {
-        var scaler = display.replaceOrGetContent(elements.list.text.generated).length,
+        var scaler = display.generated().length,
             timelen = obj.times.length,
             pastinterval = Math.max(Math.min(4, timelen), 1),
             timediff = (obj.times[timelen-1] - obj.times[timelen-pastinterval]) / 1000,

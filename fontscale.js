@@ -23,7 +23,6 @@ var fontScale = new (function(){
             pw = this.getNominalWidth(element),
             height_ratio = Math.max(ph/eh, 0.01),
             width_ratio  = Math.max(pw/ew, 0.01);
-            console.log(height_ratio, width_ratio);
         if (height_ratio < width_ratio) {
             this.scaleHeight(element, height_ratio);
         } else {
