@@ -283,6 +283,24 @@ var display = new (function() {
         this.replaceElementContent(elements.list.text.select, this.getMenuList());
     }
 
+
+    /* Notification / Feedback system */
+    this.mainGlow = function(color){
+        if (!color) { return false; }
+        elements.list.inputs.main.style.boxShadow = '0 0 0.5em 0.2em ' + color + ' inset';
+        setTimeout(function(){
+            elements.list.inputs.main.style.boxShadow = '';
+        }, 300);
+        return true;
+    }
+    this.goodGlow = function(){
+        this.mainGlow("#C1D016");
+    };
+    this.badGlow = function(){
+        this.mainGlow("#DB6B19");
+    };
+
+
     /* Element specifics are auto-generated on init */
     this.__generateSpecifics = function(obj, lvl) {
         obj = obj || elements.list;
@@ -298,6 +316,7 @@ var display = new (function() {
             }
         }
     }
+
 
 
     this.init = function(){
@@ -361,14 +380,14 @@ var inputs = new (function(){
             var check = display.replaceOrGetContent(elements.list.text.generated.firstChild) || display.generated();
             if (game.checkNum(check, display.main())){
                 display.main('');
+                display.goodGlow();
                 game.generateNum();
                 game.addTimestamp();
                 game.updateScore();
                 display.updateReadout();
                 display.updateMenuList();
             } else {
-                /* NEED NOTIFICATIONS */
-                console.log("Nope, soz");
+                display.badGlow();
             }
         }
     }
