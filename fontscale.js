@@ -6,6 +6,7 @@ var fontScale = new (function(){
 
         for (var i = 0; i < this.elements.length; i++) {
             this.elements[i].style.wordWrap = 'none';
+            this.elements[i].addEventListener("DOM")
         };
     }
 

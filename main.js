@@ -73,61 +73,61 @@ var save_file = new (function() {
                 format: "2",
                 info: "2 digit numbers only",
                 highscore: 0,
-                pass: 220
+                pass: 120
             },
             2: {
                 format: "3",
                 info: "3 digit numbers only",
                 highscore: 0,
-                pass: 340
+                pass: 150
             },
             3: {
                 format: "2-3",
                 info: "2 and 3 digit numbers",
                 highscore: 0,
-                pass: 280
+                pass: 140
             },
             4: {
                 format: "3|3",
                 info: "2 groups of 3 digit numbers",
                 highscore: 0,
-                pass: 500
+                pass: 180
             },
             5: {
                 format: "4",
                 info: "4 digit numbers only",
                 highscore: 0,
-                pass: 300
+                pass: 110
             },
             6: {
                 format: "2-4|2-4",
                 info: "2 groups of 2-4 digit numbers",
                 highscore: 0,
-                pass: 450
+                pass: 150
             },
             7: {
                 format: "2-3|2-3|2-3|2-3",
                 info: "4 groups of 2-3 digit numbers",
                 highscore: 0,
-                pass: 600
+                pass: 220
             },
             8: {
                 format: "4|3|3",
                 info: "Phone numbers",
                 highscore: 0,
-                pass: 650
+                pass: 200
             },
             9: {
                 format: "5|5|5|5|5",
                 info: "Credit card numbers",
                 highscore: 0,
-                pass: 750
+                pass: 230
             },
             10: {
                 format: "40",
                 info: "40 digit mega numbers",
                 highscore: 0,
-                pass: 800
+                pass: 200
             }
         },
     }
@@ -294,7 +294,7 @@ var display = new (function() {
         return true;
     }
     this.goodGlow = function(){
-        this.mainGlow("#C1D016");
+        this.mainGlow("#65D016");
     };
     this.badGlow = function(){
         this.mainGlow("#DB6B19");
@@ -508,24 +508,31 @@ var game = new (function(){
 
     this.updateScore = function(){
         var obj = {
-            score: save_file.get('current_score'),
-            level: save_file.get('levels')[save_file.get('current_level')],
+            current_score: save_file.get('current_score'),
+            levels: save_file.get('levels'),
             times: save_file.get('times')
         };
-        obj.score = this.__calculateScore(obj)
+        var level_i = save_file.get('current_level');
+        obj.current_score = this.__calculateScore(obj)
         // Set high score if current is higher
-        if (obj.score > obj.level.highscore){
-            save_file.get('levels')[save_file.get('current_level')].highscore = obj.score;
+        if (obj.current_score > obj.levels[level_i].highscore){
+            obj.levels[level_i].highscore = obj.current_score;
         }
-        save_file.set('current_score', obj.score);
+        save_file.set(obj);
     }
 
     this.__calculateScore = function(obj) {
+        var MAX_PAST = 4;
         var scaler = display.generated().length,
             timelen = obj.times.length,
-            pastinterval = Math.max(Math.min(4, timelen), 1),
+            pastinterval = Math.max(Math.min(MAX_PAST, timelen), 1),
             timediff = (obj.times[timelen-1] - obj.times[timelen-pastinterval]) / 1000,
             wpm = Math.round(Math.min(Math.max((60)/(timediff/pastinterval), 1), 300));
+
+        if (timelen > MAX_PAST){
+            obj.times = obj.times.slice(-5);
+        }
+
         if (pastinterval <= 2){
             return 10;
         }
