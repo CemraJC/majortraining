@@ -28,10 +28,11 @@ var elements = new (function() {
                 level: this.__s.readout + " .level",
                 levelinfo: this.__s.readout + " .levelinfo"
             },
-            select: this.__s.menusection + " .select ul"
+            select: this.__s.menusection + " .select ul",
+            count: this.__s.mainsection + " .numbar span.count"
         },
         buttons: {
-            skip: this.__s.mainsection + " .skip a",
+            skip: this.__s.mainsection + " .numbar a.skip",
             theme: this.__s.settings + " input[name=theme]",
             reset: this.__s.settings + " input[name=reset]"
         },
@@ -235,6 +236,11 @@ var display = new (function() {
         return true;
     }
 
+    this.counter = function() {
+        var read = parseInt(elements.list.text.count.innerHTML) || 0;
+        elements.list.text.count.innerHTML = read + 1;
+    }
+
     this.toggleTheme = function() {
         var a = document.body.getAttribute('dark');
         if(a == false || a == undefined){
@@ -381,9 +387,12 @@ var inputs = new (function(){
             if (game.checkNum(check, display.main())){
                 display.main('');
                 display.goodGlow();
+                display.counter();
+
                 game.generateNum();
                 game.addTimestamp();
                 game.updateScore();
+
                 display.updateReadout();
                 display.updateMenuList();
             } else {

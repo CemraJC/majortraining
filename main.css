@@ -171,12 +171,23 @@ main {
     max-width: 40em;
 }
 
-main div.skip {
-    text-align: right;
+main .numbar {
+    display: flex;
+    /*text-align: center;*/
+    justify-content: middle;
     font-size: 70%;
     margin-bottom: 0.2em;
 }
-main div.skip a {
+main .numbar span.count:before{
+    content: "Count: ";
+}
+main .numbar span.count{
+    flex: 1;
+}
+main .numbar span.spacer{
+    flex: 1;
+}
+main .numbar a.skip {
     cursor: pointer;
 }
 
