@@ -66,6 +66,8 @@ var save_file = new (function() {
         current_stage: 1,
         current_level: 1,
         current_score: 0,
+        expert_scale: 30,
+        master_scale: 50,
         times: [timestamp()],
         dark_theme: false,
 
@@ -168,14 +170,18 @@ var save_file = new (function() {
         var a = this.__appdata__.levels;
         for (i in a){
             a[i].state = function(){
-                if (this.highscore >= this.pass) {
-                    return true
+                if (this.highscore >= (this.pass + save_file.get("master_scale"))) {
+                    return 4
+                } else if (this.highscore >= (this.pass + save_file.get("expert_scale"))) {
+                    return 3
+                } else if (this.highscore >= this.pass) {
+                    return 2
                 };
                 switch (this.highscore) {
                     case 0:
-                        return null
+                        return 0
                     default:
-                        return false
+                        return 1
                 }
             }
         }
@@ -228,11 +234,10 @@ var display = new (function() {
         }
         obj.level = save_file.get('levels')[obj.current_level];
 
-        /* NEED TO REPLACE WITH SPECIFICS */
-        this.replaceElementContent(elements.list.text.readout.score, obj.current_score)
-        this.replaceElementContent(elements.list.text.readout.highscore, obj.level.highscore)
-        this.replaceElementContent(elements.list.text.readout.level, "Level " + obj.current_level)
-        this.replaceElementContent(elements.list.text.readout.levelinfo, obj.level.info)
+        this.score(obj.current_score)
+        this.highscore( obj.level.highscore)
+        this.level("Level " + obj.current_level)
+        this.levelinfo(obj.level.info)
         return true;
     }
 
@@ -258,7 +263,7 @@ var display = new (function() {
             s = "";
         }
 
-        return "<li " + s + " levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span " + obj.state() + "></span></li>\n";
+        return "<li " + s + " levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span progression=\"" + obj.state() + "\"></span></li>\n";
     }
 
     this.selectMenuItem = function(level_num, override){

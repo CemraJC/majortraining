@@ -1,15 +1,17 @@
 # Major Training
 *[A training website](https://cemrajc.github.io/majortraining) by Jason Cemra ([repository link](https://github.com/cemrajc/majortraining))*
 
+> See if you can reach the **"master"** status on each level!
+
 ### What is this?
 
 The "[Mnemonic major system](https://en.wikipedia.org/Mnemonic_major_system)" - hereafter referred to as 'the major system' - is best defined as:
 > **"a mnemonic technique used to aid in memorizing numbers"**
 > ~ Wikipedia _2014_
 
-Numbers on their own are cold and emotionless. This makes them rather difficult to remember accurately. By converting these faceless numbers into consonant sounds, a sequence of numbers can be turned into words by adding vowels between them. This website's main goal is simple:
+Numbers on their own are cold and emotionless. This makes them rather difficult to remember accurately. By converting these faceless numbers into consonant sounds, a sequence of numbers can be turned into words by adding vowels between them.
 
-**To provide a platform for practicing the major system**
+This website's main goal is simple: **To provide a platform for practicing the major system**
 
 #### _How effective is this system?_
 Quick sidenote on the reasons why you should learn the major system as soon as you can:
