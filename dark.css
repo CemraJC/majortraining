@@ -38,3 +38,6 @@ body[dark] footer {
     color: #333333;
 }
 
+body[dark] footer:hover {
+    color: #777;
+}

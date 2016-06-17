@@ -10,6 +10,7 @@ var fontScale = new (function(){
     }
 
     this.recalculate = function(){
+        console.log("Recalculating...")
         for (var a = 0; a < this.elements.length; a++) {
             this.addWrapper(this.elements[a]);
             this.recalculateElement(this.elements[a].firstChild);

@@ -298,17 +298,24 @@ var display = new (function() {
     /* Notification / Feedback system */
     this.mainGlow = function(color){
         if (!color) { return false; }
-        elements.list.inputs.main.style.boxShadow = '0 0 0.5em 0.2em ' + color + ' inset';
+
+        // Ultra Jank Animation of some properties
+
+        elements.list.inputs.main.style.transition = 'none';
+        elements.list.inputs.main.style.boxShadow = '0 0 0.5em ' + color + ' inset';
+        setTimeout(function(){
+            elements.list.inputs.main.style.transition = "all 2s";
+        }, 20);
         setTimeout(function(){
             elements.list.inputs.main.style.boxShadow = '';
-        }, 300);
+        }, 40);
         return true;
     }
     this.goodGlow = function(){
-        this.mainGlow("#65D016");
+        this.mainGlow("#3A8900");
     };
     this.badGlow = function(){
-        this.mainGlow("#DB6B19");
+        this.mainGlow("#B31500");
     };
 
 
@@ -400,6 +407,7 @@ var inputs = new (function(){
 
                 display.updateReadout();
                 display.updateMenuList();
+                fontScale.recalculate();
             } else {
                 display.badGlow();
             }
