@@ -8,6 +8,22 @@
 
 */
 
+
+var ms_array = {
+    0: ['s', 'c', 'z', 'x'],
+    1: ['d', 't', 'th'],
+    2: ['n'],
+    3: ['m'],
+    4: ['r'],
+    5: ['l'],
+    6: ['ch', 'sh', 'j', 'g'],
+    7: ['c', 'g', 'ch', 'q', 'k', 'ng', 'ck'],
+    8: ['f', 'ph', 'v'],
+    9: ['b', 'p'],
+    valid: ['s', 'c', 'z', 'x', 'q', 'd', 't', 'th', 'n', 'm', 'r', 'l', 'ch', 'ck', 'sh', 'ph', 'j', 'g', 'k', 'ng', 'f', 'v', 'b', 'p'],
+    multi: ['ch', 'ck', 'sh', 'th', 'ng', 'ph']
+}
+
 // Do we need separate elements for each level item??
 var elements = new (function() {
     this.__s = { // __selectors - not really meant to be used by programmers
@@ -43,7 +59,8 @@ var elements = new (function() {
         assistant: {
             main: this.__s.assistsection,
             button: this.__s.assistsection + " .button",
-            panel: this.__s.assistsection + " .panel"
+            panel: this.__s.assistsection + " .panel",
+            reflist: this.__s.assistsection + " .panel table tbody"
         }
     }
 
@@ -274,6 +291,10 @@ var display = new (function() {
         this.toggleAttribute(elements.list.assistant.main, "hidden");
     }
 
+    this.getReferenceItem = function(number) {
+        return ms_array[number].join(", ") || "?";
+    }
+
     this.getMenuItem = function(level_num) {
         var obj = save_file.get('levels')[level_num], s;
         if (save_file.get('current_level') == level_num){
@@ -309,8 +330,19 @@ var display = new (function() {
         return list
     }
 
+    this.getReferenceList = function() {
+        var list = "";
+        for (var i = 0; i <= 9; i++) {
+            list += "<tr><td>" + i + "</td> <td>" + this.getReferenceItem(i) + "</td></tr>";
+        };
+        return list;
+    }
+
+    this.updateReferenceList = function() {
+        this.reflist(this.getReferenceList());
+    }
     this.updateMenuList = function() {
-        this.replaceElementContent(elements.list.text.select, this.getMenuList());
+        this.select(this.getMenuList());
     }
 
 
@@ -361,6 +393,7 @@ var display = new (function() {
         if ( save_file.get('dark_theme') ) { this.toggleTheme() }
         if ( save_file.get('assistant_open') ) { this.toggleAssistant() }
         this.updateMenuList();
+        this.updateReferenceList();
         this.updateReadout();
         this.selectMenuItem(save_file.get('current_level'), true);
     }
@@ -452,20 +485,7 @@ var inputs = new (function(){
 
 var game = new (function(){
 
-    this.ms = {
-        0: ['s', 'c', 'z', 'x'],
-        1: ['d', 't', 'th'],
-        2: ['n'],
-        3: ['m'],
-        4: ['r'],
-        5: ['l'],
-        6: ['ch', 'sh', 'j', 'g'],
-        7: ['c', 'g', 'ch', 'q', 'k', 'ng', 'ck'],
-        8: ['f', 'ph', 'v'],
-        9: ['b', 'p'],
-        valid: ['s', 'c', 'z', 'x', 'q', 'd', 't', 'th', 'n', 'm', 'r', 'l', 'ch', 'ck', 'sh', 'ph', 'j', 'g', 'k', 'ng', 'f', 'v', 'b', 'p'],
-        multi: ['ch', 'ck', 'sh', 'th', 'ng', 'ph']
-    }
+    this.ms = ms_array;
 
     this.generateWord = 'bung';
     this.generateNum = function() {

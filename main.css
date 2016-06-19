@@ -43,60 +43,6 @@ body {
 }
 
 
-.assistantcolumn .button span::before {
-    content: ">";
-}
-
-.assistantcolumn[hidden] .button span::before {
-    content: "<";
-}
-
-.assistantcolumn .button span {
-    font-family: Arial;
-    font-weight: 600;
-}
-
-.assistantcolumn .button {
-    display: flex;
-    width: 1.2em;
-    cursor: pointer;
-    background: #111;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    transition: all 1s;
-}
-
-.assistantcolumn .panel {
-    flex: 1;
-    transition: all 1s;
-}
-
-.assistantcolumn {
-    display: flex;
-    flex-direction: row;
-    min-width: 12.5em;
-
-    flex: 1.2;
-    width: 100%;
-    background: #747474;
-    transition: all 1s;
-}
-
-
-.assistantcolumn[hidden] .button {
-    padding: 0 0.5em;
-}
-.assistantcolumn[hidden] .panel {
-    background: #222;
-    opacity: 0.25;
-}
-.assistantcolumn[hidden] {
-    overflow: hidden;
-    flex:0;
-    min-width: 1.5em;
-}
-
 /* MENU BLOCK */
 
 .menucolumn .logo {
@@ -274,6 +220,69 @@ main input[type=text] {
     width: 99%;
     transition: box-shadow 250ms;
 }
+
+
+/* ASSISTANT COLUMN */
+
+
+.assistantcolumn {
+    display: flex;
+    flex-direction: row;
+    min-width: 12.5em;
+
+    flex: 1.2;
+    width: 100%;
+    background: #747474;
+    transition: all 1s;
+}
+
+.assistantcolumn .button {
+    display: flex;
+    width: 1.2em;
+    cursor: pointer;
+    background: #111;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s;
+}
+.assistantcolumn .button span {
+    font-family: Arial;
+    font-weight: 600;
+}
+.assistantcolumn .button span::before {
+    content: ">";
+}
+.assistantcolumn[hidden] .button span::before {
+    content: "<";
+}
+
+.assistantcolumn .panel {
+    flex: 1;
+    transition: all 1s;
+}
+
+.assistantcolumn .panel header {
+    font-size: 150%;
+    padding: 1em;
+    text-align: center;
+    background: #1E1E1E;
+}
+
+
+.assistantcolumn[hidden] {
+    overflow: hidden;
+    flex:0;
+    min-width: 1.5em;
+}
+.assistantcolumn[hidden] .button {
+    padding: 0 0.5em;
+}
+.assistantcolumn[hidden] .panel {
+    background: #222;
+    opacity: 0.25;
+}
+
 
 /* FOOTER */
 
