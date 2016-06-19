@@ -19,6 +19,7 @@ body {
     font-family: Trebuchet MS, Arial, sans-serif;
     transition: background 150ms;
 }
+a { color: #489BDA; }
 
 .menucolumn {
     flex: 1;
@@ -63,7 +64,6 @@ body {
     font-size: 50%;
     font-weight: normal;
 }
-.menucolumn .logo small a { color: #B0DDFF; }
 
 .menucolumn .readout, .menucolumn .stagebanner {
     line-height: 1.4;
@@ -232,7 +232,7 @@ main input[type=text] {
 
     flex: 1.2;
     width: 100%;
-    background: #747474;
+    background: #333;
     transition: all 1s;
 }
 
@@ -269,10 +269,20 @@ main input[type=text] {
     background: #1E1E1E;
 }
 
-.assistantcolumn .panel table {
+.assistantcolumn .panel .reference {
     margin: 0.5em 1em;
+    font-size: 90%;
+}
+.assistantcolumn .panel .reference p a {
+    color:;
+}
+.assistantcolumn .panel .reference p {
+    margin: 0.3em 0;
+}
+
+.assistantcolumn .panel table {
     background: #222;
-    width: 90%;
+    width: 100%;
     font-size: 90%;
     border-collapse: collapse;
 }
@@ -293,9 +303,15 @@ main input[type=text] {
     text-align: center;
 }
 
+.assistantcolumn .panel .generator {
+    margin: 1em 1em 0 1em;
+
+}
+
+
 .assistantcolumn[hidden] {
     overflow: hidden;
-    flex:0;
+    flex: 0;
     min-width: 1.5em;
 }
 .assistantcolumn[hidden] .button {
