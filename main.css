@@ -237,6 +237,7 @@ main input[type=text] {
     display: flex;
     flex-direction: row;
     min-width: 12.5em;
+    color: #fafafa;
 
     flex: 1.2;
     width: 100%;
