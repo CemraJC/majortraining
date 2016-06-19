@@ -11,7 +11,7 @@ body[dark] {
     background: #020202;
 }
 
-body[dark] .menucolumn .settings input[type=button] {
+body[dark] input[type=button], body[dark] button {
     color: #ECECEC;
     background: #535353;
 }
@@ -32,6 +32,10 @@ body[dark] main p.generated {
 body[dark] main input[type=text] {
     background: #C2BFBB;
     border: none;
+}
+
+body[dark] main .numbar a.skip {
+    color: #fafafa;
 }
 
 body[dark] footer {

@@ -19,7 +19,26 @@ body {
     font-family: Trebuchet MS, Arial, sans-serif;
     transition: background 150ms;
 }
-a { color: #489BDA; }
+
+a {
+    color: #489BDA;
+}
+
+
+input[type=button], button {
+    flex: 1;
+    font-family: monospace;
+    font-size: 85%;
+    cursor: pointer;
+    margin: 0 0.2em;
+    background: #040404;
+    padding: 0.5em;
+    color: #D7D7D7;
+    border-width: 1px;
+    border-color: #888;
+    border-radius: 0.2em;
+    transition: all 120ms;
+}
 
 .menucolumn {
     flex: 1;
@@ -148,20 +167,6 @@ a { color: #489BDA; }
     padding: 0.8em 0.4em;
 }
 
-.menucolumn .settings input[name=theme], .menucolumn .settings input[name=reset] {
-    flex: 1;
-    font-family: monospace;
-    font-size: 85%;
-    cursor: pointer;
-    margin: 0 0.2em;
-    background: #040404;
-    padding: 0.5em;
-    color: #D7D7D7;
-    border-width: 1px;
-    border-color: #888;
-    border-radius: 0.2em;
-    transition: all 120ms;
-}
 
 .menucolumn .settings input[name=reset]:hover {
     color: #fff;
@@ -197,6 +202,7 @@ main .numbar span.spacer{
     flex: 1;
 }
 main .numbar a.skip {
+    color: #111;
     cursor: pointer;
 }
 
@@ -210,13 +216,15 @@ main p.generated {
     color: #222;
 }
 
+input[type=text], input[type=number] {
+    color: #222;
+    border: 1px solid #000;
+    border-radius: 0.3em;
+    text-align: center;
+}
 
 main input[type=text] {
     padding: 0.3em 0.2em;
-    color: #222;
-    text-align: center;
-    border: 1px solid #000;
-    border-radius: 0.3em;
     width: 99%;
     transition: box-shadow 250ms;
 }
@@ -301,6 +309,34 @@ main input[type=text] {
     width: 1em;
     font-weight: 600;
     text-align: center;
+}
+
+.assistantcolumn .panel .generator span {
+    display: block;
+    margin: 0.5em 0;
+    color: #ddd;
+    text-align: center;
+}
+
+.assistantcolumn .panel .generator p {
+    margin: 0.5em 0;
+    font-style: italic;
+    font-size: 70%;
+}
+
+.assistantcolumn .panel .generator input {
+    flex-grow: 1;
+    padding: 0.2em;
+}
+.assistantcolumn .panel .generator button {
+    padding: 0.2em;
+    cursor: pointer;
+}
+
+.assistantcolumn .panel .generator .inputs {
+    display: flex;
+    margin: 0.6em auto;
+    width: 90%;
 }
 
 .assistantcolumn .panel .generator {
