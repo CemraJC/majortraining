@@ -13,6 +13,7 @@ var elements = new (function() {
     this.__s = { // __selectors - not really meant to be used by programmers
         mainsection: ".maincolumn main",
         menusection: ".menucolumn",
+        assistsection: ".assistantcolumn",
         readout: ".menucolumn .readout",
         select: ".menucolumn .select",
         settings: ".menucolumn .settings"
@@ -38,6 +39,11 @@ var elements = new (function() {
         },
         inputs: {
             main: this.__s.mainsection + " input[name=main_input]"
+        },
+        assistant: {
+            main: this.__s.assistsection,
+            button: this.__s.assistsection + " .button",
+            panel: this.__s.assistsection + " .panel"
         }
     }
 
@@ -68,6 +74,7 @@ var save_file = new (function() {
         current_score: 0,
         expert_scale: 30,
         master_scale: 50,
+        assistant_open: false,
         times: [timestamp()],
         dark_theme: false,
 
@@ -218,6 +225,14 @@ var display = new (function() {
         return element[this.getContentProperty(element)];
     }
 
+    this.toggleAttribute = function(element, attribute) {
+        if (element.getAttribute(attribute) !== null) {
+            element.removeAttribute(attribute);
+        } else {
+            element.setAttribute(attribute, '');
+        }
+    }
+
     this.replaceOrGetContent = function(element, content) {
         if (content === undefined){
             return this.getElementContent(element);
@@ -253,6 +268,10 @@ var display = new (function() {
         } else {
             document.body.removeAttribute('dark');
         }
+    }
+
+    this.toggleAssistant = function() {
+        this.toggleAttribute(elements.list.assistant.main, "hidden");
     }
 
     this.getMenuItem = function(level_num) {
@@ -340,6 +359,7 @@ var display = new (function() {
     this.init = function(){
         this.__generateSpecifics()
         if ( save_file.get('dark_theme') ) { this.toggleTheme() }
+        if ( save_file.get('assistant_open') ) { this.toggleAssistant() }
         this.updateMenuList();
         this.updateReadout();
         this.selectMenuItem(save_file.get('current_level'), true);
@@ -352,6 +372,10 @@ var inputs = new (function(){
     this.themeListener = function(){
         save_file.set('dark_theme', !save_file.get('dark_theme'));
         display.toggleTheme();
+    }
+
+    this.assistantListener = function(e){
+        display.toggleAssistant();
     }
 
     this.skipListener = function(e){
@@ -418,6 +442,7 @@ var inputs = new (function(){
         elements.list.buttons.theme.addEventListener('click', this.themeListener);
         elements.list.buttons.reset.addEventListener('click', this.resetListener);
         elements.list.buttons.skip.addEventListener('click', this.skipListener);
+        elements.list.assistant.button.addEventListener('click', this.assistantListener);
         elements.list.text.select.addEventListener('click', this.levelSelectListener);
         elements.list.inputs.main.addEventListener('keyup', this.mainInputListener);
     }
