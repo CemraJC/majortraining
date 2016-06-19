@@ -269,6 +269,29 @@ main input[type=text] {
     background: #1E1E1E;
 }
 
+.assistantcolumn .panel table {
+    margin: 0.5em 1em;
+    background: #222;
+    width: 90%;
+    font-size: 90%;
+    border-collapse: collapse;
+}
+.assistantcolumn .panel table caption {
+    padding: 0.8em 0em;
+}
+.assistantcolumn .panel table thead th {
+    padding: 0.8em 0.2em;
+    border: 1px solid #fafafa;
+}
+.assistantcolumn .panel table tbody td {
+    padding: 0.5em;
+    border: 1px solid #fafafa;
+}
+.assistantcolumn .panel table tbody td:first-child {
+    width: 1em;
+    font-weight: 600;
+    text-align: center;
+}
 
 .assistantcolumn[hidden] {
     overflow: hidden;
