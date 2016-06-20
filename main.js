@@ -37,7 +37,7 @@ var elements = new (function() {
 
     this.list = {
         text: {
-            generated: this.__s.mainsection + " p.generated",
+            main: this.__s.mainsection + " p.generated",
             readout: {
                 container: this.__s.readout,
                 score: this.__s.readout + " .score",
@@ -48,22 +48,24 @@ var elements = new (function() {
             select: this.__s.menusection + " .select ul",
             count: this.__s.mainsection + " .numbar span.count"
         },
-        buttons: {
+        button: {
             skip: this.__s.mainsection + " .numbar a.skip",
             theme: this.__s.settings + " input[name=theme]",
             reset: this.__s.settings + " input[name=reset]"
         },
-        inputs: {
+        input: {
             main: this.__s.mainsection + " input[name=main_input]"
         },
         assistant: {
-            main: this.__s.assistsection,
-            button: this.__s.assistsection + " .button",
-            generate_word_btn: this.__s.assistsection + " .inputs button",
-            generate_in_num: this.__s.assistsection + " .inputs input[type=number]",
-            generator_output: this.__s.assistsection + " span.generated_word",
+            container: this.__s.assistsection,
             panel: this.__s.assistsection + " .panel",
-            reflist: this.__s.assistsection + " .panel table tbody"
+            toggler: this.__s.assistsection + " .button",
+            reference: this.__s.assistsection + " .panel table tbody",
+            generator: {
+                word: this.__s.assistsection + " .inputs button",
+                number: this.__s.assistsection + " .inputs input[type=number]",
+                output: this.__s.assistsection + " span.generated_word"
+            }
         }
     }
 
@@ -229,6 +231,10 @@ var save_file = new (function() {
 
 
 var display = new (function() {
+    // This will store the specific elements when generated on init
+    this.modify = {};
+    this.modify.superclass = this; // Context fix :/
+
     this.getContentProperty = function(element){
         if (element.nodeName == "INPUT") {
             return 'value'
@@ -269,10 +275,10 @@ var display = new (function() {
         }
         obj.level = save_file.get('levels')[obj.current_level];
 
-        this.score(obj.current_score)
-        this.highscore( obj.level.highscore)
-        this.level("Level " + obj.current_level)
-        this.levelinfo(obj.level.info)
+        this.modify.textReadoutScore(obj.current_score)
+        this.modify.textReadoutHighscore( obj.level.highscore)
+        this.modify.textReadoutLevel("Level " + obj.current_level)
+        this.modify.textReadoutLevelinfo(obj.level.info)
         return true;
     }
 
@@ -291,7 +297,7 @@ var display = new (function() {
     }
 
     this.toggleAssistant = function() {
-        this.toggleAttribute(elements.list.assistant.main, "hidden");
+        this.toggleAttribute(elements.list.assistant.container, "hidden");
     }
 
     this.getReferenceItem = function(number) {
@@ -342,54 +348,55 @@ var display = new (function() {
     }
 
     this.updateReferenceList = function() {
-        this.reflist(this.getReferenceList());
+        this.modify.assistantReference(this.getReferenceList());
     }
     this.updateMenuList = function() {
-        this.select(this.getMenuList());
+        this.modify.textSelect(this.getMenuList());
     }
 
 
     /* Notification / Feedback system */
-    this.mainGlow = function(color){
+    this.triggerElementGlow = function(element, color){
         if (!color) { return false; }
 
         // Ultra Jank Animation of some properties
 
-        elements.list.inputs.main.style.transition = 'none';
-        elements.list.inputs.main.style.boxShadow = '0 0 0.5em ' + color + ' inset';
+        element.style.transition = 'none';
+        element.style.boxShadow = '0 0 0.5em ' + color + ' inset';
         setTimeout(function(){
-            elements.list.inputs.main.style.transition = "all 2s";
+            element.style.transition = "all 2s";
         }, 20);
         setTimeout(function(){
-            elements.list.inputs.main.style.boxShadow = '';
+            element.style.boxShadow = '';
         }, 40);
         return true;
     }
     this.goodGlow = function(){
-        this.mainGlow("#3A8900");
+        this.triggerElementGlow(elements.list.input.main, "#3A8900");
     };
     this.badGlow = function(){
-        this.mainGlow("#B31500");
+        this.triggerElementGlow(elements.list.input.main, "#B31500");
     };
 
 
     /* Element specifics are auto-generated on init */
-    this.__generateSpecifics = function(obj, lvl) {
+    this.__generateSpecifics = function(obj, lvl, path) {
         obj = obj || elements.list;
         lvl = lvl || 1;
+        path = path || "";
         if (lvl > 10) { return false; }
 
         for (i in obj) {
             try {
                 var valid = obj[i].nodeType;
             } catch(e) {
-                console.error("Element selctor problem:", i, e);
+                console.error("Element selector problem:", i, e);
             }
             if (valid !== undefined) {
-                this[i] = new Function('content', 'return this.replaceOrGetContent(this.' + i + '__element, content);');
-                this[i + "__element"] = obj[i];
+                this.modify[path + titleCase(i)] = new Function('content', 'return this.superclass.replaceOrGetContent(this.' + path + titleCase(i) + '__element, content);');
+                this.modify[path + titleCase(i) + "__element"] = obj[i];
             } else {
-                this.__generateSpecifics(obj[i], lvl + 1);
+                this.__generateSpecifics(obj[i], lvl + 1, (lvl > 1) ? path + titleCase(i) : path + i);
             }
         }
     }
@@ -420,8 +427,8 @@ var inputs = new (function(){
     }
 
     this.assistantGeneratorListener = function(e){
-        var word = WordGenerator.getWordFromNum(display.generate_in_num());
-        display.generator_output(word);
+        var word = WordGenerator.getWord(display.modify.assistantGeneratorNumber());
+        display.modify.assistantGeneratorOutput(word);
     }
 
     this.skipListener = function(e){
@@ -456,7 +463,7 @@ var inputs = new (function(){
                 current_level: new_level
             });
             save_file.set('times', [])
-            display.main('');
+            display.modify.inputMain('');
             game.generateNum();
             display.updateReadout();
             fontScale.recalculate();
@@ -465,9 +472,9 @@ var inputs = new (function(){
 
     this.mainInputListener = function(e){
         if (e.code == "Enter") {
-            var check = display.replaceOrGetContent(elements.list.text.generated.firstChild) || display.generated();
-            if (game.checkNum(check, display.main())){
-                display.main('');
+            var check = display.replaceOrGetContent(elements.list.text.main.firstChild) || display.modify.textMain();
+            if (game.checkNum(check, display.modify.inputMain())){
+                display.modify.inputMain('');
                 display.goodGlow();
                 display.counter();
 
@@ -485,15 +492,15 @@ var inputs = new (function(){
     }
 
     this.init = function(){
-        elements.list.buttons.theme.addEventListener('click', this.themeListener);
-        elements.list.buttons.reset.addEventListener('click', this.resetListener);
-        elements.list.buttons.skip.addEventListener('click', this.skipListener);
+        elements.list.button.theme.addEventListener('click', this.themeListener);
+        elements.list.button.reset.addEventListener('click', this.resetListener);
+        elements.list.button.skip.addEventListener('click', this.skipListener);
 
         elements.list.text.select.addEventListener('click', this.levelSelectListener);
-        elements.list.inputs.main.addEventListener('keyup', this.mainInputListener);
+        elements.list.input.main.addEventListener('keyup', this.mainInputListener);
 
-        elements.list.assistant.button.addEventListener('click', this.assistantListener);
-        elements.list.assistant.generate_word_btn.addEventListener('click', this.assistantGeneratorListener);
+        elements.list.assistant.toggler.addEventListener('click', this.assistantListener);
+        elements.list.assistant.generator.word.addEventListener('click', this.assistantGeneratorListener);
     }
 
     this.init();
@@ -505,7 +512,7 @@ var game = new (function(){
 
     this.generateWord = 'bung';
     this.generateNum = function() {
-        display.generated(this.__generateNumFromFormat(save_file.get('levels')[save_file.get('current_level')].format));
+        display.modify.textMain(this.__generateNumFromFormat(save_file.get('levels')[save_file.get('current_level')].format));
     }
 
     this.__generateNumFromFormat = function(format){
@@ -606,7 +613,7 @@ var game = new (function(){
 
     this.__calculateScore = function(obj) {
         var MAX_PAST = 4;
-        var scaler = display.generated().length,
+        var scaler = display.modify.textMain().length,
             timelen = obj.times.length,
             pastinterval = Math.max(Math.min(MAX_PAST, timelen), 1),
             timediff = (obj.times[timelen-1] - obj.times[timelen-pastinterval]) / 1000,
@@ -653,4 +660,9 @@ function timestamp(){
 // Shim for unsupporting browsers
 if (!Date.now) {
     Date.now = function() { return new Date().getTime(); }
+}
+
+function titleCase(string){
+    if (!string) { return ""; }
+    return string[0].toUpperCase() + string.slice(1);
 }

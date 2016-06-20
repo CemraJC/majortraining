@@ -1,10 +1,15 @@
+## Currently doing
+
+* Graceful failures for offline users (for word generator)
+* Make a database-generating script
+
+
 ## Todo
 
 * Refactor the entire project. Yeah.
     - Needs to be integrated with gulp
     - Needs a separate gh-pages branch with only the generated site on it
     - Need to split up the (too big) main.js file
-    - Need to clean up the elements object
     - Need a better init routine
 
 * Update the UI
@@ -25,3 +30,4 @@
     - Add a timer
     - Add a disclaimer about how scores are calculated
     - Make sure the user knows that their progress should be auto saved.
+    - Implement a service worker? 0.o
