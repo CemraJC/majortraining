@@ -1,6 +1,8 @@
 # Major Training
 *[A training website](https://cemrajc.github.io/majortraining) by Jason Cemra ([repository link](https://github.com/cemrajc/majortraining))*
 
+# [Click Here](https://cemrajc.github.io/majortraining)
+
 > See if you can reach the **"master"** status on each level!
 
 ### What is this?

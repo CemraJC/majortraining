@@ -29,10 +29,10 @@ var WordGenerator = new (function() {
     }
 
     this.requestDatabase = function(){
-        var ls = window.localStorage.getItem(this.dbUuid);
+        var localStorage_db = window.localStorage.getItem(this.dbUuid);
         try {
-            if (ls) {
-                this.onDatabaseGet(JSON.parse(ls), "Loaded from localstorage B)");
+            if (localStorage_db) {
+                this.onDatabaseGet(JSON.parse(localStorage_db), "Loaded from localstorage B)");
             } else {
                 this.ajaxMakeRequest(this.httpRequest, this.dbUrl, this.onDatabaseGet, this.onDatabaseError);
             }
