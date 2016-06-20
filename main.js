@@ -59,6 +59,9 @@ var elements = new (function() {
         assistant: {
             main: this.__s.assistsection,
             button: this.__s.assistsection + " .button",
+            generate_word_btn: this.__s.assistsection + " .inputs button",
+            generate_in_num: this.__s.assistsection + " .inputs input[type=number]",
+            generator_output: this.__s.assistsection + " span.generated_word",
             panel: this.__s.assistsection + " .panel",
             reflist: this.__s.assistsection + " .panel table tbody"
         }
@@ -377,7 +380,12 @@ var display = new (function() {
         if (lvl > 10) { return false; }
 
         for (i in obj) {
-            if (obj[i].nodeType !== undefined) {
+            try {
+                var valid = obj[i].nodeType;
+            } catch(e) {
+                console.error("Element selctor problem:", i, e);
+            }
+            if (valid !== undefined) {
                 this[i] = new Function('content', 'return this.replaceOrGetContent(this.' + i + '__element, content);');
                 this[i + "__element"] = obj[i];
             } else {
@@ -409,6 +417,11 @@ var inputs = new (function(){
 
     this.assistantListener = function(e){
         display.toggleAssistant();
+    }
+
+    this.assistantGeneratorListener = function(e){
+        var word = WordGenerator.getWordFromNum(display.generate_in_num());
+        display.generator_output(word);
     }
 
     this.skipListener = function(e){
@@ -475,9 +488,12 @@ var inputs = new (function(){
         elements.list.buttons.theme.addEventListener('click', this.themeListener);
         elements.list.buttons.reset.addEventListener('click', this.resetListener);
         elements.list.buttons.skip.addEventListener('click', this.skipListener);
-        elements.list.assistant.button.addEventListener('click', this.assistantListener);
+
         elements.list.text.select.addEventListener('click', this.levelSelectListener);
         elements.list.inputs.main.addEventListener('keyup', this.mainInputListener);
+
+        elements.list.assistant.button.addEventListener('click', this.assistantListener);
+        elements.list.assistant.generate_word_btn.addEventListener('click', this.assistantGeneratorListener);
     }
 
     this.init();
