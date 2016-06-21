@@ -8,7 +8,7 @@
 
 var WordGenerator = new (function() {
     // this.serviceUrl = "http://majorsystem.com/generator"; // NEED TO ADD FALLBACK TO THIS
-    this.dbUrl = "./database/word_generator_db.json";
+    this.dbUrl = "./database/major_database.json";
     this.dbUuid = "MajorTrainingDatabase-60b02baf-b5cf-4851-ad39-1644bd5dd5ec";
 
     this.httpRequest = new XMLHttpRequest();

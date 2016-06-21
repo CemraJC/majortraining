@@ -10,13 +10,13 @@ BEGIN {
         } else {
             comma = ""
         }
-        num_array[$1] = num_array[$1] comma $i
+        num_array[$1] = num_array[$1] comma "\"" $i "\""
     }
 }
 
 END {
     for (i in num_array) {
-        print "    \"" i "\": [" num_array[i] "]"
+        print "    \"" i "\": [" num_array[i] "],"
     }
     print "}"
 }

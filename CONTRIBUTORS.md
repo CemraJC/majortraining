@@ -1,8 +1,6 @@
 ## Currently doing
 
 * Graceful failures for offline users (for word generator)
-* Make a database-generating script
-
 
 ## Todo
 
