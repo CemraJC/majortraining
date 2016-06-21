@@ -1,7 +1,3 @@
-## Currently doing
-
-* Graceful failures for offline users (for word generator)
-
 ## Todo
 
 * Refactor the entire project. Yeah.
