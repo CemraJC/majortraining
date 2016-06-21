@@ -53,7 +53,7 @@ var WordGenerator = new (function() {
             this.db = db;
             if (typeof(this.db) === "object"){
                 window.localStorage.setItem(this.dbUuid, JSON.stringify(this.db));
-                console.info("Generator database is up and running!", msg, this.db)
+                console.info("Generator database is up and running!", msg)
                 this.databaseLoaded = true;
             } else {
                 throw(Error("Generator database not retreived as object"))
@@ -71,10 +71,10 @@ var WordGenerator = new (function() {
 
 
     this.getWordFromNum = function(num) {
-        if (this.database && this.database[num]) {
-            var working_set = this.database[num];
+        if (this.databaseLoaded && this.db[num]) {
+            var working_set = this.db[num];
             var random_index = Math.round(Math.random() * (working_set.length - 1));
-            return working_set[random_index] || "<i>Error occurred :(</i>";
+            return titleCase(working_set[random_index]) || "<i>Error occurred :(</i>";
         } else {
             if (this.databaseError) {
                 return "<i>Sorry, it's broken :(</i>"
