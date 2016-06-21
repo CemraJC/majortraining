@@ -11,6 +11,7 @@ var WordGenerator = new (function() {
     this.dbUrl = "./database/major_database.json";
     this.dbUuid = "MajorTrainingDatabase-60b02baf-b5cf-4851-ad39-1644bd5dd5ec";
     this.databaseError = false;
+    this.databaseLoaded = false;
 
     this.httpRequest = new XMLHttpRequest();
     this.ajaxMakeRequest = function(req, url, success, failure) {
@@ -53,7 +54,7 @@ var WordGenerator = new (function() {
             if (typeof(this.db) === "object"){
                 window.localStorage.setItem(this.dbUuid, JSON.stringify(this.db));
                 console.info("Generator database is up and running!", msg, this.db)
-                this.databaseError = false;
+                this.databaseLoaded = true;
             } else {
                 throw(Error("Generator database not retreived as object"))
             }
@@ -77,8 +78,10 @@ var WordGenerator = new (function() {
         } else {
             if (this.databaseError) {
                 return "<i>Sorry, it's broken :(</i>"
-            } else {
+            } else if (this.databaseLoaded) {
                 return "<i>No word found</i>"
+            } else {
+                return "<i>Still loading database...</i>"
             }
         }
     }

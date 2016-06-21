@@ -15,8 +15,15 @@ BEGIN {
 }
 
 END {
+    count = length(num_array)
     for (i in num_array) {
-        print "    \"" i "\": [" num_array[i] "],"
+        --count
+        if (count > 0) {
+            comma = ","
+        } else {
+            comma = ""
+        }
+        print "    \"" i "\": [" num_array[i] "]" comma
     }
     print "}"
 }
