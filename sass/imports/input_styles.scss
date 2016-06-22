@@ -1,0 +1,44 @@
+
+input[type=button], button {
+    flex: 1;
+    padding: 0.5em;
+    margin: 0 0.2em;
+
+
+    font-family: monospace;
+    font-size: 85%;
+    color: #D7D7D7;
+
+    background: #040404;
+    cursor: pointer;
+    border-width: 1px;
+    border-color: #888;
+    border-radius: 0.2em;
+
+    transition: all 120ms;
+}
+
+input[name=theme]:hover {
+    color: #909090 !important;
+}
+
+input[name=reset]:hover {
+    font-weight: 600;
+    color: #fff;
+
+    background: #FF0000 !important;
+}
+
+
+input[type=text], input[type=number] {
+    width: 99%;
+    padding: 0.3em 0.2em;
+
+    color: #222;
+    text-align: center;
+
+    border-radius: 0.3em;
+    border: 1px solid #000;
+
+    transition: box-shadow 250ms;
+}

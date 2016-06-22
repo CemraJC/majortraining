@@ -1,0 +1,41 @@
+
+body[dark] {
+    color: #eee;
+    background: #020202;
+
+    & input[type=button], & button {
+        color: #ECECEC;
+        background: #535353;
+    }
+
+    & .settings input[name=theme]:hover {
+        color: #000 !important;
+        background: #D8D8D8 !important;
+    }
+
+    & .maincolumn {
+        border-left: 0.2em solid #aaa;
+    }
+
+    & main {
+        & p.generated {
+            color: #F0ECE2;
+        }
+
+        & input[type=text] {
+            background: #C2BFBB;
+            border: none;
+        }
+
+        & .numbar a.skip {
+            color: #fafafa;
+        }
+    }
+
+    & footer {
+        color: #333333;
+        &:hover {
+            color: #777;
+        }
+    }
+}

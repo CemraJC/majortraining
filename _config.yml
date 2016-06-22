@@ -1,0 +1,12 @@
+title: Major Training
+markdown: kramdown
+email: cemrajc+majortraining@gmail.com
+baseurl: ""
+
+port: 80
+
+keep_files: ['_site/css']
+exclude: [
+    "node_modules/",
+    "sass/"
+]

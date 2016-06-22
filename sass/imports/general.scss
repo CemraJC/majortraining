@@ -1,0 +1,15 @@
+
+body {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    font-family: Trebuchet MS, Arial, sans-serif;
+
+    transition: background 150ms;
+}
+
+a {
+    color: #489BDA;
+}
