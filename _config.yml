@@ -12,5 +12,7 @@ keep_files: [
 exclude: [
     "node_modules/",
     "sass/",
-    "js/"
+    "js/",
+    "*.md",
+    "*ffs_*"
 ]

@@ -21,6 +21,7 @@ gulp.task('js', function(){
                .pipe(m.concat('main.js'))
                .pipe(m.uglify())
                .pipe(m.sourcemaps.write('.'))
+               .pipe(browserSync.stream())
                .pipe(gulp.dest(path.site + "js/"));
 });
 
@@ -32,6 +33,7 @@ gulp.task('sass', function(){
                .pipe(m.sass({"includePaths" : path.sass + "imports"}).on('error', m.sass.logError))
                .pipe(m.autoprefixer({"browsers": "> 1%"}))
                .pipe(m.sourcemaps.write('.'))
+               .pipe(browserSync.stream())
                .pipe(gulp.dest(path.site + "css/"));
 })
 
