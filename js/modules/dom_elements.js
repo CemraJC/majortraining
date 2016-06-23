@@ -27,7 +27,11 @@ var elements = new (function() {
             reset: this.__s.settings + " input[name=reset]"
         },
         input: {
-            main: this.__s.mainsection + " input[name=main_input]"
+            main: this.__s.mainsection + " input[name=main_input]",
+            localdb: {
+                filechooser: this.__s.assistsection + " input[type=file].submit_db",
+                messages: this.__s.assistsection + " p.submit_db"
+            }
         },
         assistant: {
             container: this.__s.assistsection,

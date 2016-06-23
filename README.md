@@ -15,7 +15,7 @@ Numbers on their own are cold and emotionless. This makes them rather difficult 
 
 This website's main goal is simple: **To provide a platform for practicing the major system**
 
-#### _How effective is this system?_
+## _How effective is this system?_
 Quick sidenote on the reasons why you should learn the major system as soon as you can:
 
 * ***Speed.*** The best reason to use your memory is that it's always with you and it's faster than paper.
@@ -26,7 +26,7 @@ Quick sidenote on the reasons why you should learn the major system as soon as y
 
 Many people are known to use the major system. Most of these people are stage performers who enact "magical" feats assisted greatly by their memory. In many memory competitions, this system is used. There are countless other aplications (surprisingly, not all of them legal).
 
-### How do I use it?
+## How do I use it?
 
 First, I would reccommend doing a bit of research on the major system. Once you know what it is, the website will make much more sense to you.
 
@@ -44,3 +44,30 @@ The final step to learning the amjor system is converting words back in to numbe
 ### Enjoy!
 
 I made this training website for my own personal use. I then thought that it would be beneficial to share with others. I made it into a website because a webpage is far more shareable and cross-platform than a native program. I hope you enjoy using this site as much as I did making it.
+
+
+# Using Offline
+
+If you're one of the many people with limited or intermittent internet conenction, you can download "Major Training" for offline use!
+
+**Step 1:**
+Navigate to the [gh-pages branch]() of this repository.
+
+**Step 2:**
+Download everything as a zip file (you should see a green "Download or Clone" button - click it).
+
+**Step 3:**
+Wait for your download. It should only be about 2MB.
+
+**Step 4:**
+Extract the zip folder and double click on **index.html** to launch Major Training in your default web browser.
+
+**Step 5:**
+Almost there - if you want the word generator to work, you will need to allow the browser (for security reasons) to read the database file. To do this follow these steps:
+
+* Go the the "Learning Assistant" panel and click the **Choose File** button
+* Navigate to the folder that you extracted in **step 4**
+* Open the **database** folder
+* Select **major_database.json** and hit **OK**
+
+Provided that you selected the correct file, you should never need to load in the database again. I wish there was a way to do this automatically for you, but - in truth - it's a good idea to have security measures in place that stop websites (like mine) from just reading anything off the hard drive :smile:

@@ -14,8 +14,25 @@ var WordGenerator = new (function() {
     this.databaseLoaded = false;
 
     this.httpRequest = new XMLHttpRequest();
+
+
+    this.requestDatabase = function(){
+        var localStorage_db = window.localStorage.getItem(this.dbUuid);
+        try {
+            if (localStorage_db) {
+                this.onDatabaseGet(JSON.parse(localStorage_db), "Loaded from localstorage! B)");
+            } else if (this.isOffline()) {
+                this.requestLocalFile();
+            } else {
+                this.ajaxMakeRequest(this.httpRequest, this.dbUrl, this.onDatabaseGet, this.onDatabaseError);
+            }
+        } catch(e) {
+            window.localStorage.removeItem(this.dbUuid);
+        }
+    }
+
     this.ajaxMakeRequest = function(req, url, success, failure) {
-        req.superclass = this;
+        req.superclass = this; // HACK for Context
         req.open('GET', url);
         req.send();
         if (req.readyState === 4 && req.response === ""){
@@ -34,17 +51,39 @@ var WordGenerator = new (function() {
         });
     }
 
-    this.requestDatabase = function(){
-        var localStorage_db = window.localStorage.getItem(this.dbUuid);
-        try {
-            if (localStorage_db) {
-                this.onDatabaseGet(JSON.parse(localStorage_db), "Loaded from localstorage B)");
-            } else {
-                this.ajaxMakeRequest(this.httpRequest, this.dbUrl, this.onDatabaseGet, this.onDatabaseError);
+    this.requestLocalFile = function(){
+        elements.list.input.localdb.filechooser.style.display = "block";
+        elements.list.input.localdb.messages.style.display = "block";
+        elements.list.input.localdb.filechooser.superclass = this; // HACK for Context
+        elements.list.input.localdb.filechooser.addEventListener('change', this.readLocalFile)
+    }
+
+    this.readLocalFile = function(e) {
+        if (!e) {return false}
+        e.preventDefault();
+        e.stopPropagation();
+
+        var file = e.target.files[0] || null
+        if (!file) {return false}
+
+        var reader = new FileReader();
+        reader.superclass = this.superclass; // HACK for Context
+        reader.onload = function(evt){
+            try {
+                var db = JSON.parse(reader.result);
+                this.superclass.onDatabaseGet(db, "Loaded from local file! \\(^.^)/");
+                display.modify.inputLocaldbMessages("Thank you! (^.^)");
+                elements.list.input.localdb.filechooser.style.display = "none";
+            } catch(err) {
+                display.modify.inputLocaldbMessages("<b>Sorry - I don't know that that is :(</b><br> Try again maybe? It should be the \"major_database.json\" file.");
+                this.superclass.onDatabaseError("Could not parse local file as JSON");
             }
-        } catch(e) {
-            window.localStorage.removeItem(this.dbUuid);
         }
+        reader.readAsText(file);
+    }
+
+    this.isOffline = function(){
+        return (window.location.href.indexOf("file:///") >= 0) || false
     }
 
     this.onDatabaseGet = function(db, msg){
