@@ -31,6 +31,7 @@ gulp.task('js', function(){
 
 gulp.task('sass', function(){
     return gulp.src(path.sass + 'main.scss')
+               .pipe(m.plumber())
                .pipe(m.changed(path.site + "css/"))
                .pipe(m.sourcemaps.init())
                .pipe(m.sass({"includePaths" : path.sass + "imports"}).on('error', m.sass.logError))

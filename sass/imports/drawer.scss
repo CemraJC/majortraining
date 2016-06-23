@@ -62,8 +62,7 @@ label[for="drawer-toggle"] {
         width: 2.2em;
 
         background: $grey2;
-        // box-shadow: 0 0.7em 0 $grey2, 0 1.4em 0 $grey2;
-        transition: background 210ms, box-shadow 210ms;
+        transition: background 210ms, box-shadow 210ms, opacity 500ms 400ms;
 
         &:before, &:after {
             content: '';
@@ -94,11 +93,11 @@ label[for="drawer-toggle"] {
         & .hamburger {
             &:before {
                 width: 1em;
-                transform: translateY(0.35em) rotateZ(-35deg);
+                transform: translateY(0.45em) translateX(-0.3em) rotateZ(-35deg);
             }
             &:after {
                 width: 1em;
-                transform: translateY(-0.35em) rotateZ(35deg);
+                transform: translateY(-0.45em) translateX(-0.3em) rotateZ(35deg);
             }
         }
     }
