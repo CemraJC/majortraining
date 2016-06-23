@@ -8,7 +8,7 @@ var save_file = new (function() {
         current_score: 0,
         expert_scale: 30,
         master_scale: 50,
-        assistant_open: false,
+        drawer_open: false,
         times: [timestamp()],
         dark_theme: false,
 

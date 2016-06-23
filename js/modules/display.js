@@ -28,6 +28,10 @@ var display = new (function() {
         }
     }
 
+    this.toggleDrawer = function() {
+        this.toggleAttribute(elements.list.input.drawer, 'checked')
+    }
+
     this.replaceOrGetContent = function(element, content) {
         if (content === undefined){
             return this.getElementContent(element);
@@ -171,7 +175,7 @@ var display = new (function() {
     this.init = function(){
         this.__generateSpecifics()
         if ( save_file.get('dark_theme') ) { this.toggleTheme() }
-        if ( save_file.get('assistant_open') ) { this.toggleAssistant() }
+        if ( save_file.get('drawer_open') ) { this.toggleDrawer() }
         this.updateMenuList();
         this.updateReferenceList();
         this.updateReadout();

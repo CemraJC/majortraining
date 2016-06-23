@@ -27,11 +27,6 @@ label[for="drawer-toggle"] {
         box-shadow: 0 0.7em 0 $grey2, 0 1.4em 0 $grey2;
         transition: background 210ms, box-shadow 210ms;
     }
-
-    &:hover .hamburger {
-        // background: $grey3;
-        // box-shadow: 0 0.7em 0 $grey3, 0 1.4em 0 $grey3;
-    }
 }
 
 
@@ -265,7 +260,6 @@ label[for="drawer-toggle"] {
     flex: 1.2;
     flex-direction: column;
     width: 100%;
-    // min-width: 12.5em;
 
     color: $white1;
 

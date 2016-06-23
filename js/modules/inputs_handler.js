@@ -9,6 +9,15 @@ var inputs = new (function(){
         display.modify.assistantGeneratorOutput(word);
     }
 
+    this.drawerListener = function(e){
+        var state = elements.list.input.drawer.checked;
+        if (state) {
+            save_file.set('drawer_open', true);
+        } else {
+            save_file.set('drawer_open', false);
+        }
+    }
+
     this.skipListener = function(e){
         game.generateNum();
     }
@@ -78,5 +87,6 @@ var inputs = new (function(){
         elements.list.input.main.addEventListener('keyup', this.mainInputListener);
 
         elements.list.assistant.generator.word.addEventListener('click', this.assistantGeneratorListener);
+        elements.list.input.drawer.addEventListener('click', this.drawerListener);
     }
 })();

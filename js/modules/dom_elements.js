@@ -28,6 +28,7 @@ var elements = new (function() {
         },
         input: {
             main: this.__s.mainsection + " input[name=main_input]",
+            drawer: "input[type=checkbox]#drawer-toggle",
             localdb: {
                 filechooser: this.__s.assistsection + " input[type=file].submit_db",
                 messages: this.__s.assistsection + " p.submit_db"

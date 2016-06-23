@@ -14,6 +14,7 @@
     - Upgrade the learning assistant
 
 * Logical improvements
+    - Add plumber to gulp
     - Actually make the database work.
         + Get a good database m8
         + make stage 2
