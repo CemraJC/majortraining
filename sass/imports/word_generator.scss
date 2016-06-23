@@ -1,0 +1,43 @@
+
+.assistantcolumn .panel .generator {
+    margin: 1em 1em 0 1em;
+
+    & .comment {
+        margin: 0.5em 0;
+
+        font-style: italic;
+    }
+
+    .submit_db {
+        display: none;
+        font-style: normal;
+    }
+
+    & .inputs {
+        display: flex;
+        margin: 0.6em auto;
+        width: 90%;
+    }
+
+    & p {
+        font-size: 70%;
+    }
+
+    & span {
+        display: block;
+        margin: 0.5em 0;
+
+        text-align: center;
+        color: $grey3;
+    }
+
+    & input {
+        flex-grow: 1;
+        padding: 0.2em;
+    }
+
+    & button {
+        padding: 0.2em;
+        cursor: pointer;
+    }
+}

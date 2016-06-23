@@ -19,7 +19,10 @@ gulp.task('js', function(){
     return gulp.src(path.js + "*.js")
                .pipe(m.sourcemaps.init())
                .pipe(m.concat('main.js'))
-               .pipe(m.uglify())
+               .pipe(m.uglify({
+                    mangle: false,
+                    compress: {drop_debugger: false}
+               })).on('error', console.log)
                .pipe(m.sourcemaps.write('.'))
                .pipe(browserSync.stream())
                .pipe(gulp.dest(path.site + "js/"));
@@ -39,6 +42,13 @@ gulp.task('sass', function(){
 
 gulp.task('jekyll', function(callback){
     runJekyll(['build'], callback);
+
+    gulp.src("README(gh-pages).md")
+        .pipe(m.rename({
+            basename: "README",
+            extname: ".md"
+        }))
+        .pipe(gulp.dest(path.site));
 });
 
 function runJekyll(args, callback){
