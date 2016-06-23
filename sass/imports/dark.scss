@@ -1,11 +1,11 @@
 
 body[dark] {
     color: $white2;
-    background: $black1;
+    background: $black4;
 
     & input[type=button], & button {
         color: $white2;
-        background: $grey2;
+        background: $blue2;
     }
 
     & .settings input[name=theme]:hover {
@@ -13,8 +13,31 @@ body[dark] {
         background: $white2 !important;
     }
 
+    & .assistantcolumn {
+        background: $blue1;
+        & header {
+            background: $black1;
+        }
+        & .button {
+            background: $black1;
+        }
+    }
+
+    & .menucolumn {
+        box-shadow: none;
+        background: $blue1;
+
+        & ul li {
+            border-bottom-color: $blue2;
+            &:hover{
+                background: $blue2;
+            }
+        }
+    }
+
+
     & .maincolumn {
-        border-left: 0.2em solid $grey2;
+        border-left: 0.05em solid $black1;
     }
 
     & main {

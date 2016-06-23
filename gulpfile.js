@@ -29,7 +29,7 @@ gulp.task('sass', function(){
     return gulp.src(path.sass + 'main.scss')
                .pipe(m.changed(path.site + "css/"))
                .pipe(m.sourcemaps.init())
-               .pipe(m.sass({"includePaths" : path.sass + "imports"}))
+               .pipe(m.sass({"includePaths" : path.sass + "imports"}).on('error', m.sass.logError))
                .pipe(m.cssnano())
                .pipe(m.autoprefixer({"browsers": "> 1%"}))
                .pipe(m.sourcemaps.write('.'))

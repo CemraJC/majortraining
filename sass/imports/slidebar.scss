@@ -8,7 +8,7 @@
     color: $white2;
 
     background: $grey1;
-    border: 1px solid grey1;
+    border: 1px solid $grey4;
     box-shadow: 0.1em 0 0.2em $grey2;
 
     & .logo {
@@ -21,7 +21,7 @@
         line-height: 0.8;
         text-shadow: 0.1em 0.1em 0.3em $black1;
 
-        background: $grey1;
+        background: $black2;
         cursor: default;
 
         & small {
@@ -34,7 +34,7 @@
     & .readout, & .stagebanner {
         padding: 0.5em 0.8em;
         line-height: 1.4;
-        background: $grey1;
+        background: $black3;
     }
 
     & .readout {
@@ -107,7 +107,7 @@
                 color: $grey2;
                 text-shadow: 0 0.01em 0.01em $grey1;
 
-                border-bottom: 1px solid $grey1;
+                border-bottom: 1px solid $grey4;
                 cursor: pointer;
                 transition: all 100ms;
 
@@ -235,7 +235,7 @@
         text-align: center;
 
         cursor: pointer;
-        background: $grey1;
+        background: $black2;
         transition: all 1s;
 
         & span {
