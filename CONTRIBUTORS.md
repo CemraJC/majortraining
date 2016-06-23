@@ -1,5 +1,7 @@
 ## Todo
 
+* Fix cross-browser problems with pressing "enter"
+
 * Update the UI
     - Currently, everything looks super amature...
         + Better buttons
