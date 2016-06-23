@@ -23,96 +23,115 @@
 </noscript>
 
 
-<input type="checkbox" id="drawer-toggle">
+<input type="checkbox" id="drawer-toggle" checked>
 <label for="drawer-toggle"><span class="hamburger"></span></label>
 <nav id="drawer">
-    <div class="menucolumn">
-        <div class="logo">
-        <p>Major Training</p>
-        <small>Visit on <a href="http://github.com/cemrajc/majortraining/releases/latest">Github</a> to download</small>
-        </div>
+    <input type="radio" id="drawer-tab-1" name="drawer-tabs" value="1" checked>
+    <input type="radio" id="drawer-tab-2" name="drawer-tabs" value="2">
+    <input type="radio" id="drawer-tab-3" name="drawer-tabs" value="3">
 
-        <div class="readout">
-            <div class="score">0</div>
-            <div class="highscore">0</div>
-            <h3 class="level">Level 1</h3>
-            <p class="levelinfo">2 digit numbers only</p>
-        </div>
-
-        <hr>
-
-        <div class="stagebanner" selected>
-            <i>Stage 1</i>
-        </div>
-
-        <div class="select">
-            <i>Level Select:</i>
-            <ul>
-                <li levelnum='1' selected><h4>Level 1<span>0</span></h4>
-                <small>2 digit numbers only</small><span progression="0"></span></li>
-                <li levelnum='2'><h4>Level 2<span>0</span></h4>
-                <small>3 digit numbers only</small><span progression="0"></span></li>
-                <li levelnum='3'><h4>Level 3<span>0</span></h4>
-                <small>2 and 3 digit numbers</small><span progression="0"></span></li>
-                <li levelnum='4'><h4>Level 4<span>0</span></h4>
-                <small>2 groups of 3 digit numbers</small><span progression="0"></span></li>
-                <li levelnum='5'><h4>Level 5<span>0</span></h4>
-                <small>4 digit numbers only</small><span progression="0"></span></li>
-                <li levelnum='6'><h4>Level 6<span>0</span></h4>
-                <small>2 groups of 2-4 digit numbers</small><span progression="0"></span></li>
-                <li levelnum='7'><h4>Level 7<span>0</span></h4>
-                <small>4 groups of 2-3 digit numbers</small><span progression="0"></span></li>
-                <li levelnum='8'><h4>Level 8<span>0</span></h4>
-                <small>Phone numbers</small><span progression="0"></span></li>
-                <li levelnum='9'><h4>Level 9<span>0</span></h4>
-                <small>Credit card numbers</small><span progression="0"></span></li>
-                <li levelnum='10'><h4>Level 10<span>o</span></h4>
-                <small>40 digit mega numbers</small><span progression="0"></span></li>
-            </ul>
-        </div>
-
-        <div class="stagebanner">
-            <i>Stage 2 is under construction</i>
-        </div>
-
-        <div class="settings">
-            <input type="button" name="theme" value="Change Theme">
-            <input type="button" name="reset" value="Reset" title="Double click to reset the entire app">
-        </div>
-
+    <div class="logo">
+    <p>Major Training</p>
+    <small>Visit on <a href="http://github.com/cemrajc/majortraining/releases/latest">Github</a> to download</small>
     </div>
 
-    <div class="assistantcolumn">
-        <header>Learning Assistant</header>
-        <div class="reference">
-            <table>
-                <caption>Major mnemonic reference:</caption>
-                <thead>
-                    <tr>
-                        <th>Number</th>
-                        <th>Corresponding Letters</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- This will AUTOFILL from main.js -->
-                </tbody>
-            </table>
-            <p>Remember that "7" is hard sounds, while "6" is soft sounds. Refer to <a href="https://en.wikipedia.org/w/index.php?title=Mnemonic_major_system" title="External Link: Wikipedia">this page</a> for more details.</p>
-        </div>
+    <div class="tab-buttons">
+        <label for="drawer-tab-1">Levels</label>
+        <label for="drawer-tab-2">Generator</label>
+        <label for="drawer-tab-3">Reference</label>
+    </div>
 
-        <div class="generator">
-            <h3>Word Generator</h3>
-            <h4>Enter a number:</h4>
-            <div class="inputs">
-                <input type="number" value="1" min="0" max="9999" step="1">
-                <button>Go</button>
+    <div class="tab-container">
+        <div class="tab-panel" id="tab-1">
+            <div class="menucolumn">
+                <div class="readout">
+                    <div class="score">0</div>
+                    <div class="highscore">0</div>
+                    <h3 class="level">Level 1</h3>
+                    <p class="levelinfo">2 digit numbers only</p>
+                </div>
+
+                <hr>
+
+                <div class="stagebanner" selected>
+                    <i>Stage 1</i>
+                </div>
+
+                <div class="select">
+                    <i>Level Select:</i>
+                    <ul>
+                        <li levelnum='1' selected><h4>Level 1<span>0</span></h4>
+                        <small>2 digit numbers only</small><span progression="0"></span></li>
+                        <li levelnum='2'><h4>Level 2<span>0</span></h4>
+                        <small>3 digit numbers only</small><span progression="0"></span></li>
+                        <li levelnum='3'><h4>Level 3<span>0</span></h4>
+                        <small>2 and 3 digit numbers</small><span progression="0"></span></li>
+                        <li levelnum='4'><h4>Level 4<span>0</span></h4>
+                        <small>2 groups of 3 digit numbers</small><span progression="0"></span></li>
+                        <li levelnum='5'><h4>Level 5<span>0</span></h4>
+                        <small>4 digit numbers only</small><span progression="0"></span></li>
+                        <li levelnum='6'><h4>Level 6<span>0</span></h4>
+                        <small>2 groups of 2-4 digit numbers</small><span progression="0"></span></li>
+                        <li levelnum='7'><h4>Level 7<span>0</span></h4>
+                        <small>4 groups of 2-3 digit numbers</small><span progression="0"></span></li>
+                        <li levelnum='8'><h4>Level 8<span>0</span></h4>
+                        <small>Phone numbers</small><span progression="0"></span></li>
+                        <li levelnum='9'><h4>Level 9<span>0</span></h4>
+                        <small>Credit card numbers</small><span progression="0"></span></li>
+                        <li levelnum='10'><h4>Level 10<span>o</span></h4>
+                        <small>40 digit mega numbers</small><span progression="0"></span></li>
+                    </ul>
+                </div>
+
+                <div class="stagebanner">
+                    <i>Stage 2 is under construction</i>
+                </div>
             </div>
-            <h4>Corresponding Word:</h4>
-            <span class="generated_word"><i>None Generated</i></span>
-            <p class="comment">Use sparingly. At first, it will be hard to generate words yourself - please only use this tool when you believe it's impossible.</p>
-            <input type="file" class="submit_db">
-            <p class="submit_db"><b>Load in the database please :P</b><br> (Select the "major_database.json" file from the database folder). You should only need to do this once.</p>
+            <div class="settings">
+                <input type="button" name="theme" value="Change Theme">
+                <input type="button" name="reset" value="Reset" title="Double click to reset the entire app">
+            </div>
+    </div>
+
+    <div class="tab-panel" id="tab-2">
+        <div class="generatorscolumn">
+            <header>Generator</header>
+            <div class="generator">
+                <h3>Word Generator</h3>
+                <h4>Enter a number:</h4>
+                <div class="inputs">
+                    <input type="number" value="1" min="0" max="9999" step="1">
+                    <button>Go</button>
+                </div>
+                <h4>Corresponding Word:</h4>
+                <span class="generated_word"><i>None Generated</i></span>
+                <p class="comment">Use sparingly. At first, it will be hard to generate words yourself - please only use this tool when you believe it's impossible.</p>
+                <input type="file" class="submit_db">
+                <p class="submit_db"><b>Load in the database please :P</b><br> (Select the "major_database.json" file from the database folder). You should only need to do this once.</p>
+            </div>
         </div>
+    </div>
+
+    <div class="tab-panel" id="tab-3">
+        <div class="referencecolumn">
+            <header>Reference</header>
+            <div class="reference">
+                <table>
+                    <caption>Major mnemonic reference:</caption>
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Corresponding Letters</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <p>Remember that "7" is hard sounds, while "6" is soft sounds. Refer to <a href="https://en.wikipedia.org/w/index.php?title=Mnemonic_major_system" title="External Link: Wikipedia">this page</a> for more details.</p>
+            </div>
+        </div>
+    </div>
     </div>
 </nav>
 

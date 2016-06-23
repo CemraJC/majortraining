@@ -1,95 +1,10 @@
 
-input#drawer-toggle {
-    display: none;
-}
-
-label[for="drawer-toggle"] {
-    display: block;
-    position: fixed;
-    height: 2.2em;
-    width: 2.2em;
-    margin: 1em;
-    left: 0;
-
-    cursor: pointer;
-    user-select: none;
-    z-index: 1;
-
-    transition: left 410ms, opacity 210ms;
-
-    & .hamburger {
-        display: block;
-        position: absolute;
-        height: 0.24em;
-        width: 2.2em;
-
-        background: $grey2;
-        box-shadow: 0 0.7em 0 $grey2, 0 1.4em 0 $grey2;
-        transition: background 210ms, box-shadow 210ms;
-    }
-}
-
-
-#drawer {
-    position: fixed;
-    left: -$drawer-width;
-    width: $drawer-width;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    transition: left 410ms;
-    z-index: 1;
-}
-
-#drawer-toggle:checked {
-    & ~ label[for="drawer-toggle"] {
-        left: $drawer-width;
-        opacity: 0.7;
-        &:hover {
-            opacity: 1;
-        }
-    }
-
-    & ~ #drawer {
-        left: 0;
-    }
-
-    & ~ .maincolumn {
-        padding-left: $drawer-width;
-    }
-}
-
-
 .menucolumn {
     display: flex;
     flex-direction: column;
-    // min-width: 13em;
-
+    height: 100%;
+    margin-bottom: 3em;
     color: $white2;
-
-    background: $grey1;
-    border: 1px solid $grey4;
-    box-shadow: 0.1em 0 0.2em $grey2;
-
-    & .logo {
-        padding: 0.9em 0.8em;
-
-        text-align: center;
-        font-family: Arial;
-        font-size: 150%;
-        font-weight: 600;
-        line-height: 0.8;
-        text-shadow: 0.1em 0.1em 0.3em $black1;
-
-        background: $black2;
-        cursor: default;
-
-        & small {
-            font-size: 50%;
-            font-weight: normal;
-        }
-    }
-
 
     & .readout, & .stagebanner {
         padding: 0.5em 0.8em;
@@ -231,31 +146,29 @@ label[for="drawer-toggle"] {
         }
     }
 
-    & .settings {
-        display: flex;
-        padding: 0.8em 0.4em;
+}
+.settings {
+    display: flex;
+    padding: 0.8em 0.4em;
 
-        background: $black1;
+    background: $black1;
 
-        & input[name=reset]:hover {
-            font-weight: 600;
-            color: $white1;
+    & input[name=reset]:hover {
+        font-weight: 600;
+        color: $white1;
 
-            background: $red1 !important;
-        }
-        &  input[name=theme]:hover {
-            color: $grey2 !important;
-        }
+        background: $red1 !important;
+    }
+    &  input[name=theme]:hover {
+        color: $grey2 !important;
     }
 }
 
 
 
 
-/* ASSISTANT COLUMN */
 
-
-.assistantcolumn {
+.generatorscolumn, .referencecolumn {
     display: flex;
     flex: 1.2;
     flex-direction: column;

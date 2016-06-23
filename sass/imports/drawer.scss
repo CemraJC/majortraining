@@ -1,0 +1,112 @@
+
+#drawer {
+    position: fixed;
+    left: -$drawer-width;
+    width: $drawer-width;
+    height: 100vh;
+    height: 100%;
+    overflow: hidden;
+
+    background: $grey1;
+    border: 1px solid $grey4;
+    box-shadow: 0.1em 0 0.2em $grey2;
+
+    color: $white2;
+    transition: left 410ms;
+    z-index: 1;
+
+    & .logo {
+        padding: 0.9em 0.8em;
+
+        text-align: center;
+        font-family: Arial;
+        font-size: 150%;
+        font-weight: 600;
+        line-height: 0.8;
+        text-shadow: 0.1em 0.1em 0.3em $black1;
+
+        background: $black2;
+        cursor: default;
+
+        & small {
+            font-size: 50%;
+            font-weight: normal;
+        }
+    }
+}
+
+input#drawer-toggle {
+    display: none;
+}
+
+label[for="drawer-toggle"] {
+    display: block;
+    position: fixed;
+    height: 2.2em;
+    width: 2.2em;
+    margin: 1em;
+    left: 0;
+
+    cursor: pointer;
+    user-select: none;
+    z-index: 1;
+
+    transition: left 410ms, opacity 210ms;
+
+    & .hamburger {
+        display: block;
+        position: absolute;
+        top: 0.7em;
+        height: 0.24em;
+        width: 2.2em;
+
+        background: $grey2;
+        // box-shadow: 0 0.7em 0 $grey2, 0 1.4em 0 $grey2;
+        transition: background 210ms, box-shadow 210ms;
+
+        &:before, &:after {
+            content: '';
+            position: inherit;
+            width: 2.2em;
+            height: 0.24em;
+
+            background: inherit;
+            transition: width 800ms 400ms, transform 500ms 400ms;
+        }
+        &:before {
+            top: -0.7em;
+        }
+        &:after {
+            top: 0.7em;
+        }
+    }
+}
+
+
+#drawer-toggle:checked {
+    & ~ label[for="drawer-toggle"] {
+        left: $drawer-width;
+        opacity: 0.7;
+        &:hover {
+            opacity: 1;
+        }
+        & .hamburger {
+            &:before {
+                width: 1em;
+                transform: translateY(0.35em) rotateZ(-35deg);
+            }
+            &:after {
+                width: 1em;
+                transform: translateY(-0.35em) rotateZ(35deg);
+            }
+        }
+    }
+
+    & ~ #drawer {
+        left: 0;
+    }
+
+    & ~ .maincolumn {
+        padding-left: $drawer-width;
+    }
+}
