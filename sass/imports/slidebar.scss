@@ -5,11 +5,11 @@
     flex-direction: column;
     min-width: 13em;
 
-    color: #eee;
+    color: $white2;
 
-    background: #3B3B3B;
-    border: 1px solid #111;
-    box-shadow: 0.1em 0 0.2em #444;
+    background: $grey1;
+    border: 1px solid grey1;
+    box-shadow: 0.1em 0 0.2em $grey2;
 
     & .logo {
         padding: 0.9em 0.8em;
@@ -19,9 +19,9 @@
         font-size: 150%;
         font-weight: 600;
         line-height: 0.8;
-        text-shadow: 0.1em 0.1em 0.3em #000;
+        text-shadow: 0.1em 0.1em 0.3em $black1;
 
-        background: #111;
+        background: $grey1;
         cursor: default;
 
         & small {
@@ -34,7 +34,7 @@
     & .readout, & .stagebanner {
         padding: 0.5em 0.8em;
         line-height: 1.4;
-        background: #222;
+        background: $grey1;
     }
 
     & .readout {
@@ -42,7 +42,7 @@
 
         & p.levelinfo {
             font-size: 80%;
-            color: #ccc;
+            color: $grey3;
         }
 
         & .highscore, & .score  {
@@ -51,7 +51,7 @@
             font-size: 75%;
             font-weight: bold;
             line-height: 1.2;
-            color: #999;
+            color: $grey2;
         }
 
         & .score {
@@ -59,13 +59,13 @@
 
             &::before {
                 content: "Score: ";
-                color: #777;
+                color: $grey2;
             }
         }
 
         & .highscore::before {
             content: "Highest score: ";
-            color: #777;
+            color: $grey2;
         }
     }
 
@@ -73,11 +73,11 @@
         cursor: pointer;
 
         &:hover {
-            background: #1E1E1E;
+            background: $grey1;
         }
 
         &:active {
-            background: #0E0E0E;
+            background: $black3;
         }
     }
 
@@ -104,33 +104,33 @@
                 font-size: 95%;
                 letter-spacing: 0.02em;
                 line-height: 0.9;
-                color: #aaa;
-                text-shadow: 0 0.01em 0.01em #222;
+                color: $grey2;
+                text-shadow: 0 0.01em 0.01em $grey1;
 
-                border-bottom: 1px solid #222;
+                border-bottom: 1px solid $grey1;
                 cursor: pointer;
                 transition: all 100ms;
 
                 &:hover {
-                    color: #ccc;
-                    text-shadow: 0 0 0.2em #000;
-                    background: #444;
+                    color: $grey3;
+                    text-shadow: 0 0 0.2em $black1;
+                    background: $grey1;
                 }
                 &:active {
-                    color: #6D92B8;
-                    text-shadow: 0 0 0.01em #16528A;
+                    color: $linkColor2;
+                    text-shadow: 0 0 0.01em $linkColor3;
                 }
                 &[selected] {
-                    color: #eee;
-                    text-shadow: 0 0 0.01em #000;
+                    color: $white3;
+                    text-shadow: 0 0 0.01em $black1;
 
                     & small {
-                        color: #bbb;
+                        color: $grey3;
                     }
                 }
 
                 & small {
-                    color: #999;
+                    color: $grey2;
                     font-family: monospace;
                 }
 
@@ -140,28 +140,28 @@
 
                     &[progression="0"]::before {
                         content: '';
-                        color: #868686;
+                        color: $grey2;
                     }
                     &[progression="1"]::before {
                         content: ' incomplete';
-                        color: #C5B773;
+                        color: $incompleteColor;
                     }
                     &[progression="2"]::before {
                         content: ' passed';
-                        color: #00BF04;
+                        color: $passedColor;
                     }
                     &[progression="3"]::before {
                         content: ' expert';
-                        color: #BAFF00;
+                        color: $expertColor;
                     }
                     &[progression="4"]::before {
                         content: ' master';
-                        color: #C765FF;
+                        color: $masterColor;
                     }
                 }
                 & h4 span {
                     font-size: 60%;
-                    color: #959595;
+                    color: $grey2;
 
                     &::before {
                         content: " Highest score: ";
@@ -175,16 +175,16 @@
         display: flex;
         padding: 0.8em 0.4em;
 
-        background: #111;
+        background: $black1;
 
         & input[name=reset]:hover {
             font-weight: 600;
-            color: #fff;
+            color: $white1;
 
-            background: #FF0000 !important;
+            background: $red1 !important;
         }
         &  input[name=theme]:hover {
-            color: #909090 !important;
+            color: $grey2 !important;
         }
     }
 }
@@ -202,9 +202,9 @@
     width: 100%;
     min-width: 12.5em;
 
-    color: #fafafa;
+    color: $white1;
 
-    background: #333;
+    background: $grey1;
     transition: all 1s;
 
     &[hidden] {
@@ -221,7 +221,7 @@
         }
 
         & .panel {
-            background: #222;
+            background: $grey1;
             opacity: 0.25;
         }
     }
@@ -235,7 +235,7 @@
         text-align: center;
 
         cursor: pointer;
-        background: #111;
+        background: $grey1;
         transition: all 1s;
 
         & span {
@@ -258,7 +258,7 @@
             font-size: 150%;
             text-align: center;
 
-            background: #1E1E1E;
+            background: $grey1;
         }
 
         & .reference {
@@ -275,7 +275,7 @@
 
             font-size: 90%;
 
-            background: #222;
+            background: $grey1;
             border-collapse: collapse;
 
             & caption {
@@ -284,12 +284,12 @@
 
             & thead th {
                 padding: 0.8em 0.2em;
-                border: 1px solid #fafafa;
+                border: 1px solid $white1;
             }
 
             & tbody td {
                 padding: 0.5em;
-                border: 1px solid #fafafa;
+                border: 1px solid $white1;
 
                 &:first-child {
                     width: 1em;
@@ -308,7 +308,7 @@
                 margin: 0.5em 0;
 
                 text-align: center;
-                color: #ddd;
+                color: $grey3;
             }
 
             & p {

@@ -1,41 +1,41 @@
 
 body[dark] {
-    color: #eee;
-    background: #020202;
+    color: $white2;
+    background: $black1;
 
     & input[type=button], & button {
-        color: #ECECEC;
-        background: #535353;
+        color: $white2;
+        background: $grey2;
     }
 
     & .settings input[name=theme]:hover {
-        color: #000 !important;
-        background: #D8D8D8 !important;
+        color: $black1 !important;
+        background: $white2 !important;
     }
 
     & .maincolumn {
-        border-left: 0.2em solid #aaa;
+        border-left: 0.2em solid $grey2;
     }
 
     & main {
         & p.generated {
-            color: #F0ECE2;
+            color: $white2;
         }
 
         & input[type=text] {
-            background: #C2BFBB;
+            background: $grey3;
             border: none;
         }
 
         & .numbar a.skip {
-            color: #fafafa;
+            color: $white1;
         }
     }
 
     & footer {
-        color: #333333;
+        color: $grey1;
         &:hover {
-            color: #777;
+            color: $grey2;
         }
     }
 }

@@ -1,4 +1,31 @@
 
+// Numbers are in order of intensity
+// Only 3 tones per colour allowed!
+
+$white1: #FAFAFA;
+$white2: #ECECEC;
+$white3: #EBE4D1;
+
+$grey1: #333333;
+$grey2: #707070;
+$grey3: #C2BFBB;
+
+$black1: #020202;
+$black2: #040416;
+$black3: #0E0E0E;
+
+$red1: #C41B1B;
+
+$linkColor1: #489BDA;
+$linkColor2: #6D92B8;
+$linkColor3: #16528A;
+
+/* colors for the status of the player */
+$incompleteColor: #C5B773;
+
+$passedColor: #00BF04;
+$expertColor: #BAFF00;
+$masterColor: #C765FF;
 
 @import "reset",
         "general",
