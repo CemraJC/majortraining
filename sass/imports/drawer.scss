@@ -61,8 +61,8 @@ label[for="drawer-toggle"] {
         height: 0.24em;
         width: 2.2em;
 
-        background: $grey2;
-        transition: background 210ms, box-shadow 210ms, opacity 500ms 400ms;
+        background: $grey1;
+        transition: background 500ms 300ms, box-shadow 210ms, opacity 500ms 300ms, transform 500ms 300ms;
 
         &:before, &:after {
             content: '';
@@ -70,8 +70,8 @@ label[for="drawer-toggle"] {
             width: 2.2em;
             height: 0.24em;
 
-            background: inherit;
-            transition: width 800ms 400ms, transform 500ms 400ms;
+            background: $grey1;
+            transition: width 800ms 300ms, transform 500ms 300ms;
         }
         &:before {
             top: -0.7em;
@@ -91,13 +91,17 @@ label[for="drawer-toggle"] {
             opacity: 1;
         }
         & .hamburger {
+            background: none;
+            transform: translateX(-5em);
+            &:before, &:after {
+                background: $grey1;
+                width: 1.5em;
+            }
             &:before {
-                width: 1em;
-                transform: translateY(0.45em) translateX(-0.3em) rotateZ(-35deg);
+                transform: translateY(0.68em) translateX(5em) rotateZ(-43deg);
             }
             &:after {
-                width: 1em;
-                transform: translateY(-0.45em) translateX(-0.3em) rotateZ(35deg);
+                transform: translateY(-0.68em) translateX(5em) rotateZ(43deg);
             }
         }
     }
