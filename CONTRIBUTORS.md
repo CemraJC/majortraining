@@ -1,11 +1,5 @@
 ## Todo
 
-* Refactor the entire project. Yeah.
-    - Needs to be integrated with gulp
-    - Needs a separate gh-pages branch with only the generated site on it
-    - Need to split up the (too big) main.js file
-    - Need a better init routine
-
 * Update the UI
     - Currently, everything looks super amature...
         + Better buttons
