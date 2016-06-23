@@ -1,6 +1,6 @@
 {
   "name": "majortraining",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "A training website by Jason Cemra (https://github.com/cemrajc/majortraining)",
   "main": "index.html",
   "dependencies": {},
