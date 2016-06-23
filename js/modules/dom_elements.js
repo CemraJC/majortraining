@@ -1,47 +1,55 @@
 var elements = new (function() {
     this.__s = { // __selectors - not really meant to be used by programmers
         mainsection: ".maincolumn .main",
-        menusection: ".menucolumn",
-        assistsection: ".assistantcolumn",
-        readout: ".menucolumn .readout",
-        select: ".menucolumn .select",
-        settings: ".menucolumn .settings"
+        tabmenu: {
+            container: "#drawer .tab-container",
+            levels: {
+                container: "#drawer .tab-container .tab-panel#tab-1 .levelscolumn",
+                readout: "#drawer .tab-container .tab-panel#tab-1 .levelscolumn .readout",
+                select: "#drawer .tab-container .tab-panel#tab-1 .levelscolumn .select",
+                settings: "#drawer .tab-container .tab-panel#tab-1 .settings"
+            },
+            generator: {
+                container: "#drawer .tab-container .tab-panel#tab-2 .generatorscolumn",
+            },
+            reference:{
+                container: "#drawer .tab-container .tab-panel#tab-3 .referencecolumn",
+            }
+        }
     }
 
     this.list = {
         text: {
             main: this.__s.mainsection + " p.generated",
             readout: {
-                container: this.__s.readout,
-                score: this.__s.readout + " .score",
-                highscore: this.__s.readout + " .highscore",
-                level: this.__s.readout + " .level",
-                levelinfo: this.__s.readout + " .levelinfo"
+                container: this.__s.tabmenu.levels.readout,
+                score: this.__s.tabmenu.levels.readout + " .score",
+                highscore: this.__s.tabmenu.levels.readout + " .highscore",
+                level: this.__s.tabmenu.levels.readout + " .level",
+                levelinfo: this.__s.tabmenu.levels.readout + " .levelinfo"
             },
-            select: this.__s.menusection + " .select ul",
+            select: this.__s.tabmenu.levels.container + " .select ul",
             count: this.__s.mainsection + " .numbar span.count"
         },
         button: {
             skip: this.__s.mainsection + " .numbar a.skip",
-            theme: this.__s.settings + " input[name=theme]",
-            reset: this.__s.settings + " input[name=reset]"
+            theme: this.__s.tabmenu.levels.settings + " input[name=theme]",
+            reset: this.__s.tabmenu.levels.settings + " input[name=reset]"
         },
         input: {
             main: this.__s.mainsection + " input[name=main_input]",
             drawer: "input[type=checkbox]#drawer-toggle",
             localdb: {
-                filechooser: this.__s.assistsection + " input[type=file].submit_db",
-                messages: this.__s.assistsection + " p.submit_db"
+                filechooser: this.__s.tabmenu.generator.container + " input[type=file].submit_db",
+                messages: this.__s.tabmenu.generator.container + " p.submit_db"
             }
         },
-        assistant: {
-            container: this.__s.assistsection,
-            reference: this.__s.assistsection + " table tbody",
-            generator: {
-                word: this.__s.assistsection + " .inputs button",
-                number: this.__s.assistsection + " .inputs input[type=number]",
-                output: this.__s.assistsection + " span.generated_word"
-            }
+        reference: this.__s.tabmenu.reference.container + " table tbody",
+        generator: {
+            container: this.__s.tabmenu.generator.container,
+            word: this.__s.tabmenu.generator.container + " .inputs button",
+            number: this.__s.tabmenu.generator.container + " .inputs input[type=number]",
+            output: this.__s.tabmenu.generator.container + " span.generated_word"
         }
     }
 

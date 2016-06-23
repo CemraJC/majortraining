@@ -117,7 +117,7 @@ var display = new (function() {
     }
 
     this.updateReferenceList = function() {
-        this.modify.assistantReference(this.getReferenceList());
+        this.modify.reference(this.getReferenceList());
     }
     this.updateMenuList = function() {
         this.modify.textSelect(this.getMenuList());
@@ -162,8 +162,9 @@ var display = new (function() {
                 console.error("Element selector problem:", i, e);
             }
             if (valid !== undefined) {
-                this.modify[path + titleCase(i)] = new Function('content', 'return this.superclass.replaceOrGetContent(this.' + path + titleCase(i) + '__element, content);');
-                this.modify[path + titleCase(i) + "__element"] = obj[i];
+                var index = (path) ? titleCase(i) : i;
+                this.modify[path + index] = new Function('content', 'return this.superclass.replaceOrGetContent(this.' + path + index + '__element, content);');
+                this.modify[path + index + "__element"] = obj[i];
             } else {
                 this.__generateSpecifics(obj[i], lvl + 1, (lvl > 1) ? path + titleCase(i) : path + i);
             }

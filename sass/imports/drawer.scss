@@ -5,7 +5,8 @@
     width: $drawer-width;
     height: 100vh;
     height: 100%;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     background: $grey1;
     border: 1px solid $grey4;

@@ -17,6 +17,7 @@ gulp.task('js', function(){
         .pipe(gulp.dest(path.site + "js/"));
 
     return gulp.src(path.js + "*.js")
+               .pipe(m.plumber())
                .pipe(m.sourcemaps.init())
                .pipe(m.concat('main.js'))
                .pipe(m.uglify({

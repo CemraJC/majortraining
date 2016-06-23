@@ -9,7 +9,7 @@
 document.addEventListener("DOMContentLoaded", function(){
     elements.init();
     save_file.init();
-    // display.init();
+    display.init();
     inputs.init();
     game.init();
     WordGenerator.init();

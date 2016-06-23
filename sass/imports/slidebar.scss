@@ -1,9 +1,8 @@
 
-.menucolumn {
+.levelscolumn {
     display: flex;
     flex-direction: column;
     height: 100%;
-    margin-bottom: 3em;
     color: $white2;
 
     & .readout, & .stagebanner {

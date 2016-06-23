@@ -4,9 +4,9 @@ var inputs = new (function(){
         display.toggleTheme();
     }
 
-    this.assistantGeneratorListener = function(e){
-        var word = WordGenerator.getWord(display.modify.assistantGeneratorNumber());
-        display.modify.assistantGeneratorOutput(word);
+    this.generatorListener = function(e){
+        var word = Wordgenerator.getWord(display.modify.generatorNumber());
+        display.modify.generatorOutput(word);
     }
 
     this.drawerListener = function(e){
@@ -86,7 +86,7 @@ var inputs = new (function(){
         elements.list.text.select.addEventListener('click', this.levelSelectListener);
         elements.list.input.main.addEventListener('keyup', this.mainInputListener);
 
-        elements.list.assistant.generator.word.addEventListener('click', this.assistantGeneratorListener);
+        elements.list.generator.word.addEventListener('click', this.generatorListener);
         elements.list.input.drawer.addEventListener('click', this.drawerListener);
     }
 })();
