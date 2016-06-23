@@ -7,3 +7,15 @@
 :focus {
     outline: none;
 }
+
+html, body {
+    width: 100%;
+    overflow: hidden;
+}
+
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}

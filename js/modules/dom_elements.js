@@ -1,6 +1,6 @@
 var elements = new (function() {
     this.__s = { // __selectors - not really meant to be used by programmers
-        mainsection: ".maincolumn main",
+        mainsection: ".maincolumn .main",
         menusection: ".menucolumn",
         assistsection: ".assistantcolumn",
         readout: ".menucolumn .readout",
@@ -35,9 +35,7 @@ var elements = new (function() {
         },
         assistant: {
             container: this.__s.assistsection,
-            panel: this.__s.assistsection + " .panel",
-            toggler: this.__s.assistsection + " .button",
-            reference: this.__s.assistsection + " .panel table tbody",
+            reference: this.__s.assistsection + " table tbody",
             generator: {
                 word: this.__s.assistsection + " .inputs button",
                 number: this.__s.assistsection + " .inputs input[type=number]",

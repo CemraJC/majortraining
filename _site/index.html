@@ -22,82 +22,67 @@
 </div>
 </noscript>
 
-<div class="menucolumn">
-    <div class="logo">
-    <p>Major Training</p>
-    <small>Visit on <a href="http://github.com/cemrajc/majortraining/releases/latest">Github</a> to download</small>
-    </div>
 
-    <div class="readout">
-        <div class="score">0</div>
-        <div class="highscore">0</div>
-        <h3 class="level">Level 1</h3>
-        <p class="levelinfo">2 digit numbers only</p>
-    </div>
-
-    <hr>
-
-    <div class="stagebanner" selected>
-        <i>Stage 1</i>
-    </div>
-
-    <div class="select">
-        <i>Level Select:</i>
-        <ul>
-            <li levelnum='1' selected><h4>Level 1<span>0</span></h4>
-            <small>2 digit numbers only</small><span progression="0"></span></li>
-            <li levelnum='2'><h4>Level 2<span>0</span></h4>
-            <small>3 digit numbers only</small><span progression="0"></span></li>
-            <li levelnum='3'><h4>Level 3<span>0</span></h4>
-            <small>2 and 3 digit numbers</small><span progression="0"></span></li>
-            <li levelnum='4'><h4>Level 4<span>0</span></h4>
-            <small>2 groups of 3 digit numbers</small><span progression="0"></span></li>
-            <li levelnum='5'><h4>Level 5<span>0</span></h4>
-            <small>4 digit numbers only</small><span progression="0"></span></li>
-            <li levelnum='6'><h4>Level 6<span>0</span></h4>
-            <small>2 groups of 2-4 digit numbers</small><span progression="0"></span></li>
-            <li levelnum='7'><h4>Level 7<span>0</span></h4>
-            <small>4 groups of 2-3 digit numbers</small><span progression="0"></span></li>
-            <li levelnum='8'><h4>Level 8<span>0</span></h4>
-            <small>Phone numbers</small><span progression="0"></span></li>
-            <li levelnum='9'><h4>Level 9<span>0</span></h4>
-            <small>Credit card numbers</small><span progression="0"></span></li>
-            <li levelnum='10'><h4>Level 10<span>o</span></h4>
-            <small>40 digit mega numbers</small><span progression="0"></span></li>
-        </ul>
-    </div>
-
-    <div class="stagebanner">
-        <i>Stage 2 is under construction</i>
-    </div>
-
-    <div class="settings">
-        <input type="button" name="theme" value="Change Theme">
-        <input type="button" name="reset" value="Reset" title="Double click to reset the entire app">
-    </div>
-
-</div>
-
-<div class="maincolumn">
-
-    <main>
-        <p class="generated" fs-max-width="90" fs-max-height="90"><small>:(</small></p>
-        <div class="numbar">
-            <span class="count">0</span>
-            <span class="spacer"></span>
-            <a class='skip'>Skip &rarr;</a>
+<input type="checkbox" id="drawer-toggle">
+<label for="drawer-toggle"><span class="hamburger"></span></label>
+<nav id="drawer">
+    <div class="menucolumn">
+        <div class="logo">
+        <p>Major Training</p>
+        <small>Visit on <a href="http://github.com/cemrajc/majortraining/releases/latest">Github</a> to download</small>
         </div>
-        <input type="text" name="main_input" maxlength="100">
-    </main>
 
-    <footer>
-        Major Training - Copyright &copy; Jason Cemra 2016
-    </footer>
-</div>
+        <div class="readout">
+            <div class="score">0</div>
+            <div class="highscore">0</div>
+            <h3 class="level">Level 1</h3>
+            <p class="levelinfo">2 digit numbers only</p>
+        </div>
 
-<div class="assistantcolumn">
-    <div class="button"> <span></span></div>
-    <div class="panel">
+        <hr>
+
+        <div class="stagebanner" selected>
+            <i>Stage 1</i>
+        </div>
+
+        <div class="select">
+            <i>Level Select:</i>
+            <ul>
+                <li levelnum='1' selected><h4>Level 1<span>0</span></h4>
+                <small>2 digit numbers only</small><span progression="0"></span></li>
+                <li levelnum='2'><h4>Level 2<span>0</span></h4>
+                <small>3 digit numbers only</small><span progression="0"></span></li>
+                <li levelnum='3'><h4>Level 3<span>0</span></h4>
+                <small>2 and 3 digit numbers</small><span progression="0"></span></li>
+                <li levelnum='4'><h4>Level 4<span>0</span></h4>
+                <small>2 groups of 3 digit numbers</small><span progression="0"></span></li>
+                <li levelnum='5'><h4>Level 5<span>0</span></h4>
+                <small>4 digit numbers only</small><span progression="0"></span></li>
+                <li levelnum='6'><h4>Level 6<span>0</span></h4>
+                <small>2 groups of 2-4 digit numbers</small><span progression="0"></span></li>
+                <li levelnum='7'><h4>Level 7<span>0</span></h4>
+                <small>4 groups of 2-3 digit numbers</small><span progression="0"></span></li>
+                <li levelnum='8'><h4>Level 8<span>0</span></h4>
+                <small>Phone numbers</small><span progression="0"></span></li>
+                <li levelnum='9'><h4>Level 9<span>0</span></h4>
+                <small>Credit card numbers</small><span progression="0"></span></li>
+                <li levelnum='10'><h4>Level 10<span>o</span></h4>
+                <small>40 digit mega numbers</small><span progression="0"></span></li>
+            </ul>
+        </div>
+
+        <div class="stagebanner">
+            <i>Stage 2 is under construction</i>
+        </div>
+
+        <div class="settings">
+            <input type="button" name="theme" value="Change Theme">
+            <input type="button" name="reset" value="Reset" title="Double click to reset the entire app">
+        </div>
+
+    </div>
+
+    <div class="assistantcolumn">
         <header>Learning Assistant</header>
         <div class="reference">
             <table>
@@ -128,9 +113,25 @@
             <input type="file" class="submit_db">
             <p class="submit_db"><b>Load in the database please :P</b><br> (Select the "major_database.json" file from the database folder). You should only need to do this once.</p>
         </div>
-
     </div>
+</nav>
+
+<div class="maincolumn">
+    <div class="main">
+        <p class="generated" fs-max-width="90" fs-max-height="90"><small>:(</small></p>
+        <div class="numbar">
+            <span class="count">0</span>
+            <span class="spacer"></span>
+            <a class='skip'>Skip &rarr;</a>
+        </div>
+        <input type="text" name="main_input" maxlength="100">
+    </div>
+
+    <footer>
+        Major Training - Copyright &copy; Jason Cemra 2016
+    </footer>
 </div>
+
 
 </body>
 </html>

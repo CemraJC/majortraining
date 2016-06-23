@@ -4,10 +4,6 @@ var inputs = new (function(){
         display.toggleTheme();
     }
 
-    this.assistantListener = function(e){
-        display.toggleAssistant();
-    }
-
     this.assistantGeneratorListener = function(e){
         var word = WordGenerator.getWord(display.modify.assistantGeneratorNumber());
         display.modify.assistantGeneratorOutput(word);
@@ -81,7 +77,6 @@ var inputs = new (function(){
         elements.list.text.select.addEventListener('click', this.levelSelectListener);
         elements.list.input.main.addEventListener('keyup', this.mainInputListener);
 
-        elements.list.assistant.toggler.addEventListener('click', this.assistantListener);
         elements.list.assistant.generator.word.addEventListener('click', this.assistantGeneratorListener);
     }
 })();

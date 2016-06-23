@@ -1,16 +1,24 @@
 
 .maincolumn {
     display: flex;
-    flex: 7;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    transition: padding-left 410ms;
 }
+
 
 
 /* MAIN BODY STYLING */
 
-main {
+.main {
     width: 50%;
     max-width: 40em;
 

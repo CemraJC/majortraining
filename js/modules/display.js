@@ -65,10 +65,6 @@ var display = new (function() {
         }
     }
 
-    this.toggleAssistant = function() {
-        this.toggleAttribute(elements.list.assistant.container, "hidden");
-    }
-
     this.getReferenceItem = function(number) {
         return ms_array[number].join(", ") || "?";
     }
