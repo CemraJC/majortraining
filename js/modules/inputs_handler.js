@@ -53,7 +53,7 @@ var inputs = new (function(){
     }
 
     this.mainInputListener = function(e){
-        if (e.code == "Enter") {
+        if (e.keyCode == 13) {
             var check = display.replaceOrGetContent(elements.list.text.main.firstChild) || display.modify.textMain();
             if (game.checkNum(check, display.modify.inputMain())){
                 display.modify.inputMain('');
