@@ -284,33 +284,68 @@ label[for="drawer-toggle"] {
         }
     }
 
-    & table {
-        width: 100%;
+    & .reference {
+        width: 90%;
+        margin: 0 auto 2em auto;
 
-        font-size: 90%;
+        & table {
+            width: 100%;
 
-        background: $grey1;
-        border-collapse: collapse;
+            font-size: 90%;
 
-        & caption {
-            padding: 0.8em 0em;
-        }
+            background: $grey1;
+            border-collapse: collapse;
 
-        & thead th {
-            padding: 0.8em 0.2em;
-            border: 1px solid $white1;
-        }
-
-        & tbody td {
-            padding: 0.5em;
-            border: 1px solid $white1;
-
-            &:first-child {
-                width: 1em;
-
-                font-weight: 600;
-                text-align: center;
+            & caption {
+                padding: 0.8em 0em;
             }
+
+            & thead th {
+                padding: 0.8em 0.2em;
+                border: 1px solid $white1;
+            }
+
+            & tbody td {
+                padding: 0.5em;
+                border: 1px solid $white1;
+
+                &:first-child {
+                    width: 1em;
+
+                    font-weight: 600;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    & .generator {
+        width: 90%;
+        line-height: 1.6;
+        margin: 0 auto;
+
+        & .inputs {
+            margin: 0.2em auto 1em auto;
+
+            & input, & button {
+                width: 45%;
+            }
+        }
+
+        .generated_word {
+            display: block;
+            text-align: center;
+            margin-bottom: 0.5em;
+        }
+
+        input[type=file] {
+            margin: 0.8em 0;
+        }
+
+        p {
+            margin-bottom: 0.5em;
+            line-height: 1.2;
+            font-size: 80%;
         }
     }
 }
