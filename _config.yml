@@ -7,12 +7,17 @@ port: 80
 
 keep_files: [
     '_site/css',
-    '_site/js'
+    '_site/js',
+    "_site/README.md"
 ]
 exclude: [
     "node_modules/",
     "sass/",
     "js/",
-    "*.md",
+    "CONTRIBUTORS.md",
+    "README.md",
+    "README(gh-pages).md",
+    "*.sh",
+    "*.awk",
     "*ffs_*"
 ]
