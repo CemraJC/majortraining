@@ -7,6 +7,7 @@ var fontScale = new (function(){
         for (var i = 0; i < this.elements.length; i++) {
             this.elements[i].style.wordWrap = 'none';
         };
+        this.recalculate();
     }
 
     this.recalculate = function(){
@@ -58,9 +59,4 @@ var fontScale = new (function(){
             element.innerHTML = "<span class='fontscale'>" + element.innerHTML + "</span>";
         }
     }
-});
-
-document.addEventListener('DOMContentLoaded', function(e){
-    fontScale.init();
-    fontScale.recalculate();
 });

@@ -5,8 +5,12 @@ baseurl: ""
 
 port: 80
 
-keep_files: ['_site/css']
+keep_files: [
+    '_site/css',
+    '_site/js'
+]
 exclude: [
     "node_modules/",
-    "sass/"
+    "sass/",
+    "js/"
 ]

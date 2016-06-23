@@ -91,6 +91,4 @@ var WordGenerator = new (function() {
     this.init = function() {
         this.requestDatabase();
     }
-    this.init();
-
 })();
