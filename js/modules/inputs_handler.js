@@ -5,7 +5,7 @@ var inputs = new (function(){
     }
 
     this.generatorListener = function(e){
-        var word = Wordgenerator.getWord(display.modify.generatorNumber());
+        var word = WordGenerator.getWord(display.modify.generatorNumber());
         display.modify.generatorOutput(word);
     }
 

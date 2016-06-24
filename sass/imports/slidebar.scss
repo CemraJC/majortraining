@@ -175,7 +175,6 @@
 
     color: $white1;
 
-    background: $grey1;
     transition: all 1s;
 
     & header {
@@ -246,8 +245,13 @@
 
         .generated_word {
             display: block;
+            color: $grey3;
             text-align: center;
             margin-bottom: 0.5em;
+        }
+
+        input[type=file], p.submit_db {
+            display: none;
         }
 
         input[type=file] {

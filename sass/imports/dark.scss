@@ -8,29 +8,48 @@ body[dark] {
         background: $blue2;
     }
 
-    & .settings input[name=theme]:hover {
-        color: $black1 !important;
-        background: $white2 !important;
-    }
-
-    & .assistantcolumn {
-        background: $blue1;
-        & header {
-            background: $black1;
-        }
-        & .button {
-            background: $black1;
-        }
-    }
-
-    & .menucolumn {
+    & #drawer-toggle:checked ~ #drawer {
         box-shadow: none;
+    }
+    & #drawer-toggle:checked ~ label[for="drawer-toggle"] .hamburger{
+        background: none;
+        &:before, &:after {
+            background: $white3;
+        }
+    }
+    label[for="drawer-toggle"] .hamburger {
+        background: $white3;
+        &:before, &:after {
+            background: $white3;
+        }
+    }
+
+    & #drawer {
         background: $blue1;
 
-        & ul li {
-            border-bottom-color: $blue2;
-            &:hover{
-                background: $blue2;
+        & .settings input[name=theme]:hover {
+            color: $black1 !important;
+            background: $white2 !important;
+        }
+
+        & .generatorcolumn {
+            background: $blue1;
+            & header {
+                background: $black1;
+            }
+            & .button {
+                background: $black1;
+            }
+        }
+
+        & .levelscolumn {
+            background: $blue1;
+
+            & ul li {
+                border-bottom-color: $blue2;
+                &:hover{
+                    background: $blue2;
+                }
             }
         }
     }
