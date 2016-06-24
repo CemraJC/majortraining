@@ -84,7 +84,7 @@ var display = new (function() {
         return "<li " + s + " levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span progression=\"" + obj.state() + "\"></span></li>\n";
     }
 
-    this.selectMenuItem = function(level_num, override){
+    this.selectLevel = function(level_num, override){
         // If these were separate, would have to pass them around in an object and probably save which one?? (maybe just init)
         var current = document.querySelector('li[selected]') || elements.list.text.select.firstChild,
             next = document.querySelector('li[levelnum="' + level_num + '"]');
@@ -98,7 +98,7 @@ var display = new (function() {
         };
     }
 
-    this.getMenuList = function() {
+    this.getLevelsList = function() {
         var obj = save_file.get('levels'),
             list = "";
 
@@ -116,11 +116,22 @@ var display = new (function() {
         return list;
     }
 
+    this.setMenuTabs = function(){
+        var a = elements.list.input.tabs,
+            selected = save_file.get('tab_selected');
+        for (var i = 0; i < a.length; i++) {
+            if(a[i].value === selected){
+                a[i].setAttribute('checked', '');
+            }
+        }
+    }
+
     this.updateReferenceList = function() {
         this.modify.reference(this.getReferenceList());
     }
-    this.updateMenuList = function() {
-        this.modify.textSelect(this.getMenuList());
+
+    this.updateLevelsList = function() {
+        this.modify.textSelect(this.getLevelsList());
     }
 
 
@@ -177,9 +188,10 @@ var display = new (function() {
         this.__generateSpecifics()
         if ( save_file.get('dark_theme') ) { this.toggleTheme() }
         if ( save_file.get('drawer_open') ) { this.toggleDrawer() }
-        this.updateMenuList();
+        this.setMenuTabs();
+        this.updateLevelsList();
         this.updateReferenceList();
         this.updateReadout();
-        this.selectMenuItem(save_file.get('current_level'), true);
+        this.selectLevel(save_file.get('current_level'), true);
     }
 })();

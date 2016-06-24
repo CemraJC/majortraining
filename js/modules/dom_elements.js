@@ -38,6 +38,8 @@ var elements = new (function() {
         },
         input: {
             main: this.__s.mainsection + " input[name=main_input]",
+            tabs: "#drawer input[type=radio]",
+            tab_labels: "#drawer .tab-buttons",
             drawer: "input[type=checkbox]#drawer-toggle",
             localdb: {
                 filechooser: this.__s.tabmenu.generator.container + " input[type=file].submit_db",
@@ -62,7 +64,11 @@ var elements = new (function() {
 
         for (item in obj){
             if (typeof(obj[item]) == "string") {
-                obj[item] = document.querySelector(obj[item]);
+                var found = document.querySelectorAll(obj[item]);
+                if (found.length === 1) {
+                    found = found[0];
+                }
+                obj[item] = found;
             } else if (typeof(obj[item]) == "object") {
                 this.init(obj[item], lvl + 1)
             }

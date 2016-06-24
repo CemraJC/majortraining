@@ -9,6 +9,7 @@ var save_file = new (function() {
         expert_scale: 30,
         master_scale: 50,
         drawer_open: false,
+        tab_selected: "1",
         times: [timestamp()],
         dark_theme: false,
 

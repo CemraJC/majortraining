@@ -9,6 +9,17 @@ var inputs = new (function(){
         display.modify.generatorOutput(word);
     }
 
+    this.tabsListener = function(e){
+        var a = elements.list.input.tabs;
+        setTimeout(function(){
+            for (var i = 0; i < a.length; i++){
+                if (a[i].checked) {
+                    save_file.set('tab_selected', a[i].value)
+                }
+            }
+        }, 50)
+    }
+
     this.drawerListener = function(e){
         var state = elements.list.input.drawer.checked;
         if (state) {
@@ -85,8 +96,8 @@ var inputs = new (function(){
 
         elements.list.text.select.addEventListener('click', this.levelSelectListener);
         elements.list.input.main.addEventListener('keyup', this.mainInputListener);
-
         elements.list.generator.word.addEventListener('click', this.generatorListener);
         elements.list.input.drawer.addEventListener('click', this.drawerListener);
+        elements.list.input.tab_labels.addEventListener('click', this.tabsListener);
     }
 })();
