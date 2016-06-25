@@ -2,24 +2,22 @@
 input[type=button], button {
     flex: 1;
     padding: 0.5rem;
-    margin: 0 0.2rem;
+    margin: 0 1rem;
 
 
-    font-family: monospace;
-    font-size: 85%;
-    color: $white2;
+    font-family: sans-serif;
+    color: $white3;
 
     background: $black2;
     cursor: pointer;
-    border-width: 1px;
-    border-color: $grey2;
-    border-radius: 0.2rem;
+    border: 1px solid $grey1;
+    border-radius: 0.1rem;
 
     transition: all 120ms;
 }
 
 input[name=theme]:hover {
-    color: $grey2 !important;
+    color: $grey2;
 }
 
 input[name=reset]:hover {

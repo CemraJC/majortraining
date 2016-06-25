@@ -339,7 +339,8 @@ label[for="drawer-toggle"] {
                         background: $red1 !important;
                     }
                     &  input[name=theme]:hover {
-                        color: $grey2 !important;
+                        color: $white1;
+                        text-shadow: 0 0 1px $white1;
                     }
                 }
             }
@@ -366,7 +367,7 @@ label[for="drawer-toggle"] {
 
             &.generatorscolumn#tab-2 {
                 & .generator {
-                    margin: 0 auto;
+                    margin: 0.8rem auto;
 
                     & .inputs {
                         display: flex;
@@ -377,6 +378,7 @@ label[for="drawer-toggle"] {
                         }
                         & button {
                             flex: 1;
+                            margin-right: 0;
                         }
                     }
 

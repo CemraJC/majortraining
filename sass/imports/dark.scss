@@ -39,10 +39,6 @@ body[dark] {
             }
         }
 
-        & .settings input[name=theme]:hover {
-            color: $black1 !important;
-            background: $grey4 !important;
-        }
 
         & .generatorcolumn {
             & header {
@@ -53,12 +49,16 @@ body[dark] {
             }
         }
 
-        & #drawer-tabs .tab-container .tab-panel.levelscolumn#tab-1 .select {
-            & ul li {
+        & #drawer-tabs .tab-container .tab-panel.levelscolumn#tab-1 {
+            & .select  ul li {
                 border-bottom-color: $night2;
                 &:hover{
                     background: $night1;
                 }
+            }
+            & .settings input[name=theme]:hover {
+                color: $white1;
+                text-shadow: 0 0 1px $white1;
             }
         }
 
