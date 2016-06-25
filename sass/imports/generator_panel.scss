@@ -1,0 +1,46 @@
+.generatorscolumn {
+
+    & header {
+        padding: 1em;
+
+        font-size: 150%;
+        text-align: center;
+
+        background: $black1;
+    }
+
+    & .generator {
+        width: 90%;
+        line-height: 1.6;
+        margin: 0 auto;
+
+        & .inputs {
+            margin: 0.2em auto 1em auto;
+
+            & input, & button {
+                width: 45%;
+            }
+        }
+
+        .generated_word {
+            display: block;
+            color: $grey3;
+            text-align: center;
+            margin-bottom: 0.5em;
+        }
+
+        input[type=file], p.submit_db {
+            display: none;
+        }
+
+        input[type=file] {
+            margin: 0.8em 0;
+        }
+
+        p {
+            margin-bottom: 0.5em;
+            line-height: 1.2;
+            font-size: 80%;
+        }
+    }
+}

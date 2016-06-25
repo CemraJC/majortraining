@@ -13,7 +13,6 @@
         + Get a good database m8
         + make stage 2
     - Add a timer
-    - Persist the tab menu between states
     - Add a disclaimer about how scores are calculated
     - Make sure the user knows that their progress should be auto saved.
     - Implement a service worker? 0.o
