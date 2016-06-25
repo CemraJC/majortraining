@@ -10,11 +10,12 @@
     overflow-y: auto;
     overflow-x: hidden;
 
-    background: $grey1;
-    border: 1px solid $grey4;
+    background: $ggrey1;
+    border-right: 1px solid $grey4;
 
     color: $white2;
     transition: left 410ms;
+    transition-timing-function: ease-out-quadratic;
     z-index: 1;
 
     & .logo {
@@ -50,6 +51,7 @@ label[for="drawer-toggle"] {
     z-index: 1;
 
     transition: left 410ms, opacity 210ms;
+    transition-timing-function: ease-out-quadratic;
 
     & .hamburger {
         display: block;
@@ -132,6 +134,7 @@ label[for="drawer-toggle"] {
         position: relative;
         width: 100%;
 
+
         &:before {
             content: '';
             position: absolute;
@@ -139,8 +142,8 @@ label[for="drawer-toggle"] {
             bottom: 0;
             width: 33%;
             height: 0.2rem;
-            background: $blue3;
-            transition: left 210ms;
+            background: $blue1;
+            transition: left 210ms, background 200ms;
         }
 
         & label {
@@ -149,11 +152,20 @@ label[for="drawer-toggle"] {
             cursor: pointer;
             user-select: none;
 
-            color: $white3;
+            color: $grey5;
             text-align: center;
+            vertical-align: -3rem;
+            font-size: 60%;
 
-            border-bottom: 1px solid $blue3;
-            background: $blue1;
+            border-bottom: 1px solid $blue1;
+            border-top: 1px solid $black1;
+            background: $gblack2;
+
+            transition: text-shadow 250ms, border-bottom 200ms;
+
+            &:hover {
+                text-shadow: 0 0 1px $white3;
+            }
         }
     }
 
@@ -175,11 +187,14 @@ label[for="drawer-toggle"] {
                 & .readout, & .stagebanner {
                     padding: 0.5rem 0.8rem;
                     line-height: 1.4;
-                    background: $black3;
+                    background: $black1;
                 }
 
                 & .readout {
                     cursor: default;
+                    background: $gblack1;
+                    border-bottom: 1px solid $black1;
+                    border-top: 1px solid $black1;
 
                     & p.levelinfo {
                         font-size: 80%;
@@ -214,7 +229,7 @@ label[for="drawer-toggle"] {
                     cursor: pointer;
 
                     &:hover {
-                        background: $grey1;
+                        background: $black2;
                     }
 
                     &:active {
@@ -228,7 +243,7 @@ label[for="drawer-toggle"] {
                     user-select: none;
 
                     & i {
-                        margin: 0.7rem 0.8rem;
+                        margin: 0.7rem 1.2rem;
 
                         font-size: 80%;
                         letter-spacing: 1px;
@@ -239,7 +254,7 @@ label[for="drawer-toggle"] {
 
                         & li {
                             margin: 0;
-                            padding: 0.6rem 0.8rem;
+                            padding: 0.6rem 1.2rem;
 
                             font-size: 95%;
                             letter-spacing: 0.02rem;
@@ -417,12 +432,13 @@ label[for="drawer-toggle"] {
                         & tbody td {
                             padding: 0.5rem;
                             border: 1px solid $white1;
+                            opacity: 0.9; // darken or lighten the text a little
 
                             &:first-child {
-                                width: 1rem;
+                                width: 6rem;
 
                                 font-weight: 600;
-                                text-align: center;
+                                text-align: right;
                             }
                         }
                     }

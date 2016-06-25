@@ -5,18 +5,20 @@ body[dark] {
 
     & input[type=button], & button {
         color: $white2;
-        background: $blue2;
+        background: $night2;
     }
 
     & #drawer-toggle:checked ~ #drawer {
         box-shadow: none;
     }
+
     & #drawer-toggle:checked ~ label[for="drawer-toggle"] .hamburger{
         background: none;
         &:before, &:after {
             background: $white3;
         }
     }
+
     label[for="drawer-toggle"] .hamburger {
         background: $white3;
         &:before, &:after {
@@ -25,15 +27,24 @@ body[dark] {
     }
 
     & #drawer {
-        background: $blue1;
+        background: $gnight1;
+
+        #drawer-tabs .tab-buttons {
+            &:before {
+                background: $blue2;
+            }
+
+            label {
+                border-bottom: 1px solid $blue2;
+            }
+        }
 
         & .settings input[name=theme]:hover {
             color: $black1 !important;
-            background: $white2 !important;
+            background: $grey4 !important;
         }
 
         & .generatorcolumn {
-            background: $blue1;
             & header {
                 background: $black1;
             }
@@ -42,14 +53,18 @@ body[dark] {
             }
         }
 
-        & .levelscolumn {
-            background: $blue1;
-
+        & #drawer-tabs .tab-container .tab-panel.levelscolumn#tab-1 .select {
             & ul li {
-                border-bottom-color: $blue2;
+                border-bottom-color: $night2;
                 &:hover{
-                    background: $blue2;
+                    background: $night1;
                 }
+            }
+        }
+
+        & .tab-container .tab-panel.referencecolumn#tab-3 .reference {
+            & table {
+                background: $black3;
             }
         }
     }

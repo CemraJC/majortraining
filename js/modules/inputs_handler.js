@@ -55,7 +55,7 @@ var inputs = new (function(){
         if (!clicked) { return false; }
 
         var new_level = clicked.getAttribute('levelnum');
-        if (display.selectMenuItem(new_level)) {
+        if (display.selectLevel(new_level)) {
             save_file.set({
                 current_score: 0,
                 current_level: new_level

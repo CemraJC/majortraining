@@ -12,6 +12,7 @@
     overflow-y: auto;
 
     transition: padding-left 410ms;
+    transition-timing-function: ease-out-quadratic;
 }
 
 
