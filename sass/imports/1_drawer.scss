@@ -327,10 +327,33 @@ label[for="drawer-toggle"] {
                 }
 
                 & .settings {
-                    display: flex;
-                    padding: 0.8rem 0.4rem;
-
+                    padding: 0 1rem 0.8rem 1rem;
                     background: $black1;
+
+                    & h5 {
+                        display: inline-block;
+                        margin: 0.2rem 0 0.5rem 0;
+                        transition: transform 1s 20s, font-size 2s 20s;
+
+                        &:hover {
+                            font-size: 200%;
+                            transform: rotateX(15deg) rotateY(50deg) rotateZ(5*360deg);
+                        }
+                    }
+
+                    & div.buttons {
+                        display: flex;
+
+                        & input[type=button]{
+                            &:first-child {
+                                margin-left: 0;
+                            }
+
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+                    }
 
                     & input[name=reset]:hover {
                         font-weight: 600;

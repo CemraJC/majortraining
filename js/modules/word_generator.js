@@ -37,7 +37,9 @@ var WordGenerator = new (function() {
         })
         elements.list.input.promptdb.button.addEventListener('click', function(){
             try {
-                this.ajaxMakeRequest(this.dbUrl, this.onDatabaseGet, this.onDatabaseError);
+                WordGenerator.ajaxMakeRequest(WordGenerator.dbUrl, WordGenerator.onDatabaseGet, WordGenerator.onDatabaseError)
+                elements.list.input.promptdb.button.style.display = "none";
+                display.modify.inputPromptdbMessage("<b>Loading...</b>")
             } catch(e) {
                 console.log(e);
             }
@@ -104,7 +106,6 @@ var WordGenerator = new (function() {
                 display.modify.inputLocaldbMessages("Thank you! (^.^)");
                 elements.list.input.localdb.filechooser.style.display = "none";
             } catch(err) {
-                display.modify.inputLocaldbMessages("<b>Sorry - I don't know that that is :(</b><br> Try again maybe? It should be the \"major_database.json\" file.");
                 this.superclass.onDatabaseError("Could not parse local file as JSON");
             }
         }
@@ -123,6 +124,8 @@ var WordGenerator = new (function() {
                 window.localStorage.setItem(this.dbUuid, JSON.stringify(this.db));
                 console.info("Generator database is up and running!", msg)
                 this.databaseLoaded = true;
+                elements.list.input.promptdb.button.style.display = "none";
+                elements.list.input.promptdb.message.style.display = "none";
             } else {
                 throw(Error("Generator database not retreived as object"))
             }
@@ -134,6 +137,7 @@ var WordGenerator = new (function() {
     this.onDatabaseError = function(msg){
         msg = msg || "";
         this.databaseError = true;
+        display.modify.inputPromptdbMessage("<b>This is embarrassing...</b><br>The database didn't load properly :/. If this happens again, you should definitely <a href='https://github.com/cemrajc/majortraining/issues'>file a bug report</a>.")
         console.warn("WordGenerator: Sorry, the generator is broken :/\n", msg);
     }
 
@@ -149,7 +153,7 @@ var WordGenerator = new (function() {
             } else if (this.databaseLoaded) {
                 return "<i>No word found</i>"
             } else {
-                return "<i>Still loading database...</i>"
+                return "<i>Waiting for database</i>"
             }
         }
     }
