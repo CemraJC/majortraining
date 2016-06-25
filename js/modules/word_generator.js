@@ -13,34 +13,62 @@ var WordGenerator = new (function() {
     this.databaseError = false;
     this.databaseLoaded = false;
 
-    this.httpRequest = new XMLHttpRequest();
-
-
-    this.requestDatabase = function(){
+    this.requestDatabase = function() {
         var localStorage_db = window.localStorage.getItem(this.dbUuid);
+
         try {
             if (localStorage_db) {
                 this.onDatabaseGet(JSON.parse(localStorage_db), "Loaded from localstorage! B)");
             } else if (this.isOffline()) {
                 this.requestLocalFile();
             } else {
-                this.ajaxMakeRequest(this.httpRequest, this.dbUrl, this.onDatabaseGet, this.onDatabaseError);
+                this.promptForDatabase();
             }
         } catch(e) {
             window.localStorage.removeItem(this.dbUuid);
         }
     }
 
-    this.ajaxMakeRequest = function(req, url, success, failure) {
-        req.superclass = this; // HACK for Context
-        req.open('GET', url);
-        req.send();
-        if (req.readyState === 4 && req.response === ""){
-            failure.call(req.superclass, "AJAX Request could not be made (probably because offline?)");
+    this.promptForDatabase = function(){
+        this.getfileSize(this.dbUrl, function(size){
+                if (size) {
+                    display.modify.inputPromptdbButton("Download (" + (size/1000000).toFixed(2) + " MB" + ")");
+                }
+        })
+        elements.list.input.promptdb.button.addEventListener('click', function(){
+            try {
+                this.ajaxMakeRequest(this.dbUrl, this.onDatabaseGet, this.onDatabaseError);
+            } catch(e) {
+                console.log(e);
+            }
+        })
+    }
+
+    this.getfileSize = function(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('HEAD', url);
+        xhr.addEventListener('readystatechange', function(){
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (this.status === 200) {
+                    callback(xhr.getResponseHeader("Content-Length"));
+                } else {
+                    return false;
+                }
+            }
+        });
+        xhr.send();
+    }
+
+    this.ajaxMakeRequest = function(url, success, failure) {
+        var xhr = new XMLHttpRequest();
+        xhr.superclass = this; // HACK for Context
+        xhr.open('GET', url);
+        if (xhr.readyState === 4 && xhr.response === ""){
+            failure.call(xhr.superclass, "AJAX request could not be made (probably because offline?)");
             return false;
         }
 
-        req.addEventListener('readystatechange', function(){
+        xhr.addEventListener('readystatechange', function(){
             if (this.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 200) {
                     return success.call(this.superclass, JSON.parse(this.response), "Had to get it from server :/") || true;
@@ -49,9 +77,10 @@ var WordGenerator = new (function() {
                 }
             }
         });
+        xhr.send();
     }
 
-    this.requestLocalFile = function(){
+    this.requestLocalFile = function() {
         elements.list.input.localdb.filechooser.style.display = "block";
         elements.list.input.localdb.messages.style.display = "block";
         elements.list.input.localdb.filechooser.superclass = this; // HACK for Context

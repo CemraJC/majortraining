@@ -44,6 +44,10 @@ var elements = new (function() {
             localdb: {
                 filechooser: this.__s.tabmenu.generator.container + " input[type=file].submit_db",
                 messages: this.__s.tabmenu.generator.container + " p.submit_db"
+            },
+            promptdb: {
+                button: this.__s.tabmenu.generator.container + " button.prompt_db",
+                message: this.__s.tabmenu.generator.container + " p.prompt_db"
             }
         },
         reference: this.__s.tabmenu.reference.container + " table tbody",

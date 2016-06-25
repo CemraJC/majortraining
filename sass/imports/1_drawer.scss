@@ -348,7 +348,7 @@ label[for="drawer-toggle"] {
             &.generatorscolumn#tab-2, &.referencecolumn#tab-3 {
                 & .reference, & .generator {
                     width: 90%;
-                    font-size: 90%;
+                    font-size: 95%;
                     line-height: 1.6;
 
                     & p {
@@ -400,7 +400,12 @@ label[for="drawer-toggle"] {
                     p {
                         margin-bottom: 0.5rem;
                         line-height: 1.2;
-                        font-size: 80%;
+                        font-size: 85%;
+                    }
+
+                    & button.prompt_db {
+                        display: block;
+                        margin: 1rem auto;
                     }
                 }
             }

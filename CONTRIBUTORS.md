@@ -1,7 +1,6 @@
 ## Todo
 
 * Update the UI
-    - Better branding (logo) required
     + Glyphs next to important links
     - Add button to prompt for database download
     - Upgrade the learning assistant
