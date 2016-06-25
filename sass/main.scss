@@ -34,11 +34,11 @@ $expertColor: #BAFF00;
 $masterColor: #C765FF;
 
 
-$drawer-width: 20em;
+$drawer-width: 23rem;
 
 @import "reset",
         "1_drawer",
-        "main_view",
+        "2_content",
         "input_styles",
         "media_queries",
         "noscript",

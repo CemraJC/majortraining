@@ -4,7 +4,6 @@
     position: fixed;
     left: -$drawer-width;
     width: $drawer-width;
-    height: 100vh;
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
@@ -17,14 +16,14 @@
     z-index: 1;
 
     & .logo {
-        padding: 0.9em 0.8em;
+        padding: 1.5rem 0.8rem;
 
         text-align: center;
         font-family: Arial;
         font-size: 150%;
         font-weight: 600;
         line-height: 0.8;
-        text-shadow: 0.1em 0.1em 0.3em $black1;
+        text-shadow: 0.1rem 0.1rem 0.3rem $black1;
 
         background: $black2;
         cursor: default;
@@ -39,9 +38,9 @@
 label[for="drawer-toggle"] {
     display: block;
     position: fixed;
-    height: 2.2em;
-    width: 2.2em;
-    margin: 1em;
+    height: 2.2rem;
+    width: 2.2rem;
+    margin: 1rem;
     left: 0;
 
     cursor: pointer;
@@ -53,9 +52,9 @@ label[for="drawer-toggle"] {
     & .hamburger {
         display: block;
         position: absolute;
-        top: 0.7em;
-        height: 0.24em;
-        width: 2.2em;
+        top: 0.7rem;
+        height: 0.24rem;
+        width: 2.2rem;
 
         background: $grey1;
         transition: background 500ms 300ms, box-shadow 210ms, opacity 500ms 300ms, transform 500ms 300ms;
@@ -63,17 +62,17 @@ label[for="drawer-toggle"] {
         &:before, &:after {
             content: '';
             position: inherit;
-            width: 2.2em;
-            height: 0.24em;
+            width: 2.2rem;
+            height: 0.24rem;
 
             background: $grey1;
             transition: width 800ms 300ms, transform 500ms 300ms;
         }
         &:before {
-            top: -0.7em;
+            top: -0.7rem;
         }
         &:after {
-            top: 0.7em;
+            top: 0.7rem;
         }
     }
 }
@@ -95,23 +94,23 @@ label[for="drawer-toggle"] {
 
         & .hamburger {
             background: none;
-            transform: translateX(-5em);
+            transform: translateX(-5rem);
             &:before, &:after {
                 background: $grey1;
-                width: 1.5em;
+                width: 1.5rem;
             }
             &:before {
-                transform: translateY(0.68em) translateX(5em) rotateZ(-43deg);
+                transform: translateY(0.68rem) translateX(5rem) rotateZ(-43deg);
             }
             &:after {
-                transform: translateY(-0.68em) translateX(5em) rotateZ(43deg);
+                transform: translateY(-0.68rem) translateX(5rem) rotateZ(43deg);
             }
         }
     }
 
     & ~ #drawer {
         left: 0;
-        box-shadow: 0.3em 0 0.5em $grey2;
+        box-shadow: 0.3rem 0 0.5rem $grey2;
     }
 
     & ~ .maincolumn {
@@ -133,14 +132,14 @@ label[for="drawer-toggle"] {
             left: 0;
             bottom: 0;
             width: 33%;
-            height: 0.2em;
+            height: 0.2rem;
             background: $blue3;
             transition: left 210ms;
         }
 
         & label {
             flex: 1;
-            padding: 1em 0.4em;
+            padding: 1rem 0.4rem;
             cursor: pointer;
             user-select: none;
 
@@ -155,25 +154,21 @@ label[for="drawer-toggle"] {
     & .tab-container {
         display: flex;
         position: absolute;
-
-
         overflow: hidden;
 
         & .tab-panel {
-            display: block;
+            display: flex;
+            flex-direction: column;
             position: relative;
             width: $drawer-width;
             height: 0;
             overflow-y: hidden;
 
             &.levelscolumn#tab-1 {
-                display: flex;
-                flex-direction: column;
-                height: 100%;
                 color: $white2;
 
                 & .readout, & .stagebanner {
-                    padding: 0.5em 0.8em;
+                    padding: 0.5rem 0.8rem;
                     line-height: 1.4;
                     background: $black3;
                 }
@@ -187,7 +182,7 @@ label[for="drawer-toggle"] {
                     }
 
                     & .highscore, & .score  {
-                        margin-bottom: 0.2em;
+                        margin-bottom: 0.2rem;
 
                         font-size: 75%;
                         font-weight: bold;
@@ -224,11 +219,11 @@ label[for="drawer-toggle"] {
 
                 & .select {
                     flex: 1;
-                    padding: 0.5em 0;
+                    padding: 0.5rem 0;
                     user-select: none;
 
                     & i {
-                        margin: 0.7em 0.8em;
+                        margin: 0.7rem 0.8rem;
 
                         font-size: 80%;
                         letter-spacing: 1px;
@@ -239,13 +234,13 @@ label[for="drawer-toggle"] {
 
                         & li {
                             margin: 0;
-                            padding: 0.6em 0.8em;
+                            padding: 0.6rem 0.8rem;
 
                             font-size: 95%;
-                            letter-spacing: 0.02em;
+                            letter-spacing: 0.02rem;
                             line-height: 0.9;
                             color: $grey2;
-                            text-shadow: 0 0.01em 0.01em $grey1;
+                            text-shadow: 0 0.01rem 0.01rem $grey1;
 
                             border-bottom: 1px solid $grey4;
                             cursor: pointer;
@@ -253,16 +248,16 @@ label[for="drawer-toggle"] {
 
                             &:hover {
                                 color: $grey3;
-                                text-shadow: 0 0 0.2em $black1;
+                                text-shadow: 0 0 0.2rem $black1;
                                 background: $grey1;
                             }
                             &:active {
                                 color: $linkColor2;
-                                text-shadow: 0 0 0.01em $linkColor3;
+                                text-shadow: 0 0 0.01rem $linkColor3;
                             }
                             &[selected] {
                                 color: $white3;
-                                text-shadow: 0 0 0.01em $black1;
+                                text-shadow: 0 0 0.01rem $black1;
 
                                 & small {
                                     color: $grey3;
@@ -313,7 +308,7 @@ label[for="drawer-toggle"] {
 
                 & .settings {
                     display: flex;
-                    padding: 0.8em 0.4em;
+                    padding: 0.8rem 0.4rem;
 
                     background: $black1;
 
@@ -336,11 +331,11 @@ label[for="drawer-toggle"] {
                     line-height: 1.6;
 
                     & p {
-                        margin: 0.3em 0;
+                        margin: 0.3rem 0;
                     }
                 }
                 & header {
-                    padding: 1em;
+                    padding: 1rem;
 
                     font-size: 150%;
                     text-align: center;
@@ -355,7 +350,7 @@ label[for="drawer-toggle"] {
 
                     & .inputs {
                         display: flex;
-                        margin: 0.4em 0;
+                        margin: 0.4rem 0;
 
                         & input {
                             flex: 5;
@@ -369,7 +364,7 @@ label[for="drawer-toggle"] {
                         display: block;
                         color: $grey3;
                         text-align: center;
-                        margin-bottom: 0.5em;
+                        margin-bottom: 0.5rem;
                     }
 
                     input[type=file], p.submit_db {
@@ -377,11 +372,11 @@ label[for="drawer-toggle"] {
                     }
 
                     input[type=file] {
-                        margin: 0.8em 0;
+                        margin: 0.8rem 0;
                     }
 
                     p {
-                        margin-bottom: 0.5em;
+                        margin-bottom: 0.5rem;
                         line-height: 1.2;
                         font-size: 80%;
                     }
@@ -389,8 +384,6 @@ label[for="drawer-toggle"] {
             }
 
             &.referencecolumn#tab-3 {
-                display: flex;
-                flex-direction: column;
                 flex: 1.2;
                 width: 100%;
 
@@ -399,7 +392,7 @@ label[for="drawer-toggle"] {
                 transition: all 1s;
 
                 & .reference {
-                    margin: 0 auto 2em auto;
+                    margin: 0 auto 2rem auto;
 
                     & table {
                         width: 100%;
@@ -408,20 +401,20 @@ label[for="drawer-toggle"] {
                         border-collapse: collapse;
 
                         & caption {
-                            padding: 0.8em 0em;
+                            padding: 0.8rem 0rem;
                         }
 
                         & thead th {
-                            padding: 0.8em 0.2em;
+                            padding: 0.8rem 0.2rem;
                             border: 1px solid $white1;
                         }
 
                         & tbody td {
-                            padding: 0.5em;
+                            padding: 0.5rem;
                             border: 1px solid $white1;
 
                             &:first-child {
-                                width: 1em;
+                                width: 1rem;
 
                                 font-weight: 600;
                                 text-align: center;
