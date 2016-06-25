@@ -26,24 +26,25 @@
 <input type="checkbox" id="drawer-toggle">
 <label for="drawer-toggle"><span class="hamburger"></span></label>
 <nav id="drawer">
-    <input type="radio" id="drawer-tab-1" name="drawer-tabs" value="1" checked>
-    <input type="radio" id="drawer-tab-2" name="drawer-tabs" value="2">
-    <input type="radio" id="drawer-tab-3" name="drawer-tabs" value="3">
 
     <div class="logo">
     <p>Major Training</p>
     <small>Visit on <a href="http://github.com/cemrajc/majortraining/releases/latest">Github</a> to download</small>
     </div>
 
-    <div class="tab-buttons">
-        <label for="drawer-tab-1">Levels</label>
-        <label for="drawer-tab-2">Generator</label>
-        <label for="drawer-tab-3">Reference</label>
-    </div>
+    <div id="drawer-tabs">
+        <input type="radio" id="drawer-tab-1" name="drawer-tabs" value="1" checked>
+        <input type="radio" id="drawer-tab-2" name="drawer-tabs" value="2">
+        <input type="radio" id="drawer-tab-3" name="drawer-tabs" value="3">
 
-    <div class="tab-container">
-        <div class="tab-panel" id="tab-1">
-            <div class="levelscolumn">
+        <div class="tab-buttons">
+            <label for="drawer-tab-1">Levels</label>
+            <label for="drawer-tab-2">Generator</label>
+            <label for="drawer-tab-3">Reference</label>
+        </div>
+
+        <div class="tab-container">
+            <div class="levelscolumn tab-panel" id="tab-1">
                 <div class="readout">
                     <div class="score">0</div>
                     <div class="highscore">0</div>
@@ -86,15 +87,13 @@
                 <div class="stagebanner">
                     <i>Stage 2 is under construction</i>
                 </div>
+                <div class="settings">
+                    <input type="button" name="theme" value="Change Theme">
+                    <input type="button" name="reset" value="Reset" title="Double click to reset the entire app">
+                </div>
             </div>
-            <div class="settings">
-                <input type="button" name="theme" value="Change Theme">
-                <input type="button" name="reset" value="Reset" title="Double click to reset the entire app">
-            </div>
-        </div>
 
-        <div class="tab-panel" id="tab-2">
-            <div class="generatorscolumn">
+            <div class="generatorscolumn tab-panel" id="tab-2">
                 <header>Generator</header>
                 <div class="generator">
                     <h3>Word Generator</h3>
@@ -110,10 +109,8 @@
                     <p class="submit_db"><b>Load in the database please :P</b><br> (Select the "major_database.json" file from the database folder). You should only need to do this once.</p>
                 </div>
             </div>
-        </div>
 
-        <div class="tab-panel" id="tab-3">
-            <div class="referencecolumn">
+            <div class="referencecolumn tab-panel" id="tab-3">
                 <header>Reference</header>
                 <div class="reference">
                     <table>

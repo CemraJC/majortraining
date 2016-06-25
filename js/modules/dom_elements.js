@@ -2,18 +2,18 @@ var elements = new (function() {
     this.__s = { // __selectors - not really meant to be used by programmers
         mainsection: ".maincolumn .main",
         tabmenu: {
-            container: "#drawer .tab-container",
+            container: "#drawer-tabs .tab-container",
             levels: {
-                container: "#drawer .tab-container .tab-panel#tab-1 .levelscolumn",
-                readout: "#drawer .tab-container .tab-panel#tab-1 .levelscolumn .readout",
-                select: "#drawer .tab-container .tab-panel#tab-1 .levelscolumn .select",
-                settings: "#drawer .tab-container .tab-panel#tab-1 .settings"
+                container: "#drawer-tabs .tab-container .tab-panel.levelscolumn#tab-1 ",
+                readout: "#drawer-tabs .tab-container .tab-panel.levelscolumn#tab-1 .readout",
+                select: "#drawer-tabs .tab-container .tab-panel.levelscolumn#tab-1 .select",
+                settings: "#drawer-tabs .tab-container .tab-panel#tab-1 .settings"
             },
             generator: {
-                container: "#drawer .tab-container .tab-panel#tab-2 .generatorscolumn",
+                container: "#drawer-tabs .tab-container .tab-panel.generatorscolumn#tab-2 ",
             },
             reference:{
-                container: "#drawer .tab-container .tab-panel#tab-3 .referencecolumn",
+                container: "#drawer-tabs .tab-container .tab-panel.referencecolumn#tab-3 ",
             }
         }
     }

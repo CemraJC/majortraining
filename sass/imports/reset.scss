@@ -1,3 +1,4 @@
+/* Responsive and focus resets */
 
 * {
     margin: 0;
@@ -13,9 +14,27 @@ html, body {
     overflow: hidden;
 }
 
+/* Box Sizing Reset, with inheritance */
+
 html {
     box-sizing: border-box;
 }
+
 *, *:before, *:after {
     box-sizing: inherit;
+}
+
+/* App Styles that apply generally */
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    font-family: Trebuchet MS, Arial, sans-serif;
+
+    transition: background 150ms;
+}
+
+a {
+    color: $linkColor1;
 }

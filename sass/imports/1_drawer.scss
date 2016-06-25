@@ -1,0 +1,484 @@
+/* DRAWER STYLES */
+
+#drawer {
+    position: fixed;
+    left: -$drawer-width;
+    width: $drawer-width;
+    height: 100vh;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background: $grey1;
+    border: 1px solid $grey4;
+
+    color: $white2;
+    transition: left 410ms;
+    z-index: 1;
+
+    & .logo {
+        padding: 0.9em 0.8em;
+
+        text-align: center;
+        font-family: Arial;
+        font-size: 150%;
+        font-weight: 600;
+        line-height: 0.8;
+        text-shadow: 0.1em 0.1em 0.3em $black1;
+
+        background: $black2;
+        cursor: default;
+
+        & small {
+            font-size: 50%;
+            font-weight: normal;
+        }
+    }
+}
+
+label[for="drawer-toggle"] {
+    display: block;
+    position: fixed;
+    height: 2.2em;
+    width: 2.2em;
+    margin: 1em;
+    left: 0;
+
+    cursor: pointer;
+    user-select: none;
+    z-index: 1;
+
+    transition: left 410ms, opacity 210ms;
+
+    & .hamburger {
+        display: block;
+        position: absolute;
+        top: 0.7em;
+        height: 0.24em;
+        width: 2.2em;
+
+        background: $grey1;
+        transition: background 500ms 300ms, box-shadow 210ms, opacity 500ms 300ms, transform 500ms 300ms;
+
+        &:before, &:after {
+            content: '';
+            position: inherit;
+            width: 2.2em;
+            height: 0.24em;
+
+            background: $grey1;
+            transition: width 800ms 300ms, transform 500ms 300ms;
+        }
+        &:before {
+            top: -0.7em;
+        }
+        &:after {
+            top: 0.7em;
+        }
+    }
+}
+
+/* DRAWER LOGIC */
+
+#drawer-toggle {
+    display: none;
+}
+
+#drawer-toggle:checked {
+    & ~ label[for="drawer-toggle"] {
+        left: $drawer-width;
+        opacity: 0.7;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        & .hamburger {
+            background: none;
+            transform: translateX(-5em);
+            &:before, &:after {
+                background: $grey1;
+                width: 1.5em;
+            }
+            &:before {
+                transform: translateY(0.68em) translateX(5em) rotateZ(-43deg);
+            }
+            &:after {
+                transform: translateY(-0.68em) translateX(5em) rotateZ(43deg);
+            }
+        }
+    }
+
+    & ~ #drawer {
+        left: 0;
+        box-shadow: 0.3em 0 0.5em $grey2;
+    }
+
+    & ~ .maincolumn {
+        padding-left: $drawer-width;
+    }
+}
+
+/* TAB STYLES */
+
+#drawer-tabs {
+    & .tab-buttons {
+        display: flex;
+        position: relative;
+        width: 100%;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 33%;
+            height: 0.2em;
+            background: $blue3;
+            transition: left 210ms;
+        }
+
+        & label {
+            flex: 1;
+            padding: 1em 0.4em;
+            cursor: pointer;
+            user-select: none;
+
+            color: $white3;
+            text-align: center;
+
+            border-bottom: 1px solid $blue3;
+            background: $blue1;
+        }
+    }
+
+    & .tab-container {
+        display: flex;
+        position: absolute;
+
+
+        overflow: hidden;
+
+        & .tab-panel {
+            display: block;
+            position: relative;
+            width: $drawer-width;
+            height: 0;
+            overflow-y: hidden;
+
+            &.levelscolumn#tab-1 {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                color: $white2;
+
+                & .readout, & .stagebanner {
+                    padding: 0.5em 0.8em;
+                    line-height: 1.4;
+                    background: $black3;
+                }
+
+                & .readout {
+                    cursor: default;
+
+                    & p.levelinfo {
+                        font-size: 80%;
+                        color: $grey3;
+                    }
+
+                    & .highscore, & .score  {
+                        margin-bottom: 0.2em;
+
+                        font-size: 75%;
+                        font-weight: bold;
+                        line-height: 1.2;
+                        color: $grey2;
+                    }
+
+                    & .score {
+                        font-size: 90%;
+
+                        &::before {
+                            content: "Score: ";
+                            color: $grey2;
+                        }
+                    }
+
+                    & .highscore::before {
+                        content: "Highest score: ";
+                        color: $grey2;
+                    }
+                }
+
+                & .stagebanner {
+                    cursor: pointer;
+
+                    &:hover {
+                        background: $grey1;
+                    }
+
+                    &:active {
+                        background: $black3;
+                    }
+                }
+
+                & .select {
+                    flex: 1;
+                    padding: 0.5em 0;
+                    user-select: none;
+
+                    & i {
+                        margin: 0.7em 0.8em;
+
+                        font-size: 80%;
+                        letter-spacing: 1px;
+                    }
+
+                    & ul {
+                        list-style: none;
+
+                        & li {
+                            margin: 0;
+                            padding: 0.6em 0.8em;
+
+                            font-size: 95%;
+                            letter-spacing: 0.02em;
+                            line-height: 0.9;
+                            color: $grey2;
+                            text-shadow: 0 0.01em 0.01em $grey1;
+
+                            border-bottom: 1px solid $grey4;
+                            cursor: pointer;
+                            transition: all 100ms;
+
+                            &:hover {
+                                color: $grey3;
+                                text-shadow: 0 0 0.2em $black1;
+                                background: $grey1;
+                            }
+                            &:active {
+                                color: $linkColor2;
+                                text-shadow: 0 0 0.01em $linkColor3;
+                            }
+                            &[selected] {
+                                color: $white3;
+                                text-shadow: 0 0 0.01em $black1;
+
+                                & small {
+                                    color: $grey3;
+                                }
+                            }
+
+                            & small {
+                                color: $grey2;
+                                font-family: monospace;
+                            }
+
+                            & span {
+                                vertical-align: baseline;
+                                font-size: 60%;
+
+                                &[progression="0"]::before {
+                                    content: '';
+                                    color: $grey2;
+                                }
+                                &[progression="1"]::before {
+                                    content: ' incomplete';
+                                    color: $incompleteColor;
+                                }
+                                &[progression="2"]::before {
+                                    content: ' passed';
+                                    color: $passedColor;
+                                }
+                                &[progression="3"]::before {
+                                    content: ' expert';
+                                    color: $expertColor;
+                                }
+                                &[progression="4"]::before {
+                                    content: ' master';
+                                    color: $masterColor;
+                                }
+                            }
+                            & h4 span {
+                                font-size: 60%;
+                                color: $grey2;
+
+                                &::before {
+                                    content: " Highest score: ";
+                                }
+                            }
+                        }
+                    }
+                }
+
+                & .settings {
+                    display: flex;
+                    padding: 0.8em 0.4em;
+
+                    background: $black1;
+
+                    & input[name=reset]:hover {
+                        font-weight: 600;
+                        color: $white1;
+
+                        background: $red1 !important;
+                    }
+                    &  input[name=theme]:hover {
+                        color: $grey2 !important;
+                    }
+                }
+            }
+
+            &.generatorscolumn#tab-2, &.referencecolumn#tab-3 {
+                & .reference, & .generator {
+                    width: 90%;
+                    font-size: 90%;
+                    line-height: 1.6;
+
+                    & p {
+                        margin: 0.3em 0;
+                    }
+                }
+                & header {
+                    padding: 1em;
+
+                    font-size: 150%;
+                    text-align: center;
+
+                    background: $black1;
+                }
+            }
+
+            &.generatorscolumn#tab-2 {
+                & .generator {
+                    margin: 0 auto;
+
+                    & .inputs {
+                        display: flex;
+                        margin: 0.4em 0;
+
+                        & input {
+                            flex: 5;
+                        }
+                        & button {
+                            flex: 1;
+                        }
+                    }
+
+                    .generated_word {
+                        display: block;
+                        color: $grey3;
+                        text-align: center;
+                        margin-bottom: 0.5em;
+                    }
+
+                    input[type=file], p.submit_db {
+                        display: none;
+                    }
+
+                    input[type=file] {
+                        margin: 0.8em 0;
+                    }
+
+                    p {
+                        margin-bottom: 0.5em;
+                        line-height: 1.2;
+                        font-size: 80%;
+                    }
+                }
+            }
+
+            &.referencecolumn#tab-3 {
+                display: flex;
+                flex-direction: column;
+                flex: 1.2;
+                width: 100%;
+
+                color: $white1;
+
+                transition: all 1s;
+
+                & .reference {
+                    margin: 0 auto 2em auto;
+
+                    & table {
+                        width: 100%;
+
+                        background: $grey1;
+                        border-collapse: collapse;
+
+                        & caption {
+                            padding: 0.8em 0em;
+                        }
+
+                        & thead th {
+                            padding: 0.8em 0.2em;
+                            border: 1px solid $white1;
+                        }
+
+                        & tbody td {
+                            padding: 0.5em;
+                            border: 1px solid $white1;
+
+                            &:first-child {
+                                width: 1em;
+
+                                font-weight: 600;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* TAB LOGIC */
+
+#drawer-tabs {
+    & input[type=radio] {
+        display: none;
+    }
+
+    & input[type=radio][value='1']:checked {
+        & ~ .tab-container {
+            left: 0;
+            & .tab-panel#tab-1 {
+                height: 100%;
+            }
+        }
+        & ~ .tab-buttons:before {
+            left: 0;
+        }
+    }
+
+    & input[type=radio][value='2']:checked {
+        & ~ .tab-container {
+            left: -$drawer-width;
+            & .tab-panel#tab-2 {
+                height: 100%;
+            }
+        }
+        & ~ .tab-buttons:before {
+            left: 33%;
+        }
+    }
+
+    & input[type=radio][value='3']:checked {
+        & ~ .tab-container {
+            left: -2*$drawer-width;
+            & .tab-panel#tab-3 {
+                height: 100%;
+            }
+        }
+        & ~ .tab-buttons:before {
+            left: 66%;
+        }
+    }
+}
+
+
+
+
+
