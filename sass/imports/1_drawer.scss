@@ -1,6 +1,8 @@
 /* DRAWER STYLES */
 
 #drawer {
+    display: flex;
+    flex-direction: column;
     position: fixed;
     left: -$drawer-width;
     width: $drawer-width;
@@ -121,6 +123,10 @@ label[for="drawer-toggle"] {
 /* TAB STYLES */
 
 #drawer-tabs {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
     & .tab-buttons {
         display: flex;
         position: relative;
@@ -153,15 +159,14 @@ label[for="drawer-toggle"] {
 
     & .tab-container {
         display: flex;
-        position: absolute;
+        flex: 1;
         overflow: hidden;
 
         & .tab-panel {
             display: flex;
             flex-direction: column;
-            position: relative;
             width: $drawer-width;
-            height: 0;
+            display: none;
             overflow-y: hidden;
 
             &.levelscolumn#tab-1 {
@@ -435,11 +440,8 @@ label[for="drawer-toggle"] {
     }
 
     & input[type=radio][value='1']:checked {
-        & ~ .tab-container {
-            left: 0;
-            & .tab-panel#tab-1 {
-                height: 100%;
-            }
+        & ~ .tab-container .tab-panel#tab-1 {
+            display: inherit;
         }
         & ~ .tab-buttons:before {
             left: 0;
@@ -447,11 +449,8 @@ label[for="drawer-toggle"] {
     }
 
     & input[type=radio][value='2']:checked {
-        & ~ .tab-container {
-            left: -$drawer-width;
-            & .tab-panel#tab-2 {
-                height: 100%;
-            }
+        & ~ .tab-container .tab-panel#tab-2 {
+            display: inherit;
         }
         & ~ .tab-buttons:before {
             left: 33%;
@@ -459,11 +458,8 @@ label[for="drawer-toggle"] {
     }
 
     & input[type=radio][value='3']:checked {
-        & ~ .tab-container {
-            left: -2*$drawer-width;
-            & .tab-panel#tab-3 {
-                height: 100%;
-            }
+        & ~ .tab-container .tab-panel#tab-3 {
+            display: inherit;
         }
         & ~ .tab-buttons:before {
             left: 66%;
