@@ -2,7 +2,6 @@
 
 * Update the UI
     + Glyphs next to important links
-    - Add button to prompt for database download
     - Upgrade the learning assistant
 
 * Logical improvements
@@ -11,5 +10,5 @@
         + make stage 2
     - Add a timer
     - Add a disclaimer about how scores are calculated
-    - Make sure the user knows that their progress should be auto saved.
+    - Make sure the user knows that their progress should be auto saved. (Add a welcome modal??)
     - Implement a service worker? 0.o
