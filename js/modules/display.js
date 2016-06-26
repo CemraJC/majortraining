@@ -2,7 +2,6 @@
 var display = new (function() {
     // This will store the specific elements when generated on init
     this.modify = {};
-    this.modify.superclass = this; // Context fix :/
 
     this.getContentProperty = function(element){
         if (element.nodeName == "INPUT") {
@@ -174,7 +173,7 @@ var display = new (function() {
             }
             if (valid !== undefined) {
                 var index = (path) ? titleCase(i) : i;
-                this.modify[path + index] = new Function('content', 'return this.superclass.replaceOrGetContent(this.' + path + index + '__element, content);');
+                this.modify[path + index] = new Function('content', 'return this.replaceOrGetContent(this.modify.' + path + index + '__element, content);').bind(this);
                 this.modify[path + index + "__element"] = obj[i];
             } else {
                 this.__generateSpecifics(obj[i], lvl + 1, (lvl > 1) ? path + titleCase(i) : path + i);

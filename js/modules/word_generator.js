@@ -25,8 +25,12 @@ var WordGenerator = new (function() {
                 this.promptForDatabase();
             }
         } catch(e) {
-            window.localStorage.removeItem(this.dbUuid);
+            this.clearDatabaseFromLocalStorage();
         }
+    }
+
+    this.clearDatabaseFromLocalStorage = function(){
+        window.localStorage.removeItem(this.dbUuid);
     }
 
     this.promptForDatabase = function(){
@@ -63,19 +67,19 @@ var WordGenerator = new (function() {
 
     this.ajaxMakeRequest = function(url, success, failure) {
         var xhr = new XMLHttpRequest();
-        xhr.superclass = this; // HACK for Context
         xhr.open('GET', url);
         if (xhr.readyState === 4 && xhr.response === ""){
             failure.call(xhr.superclass, "AJAX request could not be made (probably because offline?)");
             return false;
         }
 
+        var superclass = this;
         xhr.addEventListener('readystatechange', function(){
             if (this.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 200) {
-                    return success.call(this.superclass, JSON.parse(this.response), "Had to get it from server :/") || true;
+                    return success.call(superclass, JSON.parse(this.response), "Had to get it from server :/") || true;
                 } else {
-                    return failure.call(this.superclass, this) || false;
+                    return failure.call(superclass, this) || false;
                 }
             }
         });
@@ -98,15 +102,15 @@ var WordGenerator = new (function() {
         if (!file) {return false}
 
         var reader = new FileReader();
-        reader.superclass = this.superclass; // HACK for Context
+        var superclass = this.superclass; // HACK for Context
         reader.onload = function(evt){
             try {
                 var db = JSON.parse(reader.result);
-                this.superclass.onDatabaseGet(db, "Loaded from local file! \\(^.^)/");
+                superclass.onDatabaseGet(db, "Loaded from local file! \\(^.^)/");
                 display.modify.inputLocaldbMessages("Thank you! (^.^)");
                 elements.list.input.localdb.filechooser.style.display = "none";
             } catch(err) {
-                this.superclass.onDatabaseError("Could not parse local file as JSON");
+                superclass.onDatabaseError("Could not parse local file as JSON");
             }
         }
         reader.readAsText(file);

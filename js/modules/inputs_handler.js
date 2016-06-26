@@ -34,9 +34,9 @@ var inputs = new (function(){
     }
 
     this.resetListener = function(e){
-        console.log(e)
         if (e.detail >= 2) {
             save_file.reset();
+            WordGenerator.clearDatabaseFromLocalStorage();
             reload();
         }
     }
