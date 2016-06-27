@@ -43,13 +43,51 @@ var game = new (function(){
     }
 
     this.possibleNumFromWord = function(word){
+        // debugger;
         var letters = this.__wordToLetters(word);
         var possible_num = [];
         for (var i = 0; i < letters.length; i++) {
             if ( this.ms.valid.indexOf(letters[i]) < 0 ) { continue; }
             possible_num.push(game.__letterToNums(letters[i]));
         };
-        return possible_num;
+        return (possible_num.length > 0) ? possible_num : false;
+    }
+
+    this.explodePossibleNumToNums = function(possible_num) {
+        if (!possible_num) { return false }
+        var explodedNums = [], temp = [], max_index = 0;
+        // Finc the longest array
+        for (var i = 0; i < possible_num.length; i++) {
+            (max_index < possible_num[i].length) ? max_index = possible_num[i].length : false;
+        };
+        // For every array of nums in possible num, recursively join them together
+        explodedNums = this.__recursiveSerialJoinArrays(possible_num);
+        return explodedNums;
+    }
+
+    // Should pass this an ARRAY
+    this.__recursiveSerialJoinArrays = function(arrays, lvl) {
+        lvl = lvl || 1;
+        if (lvl > 15 || !arrays) {return arrays;} // recursion limiter
+        var reduced_arrays = arrays.slice(1);
+        reduced_arrays[0] = this.__serialJoinArrays(arrays[0], arrays[1]);
+        var next_array = this.__recursiveSerialJoinArrays(reduced_arrays, lvl + 1);
+        if (next_array[0]) {
+            return next_array;
+        } else {
+            return arrays;
+        }
+    }
+
+    this.__serialJoinArrays = function(arr1, arr2) {
+        if (!arr1 || !arr2) { return false; }
+        var result = [];
+        for (var a in arr1) {
+            for (var b in arr2) {
+                result.push(arr1[a].toString() + arr2[b].toString())
+            }
+        }
+        return result;
     }
 
     // Need to define for stage 2 / generators
@@ -58,9 +96,11 @@ var game = new (function(){
     }
 
     this.__wordToLetters = function(word) {
-        exploded = removeSuccessiveDuplicates(word.trim().toLowerCase().split(''));
+        if (typeof(word) !== "string") {return false}
         var letters = [],
+            exploded,
             index;
+        exploded = removeSuccessiveDuplicates(word.trim().toLowerCase().split(''));
 
         for (var i = 0; i < exploded.length; i++) {
             index = this.ms.multi.indexOf(exploded[i] + exploded[i + 1]);

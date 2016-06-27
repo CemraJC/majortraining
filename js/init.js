@@ -12,6 +12,6 @@ document.addEventListener("DOMContentLoaded", function(){
     display.init();
     inputs.init();
     game.init();
-    WordGenerator.init();
     fontScale.init();
+    WordGenerator.init();
 });

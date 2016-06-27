@@ -19,11 +19,11 @@ gulp.task('js', function(){
     return gulp.src(path.js + "*.js")
                .pipe(m.plumber())
                .pipe(m.sourcemaps.init())
-               .pipe(m.concat('main.js'))
                .pipe(m.uglify({
                     mangle: false,
                     compress: {drop_debugger: false}
                })).on('error', console.log)
+               .pipe(m.concat('main.js'))
                .pipe(m.sourcemaps.write('.'))
                .pipe(browserSync.stream())
                .pipe(gulp.dest(path.site + "js/"));

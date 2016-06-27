@@ -17,7 +17,7 @@ var WordGenerator = new (function() {
         var localStorage_db = window.localStorage.getItem(this.dictUuid);
 
         try {
-            if (localStorage_db && false) {
+            if (localStorage_db) {
                 this.onDictionaryGet(JSON.parse(localStorage_db), "Loaded from localstorage! B)");
             } else if (this.isOffline()) {
                 this.requestLocalFile();
@@ -35,9 +35,9 @@ var WordGenerator = new (function() {
 
     this.promptForDictionary = function(){
         this.getfileSize(this.dictUrl, function(size){
-                if (size) {
-                    display.modify.inputPrompt_dictButton("Download (" + (size/1000000).toFixed(2) + " MB" + ")");
-                }
+            if (size) {
+                display.modify.inputPrompt_dictButton("Download (" + (size/1000000).toFixed(2) + " MB" + ")");
+            }
         })
         elements.list.input.prompt_dict.button.addEventListener('click', function(){
             try {
@@ -77,7 +77,7 @@ var WordGenerator = new (function() {
         xhr.addEventListener('readystatechange', function(){
             if (this.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 200) {
-                    return success.call(superclass, /*JSON.parse(*/this.response/*)*/, "Had to get it from server :/") || true;
+                    return success.call(superclass, superclass.dictionaryToDatabase(this.response), "Had to get it from server :/") || true;
                 } else {
                     return failure.call(superclass, this) || false;
                 }
@@ -123,7 +123,6 @@ var WordGenerator = new (function() {
     this.onDictionaryGet = function(dict, msg){
         msg = msg || "";
         try {
-            this.dictionaryToDatabase(dict);
             this.db = dict;
             if (typeof(this.db) === "object"){
                 window.localStorage.setItem(this.dictUuid, JSON.stringify(this.db));
@@ -147,12 +146,18 @@ var WordGenerator = new (function() {
     }
 
     this.dictionaryToDatabase = function(dict){
-        // console.log(dict);
         var words = dict.split("\n");
-        for (i in words){
-            if (i > 10) { break; }
-            console.log(game.possibleNumFromWord(words[i]))
+        var db = {};
+        for (var i in words){
+            var indices = game.explodePossibleNumToNums(game.possibleNumFromWord(words[i]));
+            for (var index in indices) {
+                if (!db[indices[index]]) {
+                    db[indices[index]] = [];
+                }
+                db[indices[index]].push(words[i])
+            }
         }
+        return db;
     }
 
 
@@ -175,7 +180,6 @@ var WordGenerator = new (function() {
 
 
     this.init = function() {
-        this.ajaxMakeRequest(this.dictUrl, this.onDictionaryGet, this.onDictionaryError)
-        // this.requestDictionary();
+        this.requestDictionary();
     }
 })();
