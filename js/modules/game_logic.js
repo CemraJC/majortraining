@@ -1,10 +1,14 @@
 var game = new (function(){
 
 
-    this.generateWord = 'bung';
+    this.generateWord = function(){
+        return "bung";
+    }
+
     this.generateNum = function() {
         display.modify.textMain(this.__generateNumFromFormat(save_file.get('levels')[save_file.get('current_level')].format));
     }
+
 
     this.__generateNumFromFormat = function(format){
         format = format || "2-12"
@@ -35,13 +39,17 @@ var game = new (function(){
     }
 
     this.checkNum = function(num, word) {
-        letters = this.__wordToLetters(word);
+        return this.__matchPossibleNum(num, this.possibleNumFromWord(word));
+    }
+
+    this.possibleNumFromWord = function(word){
+        var letters = this.__wordToLetters(word);
         var possible_num = [];
         for (var i = 0; i < letters.length; i++) {
             if ( this.ms.valid.indexOf(letters[i]) < 0 ) { continue; }
             possible_num.push(game.__letterToNums(letters[i]));
         };
-        return this.__matchPossibleNum(num, possible_num);
+        return possible_num;
     }
 
     this.__wordToLetters = function(word) {
@@ -70,6 +78,7 @@ var game = new (function(){
         };
         return nums;
     }
+
     this.__matchPossibleNum = function(num, possible_num){
         exploded_num = num.split('');
         if (exploded_num.length != possible_num.length) {
