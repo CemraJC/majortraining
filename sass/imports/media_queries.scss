@@ -1,18 +1,39 @@
 
-@media screen and (max-width: 20em) {
-    body {
-        display: flex;
-        flex-direction: column !important;
+@media screen and (max-width: 48rem) {
+
+    label[for="drawer-toggle"] {
+        transition: all 0s;
     }
 
-    .menucolumn {
-        min-width: none;
-        order: 2;
+    #drawer-toggle:checked {
+        & ~ label[for="drawer-toggle"] {
+            left: 100%;
+            z-index: 2;
+
+            & .hamburger {
+                transform: translateX(-4rem);
+                &:before {
+                    background: $white3;
+                    transform: translateY(0.68rem) rotateZ(-43deg);
+                }
+                &:after {
+                    background: $white3;
+                    transform: translateY(-0.68rem) rotateZ(43deg);
+                }
+            }
+        }
+
+        & ~ #drawer {
+            left: 0;
+            width: 100%;
+        }
+
+        & ~ .maincolumn {
+            padding-left: 0;
+        }
     }
 
     .maincolumn {
-        margin: 5em 0;
-        order: 1;
-        border: none !important;
+        transition: all 1s;
     }
 }

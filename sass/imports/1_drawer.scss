@@ -177,7 +177,7 @@ label[for="drawer-toggle"] {
         & .tab-panel {
             display: flex;
             flex-direction: column;
-            width: $drawer-width;
+            width: 100%;
             display: none;
             overflow-y: hidden;
 
