@@ -102,11 +102,12 @@
                     <h3>Number Generator</h3>
                     <h4>Type in a word:</h4>
                     <div class="inputs">
-                        <input type="text">
-                        <button>Go</button>
+                        <input type="text" maxlength="25">
+                        <button id="generate_nums">Go</button>
                     </div>
                     <h4>Possible Numbers:</h4>
-                    <span class="generated_nums"><i>...</i></span>
+                    <span class="generated_nums"><span class="dancing_man"></span></span>
+                    <p class="comment"><i><b>Note:</b> each possible number is limited to 16 digits</i><p>
 
                     <h3>Word Generator</h3>
                     <h4>Enter a number:</h4>
@@ -118,8 +119,7 @@
                     <span class="generated_word"><i>None Generated</i></span>
                     <input type="file" class="submit_dict">
                     <p class="submit_dict"><b>Load in the dictionary please :P</b><br> (Select the "major_dictionary.txt" file from the dictionary folder). You should only need to do this once.</p>
-                    <!-- <p class="prompt_dict"><b>Dictionary required! <span mono title="Winky face ;)">(^.-)</span></b><br>As a computer - I can't read English very well. I need a dictionary to understand the Major System. You should only need to download this once (except if you use the reset button).</p> -->
-                    <p class="prompt_dict"><b>Loading</b> <span class='spinner'></span> (Expect freezing for about 30sec)</p>
+                    <p class="prompt_dict"><b>Dictionary required! <span mono title="Winky face ;)">(^.-)</span></b><br>As a computer - I can't read English very well. I need a dictionary to understand the Major System. You should only need to download this once (except if you use the reset button).</p>
                     <button class="prompt_dict">Download <span title="Fat cat :P">(~^-^~)</span></button>
                     <p class="comment">For the sake of learning, use these tools sparingly :) Sometimes, it helps to split up a number and make two words out of it. <p>
                 </div>

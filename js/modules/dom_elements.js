@@ -54,8 +54,15 @@ var elements = new (function() {
         generator: {
             container: this.__s.tabmenu.generator.container,
             word: this.__s.tabmenu.generator.container + " .inputs button#generate_word",
-            number: this.__s.tabmenu.generator.container + " .inputs input[type=number]",
-            output: this.__s.tabmenu.generator.container + " span.generated_word"
+            nums: this.__s.tabmenu.generator.container + " .inputs button#generate_nums",
+            input: {
+                word: this.__s.tabmenu.generator.container + " .inputs input[type=text]",
+                number: this.__s.tabmenu.generator.container + " .inputs input[type=number]",
+            },
+            output: {
+                nums: this.__s.tabmenu.generator.container + " span.generated_nums",
+                word: this.__s.tabmenu.generator.container + " span.generated_word"
+            }
         }
     }
 

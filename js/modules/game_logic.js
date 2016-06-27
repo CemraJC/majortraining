@@ -62,7 +62,7 @@ var game = new (function(){
         };
         // For every array of nums in possible num, recursively join them together
         explodedNums = this.__recursiveSerialJoinArrays(possible_num);
-        return explodedNums;
+        return explodedNums[0];
     }
 
     // Should pass this an ARRAY

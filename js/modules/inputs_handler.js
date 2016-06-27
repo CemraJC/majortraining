@@ -4,9 +4,31 @@ var inputs = new (function(){
         display.toggleTheme();
     }
 
-    this.generatorListener = function(e){
-        var word = WordGenerator.getWord(display.modify.generatorNumber());
-        display.modify.generatorOutput(word);
+    this.generateNums = function(e){
+        var nums = game.explodePossibleNumToNums(game.possibleNumFromWord(display.modify.generatorInputWord())),
+            tail = (nums.length > 3) ? "..." : "",
+            inputElement = elements.list.generator.input.word;
+
+        if (!nums) {
+            inputElement.placeholder = inputElement.value;
+            display.modify.generatorInputWord('');
+            return false;
+        }
+
+        display.modify.generatorOutputNums(nums.splice(0, 3).join(', ') + tail);
+        inputElement.placeholder = inputElement.value;
+        display.modify.generatorInputWord('');
+    }
+
+    this.generateNumsListener = function(e) {
+        if (e.keyCode === 13) {
+            this.generateNums();
+        }
+    }
+
+    this.generateWordListener = function(e){
+        var word = WordGenerator.getWord(display.modify.generatorInputNumber());
+        display.modify.generatorOutputWord(word);
     }
 
     this.tabsListener = function(e){
@@ -69,7 +91,7 @@ var inputs = new (function(){
     }
 
     this.mainInputListener = function(e){
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             var check = display.replaceOrGetContent(elements.list.text.main.firstChild) || display.modify.textMain();
             if (game.checkNum(check, display.modify.inputMain())){
                 display.modify.inputMain('');
@@ -96,7 +118,9 @@ var inputs = new (function(){
 
         elements.list.text.select.addEventListener('click', this.levelSelectListener);
         elements.list.input.main.addEventListener('keyup', this.mainInputListener);
-        elements.list.generator.word.addEventListener('click', this.generatorListener);
+        elements.list.generator.word.addEventListener('click', this.generateWordListener);
+        elements.list.generator.nums.addEventListener('click', this.generateNums);
+        elements.list.generator.input.word.addEventListener('keyup', this.generateNumsListener.bind(this));
         elements.list.input.drawer.addEventListener('click', this.drawerListener);
         elements.list.input.tab_labels.addEventListener('click', this.tabsListener);
     }
