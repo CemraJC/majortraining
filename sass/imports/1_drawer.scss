@@ -412,7 +412,7 @@ label[for="drawer-toggle"] {
                         margin-bottom: 0.5rem;
                     }
 
-                    input[type=file], p.submit_db {
+                    input[type=file], p.submit_dict {
                         display: none;
                     }
 
@@ -426,7 +426,7 @@ label[for="drawer-toggle"] {
                         font-size: 85%;
                     }
 
-                    & button.prompt_db {
+                    & button.prompt_dict {
                         display: block;
                         margin: 1rem auto;
                     }

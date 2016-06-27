@@ -41,13 +41,13 @@ var elements = new (function() {
             tabs: "#drawer input[type=radio]",
             tab_labels: "#drawer .tab-buttons",
             drawer: "input[type=checkbox]#drawer-toggle",
-            localdb: {
-                filechooser: this.__s.tabmenu.generator.container + " input[type=file].submit_db",
-                messages: this.__s.tabmenu.generator.container + " p.submit_db"
+            local_dict: {
+                filechooser: this.__s.tabmenu.generator.container + " input[type=file].submit_dict",
+                messages: this.__s.tabmenu.generator.container + " p.submit_dict"
             },
-            promptdb: {
-                button: this.__s.tabmenu.generator.container + " button.prompt_db",
-                message: this.__s.tabmenu.generator.container + " p.prompt_db"
+            prompt_dict: {
+                button: this.__s.tabmenu.generator.container + " button.prompt_dict",
+                message: this.__s.tabmenu.generator.container + " p.prompt_dict"
             }
         },
         reference: this.__s.tabmenu.reference.container + " table tbody",
