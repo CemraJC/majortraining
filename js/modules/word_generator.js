@@ -43,7 +43,7 @@ var WordGenerator = new (function() {
             try {
                 WordGenerator.ajaxMakeRequest(WordGenerator.dictUrl, WordGenerator.onDictionaryGet, WordGenerator.onDictionaryError)
                 elements.list.input.prompt_dict.button.style.display = "none";
-                display.modify.inputPrompt_dictMessage("<b>Loading...</b>")
+                display.modify.inputPrompt_dictMessage("<b>Loading</b> <span class='spinner'></span> (Expect freezing for about 30sec)")
             } catch(e) {
                 console.log(e);
             }

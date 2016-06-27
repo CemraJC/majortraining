@@ -38,3 +38,38 @@ body {
 a {
     color: $linkColor1;
 }
+
+
+/*
+
+    UTILITY CLASSES AND SUCH ;P
+
+ */
+
+span[mono] {
+    font-family: monospace;
+}
+
+span.spinner {
+    display: inline-block;
+    &:before {
+        content: "|";
+        font-family: Arial;
+        margin: 0 0.4rem;
+    }
+    animation: spinner 1.5s infinite linear;
+}
+
+@keyframes spinner {
+    0%   {
+        opacity: 0.7;
+        transform: rotateZ(0deg);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.7;
+        transform: rotateZ(359deg);
+    }
+}

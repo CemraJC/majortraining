@@ -53,7 +53,7 @@ var elements = new (function() {
         reference: this.__s.tabmenu.reference.container + " table tbody",
         generator: {
             container: this.__s.tabmenu.generator.container,
-            word: this.__s.tabmenu.generator.container + " .inputs button",
+            word: this.__s.tabmenu.generator.container + " .inputs button#generate_word",
             number: this.__s.tabmenu.generator.container + " .inputs input[type=number]",
             output: this.__s.tabmenu.generator.container + " span.generated_word"
         }

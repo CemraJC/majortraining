@@ -36,7 +36,7 @@ var inputs = new (function(){
     this.resetListener = function(e){
         if (e.detail >= 2) {
             save_file.reset();
-            WordGenerator.clearDatabaseFromLocalStorage();
+            WordGenerator.clearDictionaryFromLocalStorage();
             reload();
         }
     }
