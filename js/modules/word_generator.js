@@ -8,7 +8,7 @@
 
 var WordGenerator = new (function() {
     // this.serviceUrl = "http://majorsystem.com/generator"; // NEED TO ADD FALLBACK TO THIS
-    this.dbUrl = "./database/major_database.json";
+    this.dbUrl = "./database/major_dictionary.txt";
     this.dbUuid = "MajorTrainingDatabase-60b02baf-b5cf-4851-ad39-1644bd5dd5ec";
     this.databaseError = false;
     this.databaseLoaded = false;
@@ -17,7 +17,7 @@ var WordGenerator = new (function() {
         var localStorage_db = window.localStorage.getItem(this.dbUuid);
 
         try {
-            if (localStorage_db) {
+            if (localStorage_db && false) {
                 this.onDatabaseGet(JSON.parse(localStorage_db), "Loaded from localstorage! B)");
             } else if (this.isOffline()) {
                 this.requestLocalFile();
@@ -77,7 +77,7 @@ var WordGenerator = new (function() {
         xhr.addEventListener('readystatechange', function(){
             if (this.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 200) {
-                    return success.call(superclass, JSON.parse(this.response), "Had to get it from server :/") || true;
+                    return success.call(superclass, /*JSON.parse(*/this.response/*)*/, "Had to get it from server :/") || true;
                 } else {
                     return failure.call(superclass, this) || false;
                 }
@@ -124,6 +124,7 @@ var WordGenerator = new (function() {
         msg = msg || "";
         try {
             this.db = db;
+            this.dictionaryToDatabase(db);
             if (typeof(this.db) === "object"){
                 window.localStorage.setItem(this.dbUuid, JSON.stringify(this.db));
                 console.info("Generator database is up and running!", msg)
@@ -141,8 +142,17 @@ var WordGenerator = new (function() {
     this.onDatabaseError = function(msg){
         msg = msg || "";
         this.databaseError = true;
-        display.modify.inputPromptdbMessage("<b>This is embarrassing...</b><br>The database didn't load properly :/. If this happens again, you should definitely <a href='https://github.com/cemrajc/majortraining/issues'>file a bug report</a>.")
         console.warn("WordGenerator: Sorry, the generator is broken :/\n", msg);
+        display.modify.inputPromptdbMessage("<b>This is embarrassing...</b><br>The database didn't load properly :/. If this happens again, you should definitely <a href='https://github.com/cemrajc/majortraining/issues'>file a bug report</a>.")
+    }
+
+    this.dictionaryToDatabase = function(dict){
+        // console.log(dict);
+        var words = dict.split("\n");
+        for (i in words){
+            if (i > 10) { break; }
+            console.log(game.possibleNumFromWord(words[i]))
+        }
     }
 
 
@@ -165,6 +175,7 @@ var WordGenerator = new (function() {
 
 
     this.init = function() {
-        this.requestDatabase();
+        this.ajaxMakeRequest(this.dbUrl, this.onDatabaseGet, this.onDatabaseError)
+        // this.requestDatabase();
     }
 })();

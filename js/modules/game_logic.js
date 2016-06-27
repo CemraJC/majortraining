@@ -52,6 +52,11 @@ var game = new (function(){
         return possible_num;
     }
 
+    // Need to define for stage 2 / generators
+    this.possibleWordFromNum = function(num){
+
+    }
+
     this.__wordToLetters = function(word) {
         exploded = removeSuccessiveDuplicates(word.trim().toLowerCase().split(''));
         var letters = [],
@@ -69,6 +74,7 @@ var game = new (function(){
 
         return letters
     }
+
     this.__letterToNums = function(letter) {
         nums = [];
         for (i in this.ms) {
