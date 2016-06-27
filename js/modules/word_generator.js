@@ -105,8 +105,7 @@ var WordGenerator = new (function() {
         var superclass = this.superclass; // HACK for Context
         reader.onload = function(evt){
             try {
-                var db = JSON.parse(reader.result);
-                superclass.onDictionaryGet(db, "Loaded from local file! \\(^.^)/");
+                superclass.onDictionaryGet(superclass.dictionaryToDatabase(reader.result), "Loaded from local file! \\(^.^)/");
                 display.modify.inputLocal_dictMessages("Thank you! (^.^)");
                 elements.list.input.local_dict.filechooser.style.display = "none";
             } catch(err) {
@@ -145,10 +144,12 @@ var WordGenerator = new (function() {
         display.modify.inputPrompt_dictMessage("<b>This is embarrassing...</b><br>The dictionary didn't load properly :/. If this happens again, you should definitely <a href='https://github.com/cemrajc/majortraining/issues'>file a bug report</a>.")
     }
 
+
     this.dictionaryToDatabase = function(dict){
         var words = dict.split("\n");
         var db = {};
         for (var i in words){
+            if (!this.matchesDictionaryFilter(words[i])) { continue; }
             var indices = game.explodePossibleNumToNums(game.possibleNumFromWord(words[i]));
             for (var index in indices) {
                 if (!db[indices[index]]) {
@@ -160,6 +161,9 @@ var WordGenerator = new (function() {
         return db;
     }
 
+    this.matchesDictionaryFilter = function(word) {
+        return /^[a-z]+$/i.test(word);
+    }
 
     this.getWordFromNum = function(num) {
         if (this.dictionaryLoaded && this.db[num]) {

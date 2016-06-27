@@ -103,7 +103,7 @@ var inputs = new (function(){
                 game.updateScore();
 
                 display.updateReadout();
-                display.updateMenuList();
+                display.updateLevelsList();
                 fontScale.recalculate();
             } else {
                 display.badGlow();

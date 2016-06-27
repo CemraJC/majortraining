@@ -19,7 +19,6 @@ exclude: [
     "package.json",
     "README.md",
     "README(gh-pages).md",
-    "*.sh",
-    "*.awk",
+    "*.jignore",
     "*ffs_*"
 ]
