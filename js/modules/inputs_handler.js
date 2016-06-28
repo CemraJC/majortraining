@@ -55,7 +55,7 @@ var inputs = new (function(){
     }
 
     this.skipListener = function(e){
-        game.generateNum();
+        game.generate();
     }
 
     this.resetListener = function(e){

@@ -12,19 +12,29 @@ var game = new (function(){
     this.__generateWordFromFormat = function(format){
         var index,
             random_word_index,
-            words,
+            generated_word,
+            words = [],
             i = 0;
 
-        while (!words && i < 200){
-            index = this.__generateNumFromFormat(format);
-            words = WordGenerator.getWordsFromNum(index);
+        // Inefficient
+        while (words.length <= 0 && i < 200){
+            index = this.__generateNumFromFormat(format).split(' ');
+            for (var i = 0; i < index.length; i++) {
+                var generated_word = WordGenerator.getWordsFromNum(index[i]);
+                if (!generated_word) {
+                    words = [];
+                    break;
+                }
+                random_word_index = Math.round(Math.random() * (generated_word.length - 1));
+                generated_word = generated_word[random_word_index];
+                words.push(generated_word);
+            };
             i++
         }
-        random_word_index = Math.round(Math.random() * (words.length - 1));
+        return words.join(' ');
         if (typeof(words) === "object") {
             return words[random_word_index];
         } else {
-            return words;
         }
     }
 
