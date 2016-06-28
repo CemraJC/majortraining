@@ -27,7 +27,7 @@ var game = new (function(){
                 }
                 random_word_index = Math.round(Math.random() * (generated_word.length - 1));
                 generated_word = generated_word[random_word_index];
-                words.push(generated_word);
+                words.push(titleCase(generated_word));
             };
             i++
         }
