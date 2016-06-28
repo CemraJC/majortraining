@@ -120,7 +120,7 @@ var inputs = new (function(){
                 game.updateScore();
 
                 display.updateReadout();
-                display.updateLevelsList();
+                display.updateLevelsLists();
                 fontScale.recalculate();
             } else {
                 display.badGlow();

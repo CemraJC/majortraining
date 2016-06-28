@@ -46,10 +46,10 @@ var display = new (function() {
             current_stage: save_file.get('current_stage'),
             current_score: save_file.get('current_score')
         }
-        obj.level = save_file.get('levels')[obj.current_level];
+        obj.level = save_file.get('levels')["stage" + obj.current_stage][obj.current_level];
 
         this.modify.textReadoutScore(obj.current_score)
-        this.modify.textReadoutHighscore( obj.level.highscore)
+        this.modify.textReadoutHighscore(obj.level.highscore)
         this.modify.textReadoutLevel("Level " + obj.current_level)
         this.modify.textReadoutLevelinfo(obj.level.info)
         return true;
@@ -73,14 +73,13 @@ var display = new (function() {
         return ms_array[number].join(", ") || "?";
     }
 
-    this.getMenuItem = function(level_num) {
-        var obj = save_file.get('levels')[level_num], s;
+    this.getMenuItem = function(stage_num, level_num) {
+        var obj = save_file.get('levels')["stage" + stage_num][level_num], s;
         if (save_file.get('current_level') == level_num){
             s = "selected";
         } else {
             s = "";
         }
-
         return "<li " + s + " levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span progression=\"" + obj.state() + "\"></span></li>\n";
     }
 
@@ -97,12 +96,12 @@ var display = new (function() {
         };
     }
 
-    this.getLevelsList = function() {
-        var obj = save_file.get('levels'),
+    this.getLevelsList = function(stage_num) {
+        var obj = save_file.get('levels')["stage" + stage_num],
             list = "";
 
         for (i in obj) {
-            list += this.getMenuItem(i);
+            list += this.getMenuItem(stage_num, i);
         }
         return list
     }
@@ -129,8 +128,10 @@ var display = new (function() {
         this.modify.reference(this.getReferenceList());
     }
 
-    this.updateLevelsList = function(stage_num) {
-        this.modify["textSelectStage" + stage_num + "List"](this.getLevelsList());
+    this.updateLevelsLists = function(stage_nums) {
+        for (var i in stage_nums) {
+            this.modify["textSelectStage" + stage_nums[i] + "List"](this.getLevelsList(stage_nums[i]));
+        }
     }
 
 
@@ -188,7 +189,7 @@ var display = new (function() {
         if ( save_file.get('dark_theme') ) { this.toggleTheme() }
         if ( save_file.get('drawer_open') ) { this.toggleDrawer() }
         this.setMenuTabs();
-        this.updateLevelsList(save_file.get('current_stage'));
+        this.updateLevelsLists([1, 2]);
         this.updateReferenceList();
         this.updateReadout();
         this.selectLevel(save_file.get('current_stage'), save_file.get('current_level'), true);

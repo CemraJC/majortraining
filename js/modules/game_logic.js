@@ -6,7 +6,7 @@ var game = new (function(){
     }
 
     this.generateNum = function() {
-        display.modify.textMain(this.__generateNumFromFormat(save_file.get('levels')[save_file.get('current_level')].format));
+        display.modify.textMain(this.__generateNumFromFormat(save_file.get('levels')["stage" + save_file.get('current_stage')][save_file.get('current_level')].format));
     }
 
 
