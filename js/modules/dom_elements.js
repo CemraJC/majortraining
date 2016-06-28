@@ -28,7 +28,16 @@ var elements = new (function() {
                 level: this.__s.tabmenu.levels.readout + " .level",
                 levelinfo: this.__s.tabmenu.levels.readout + " .levelinfo"
             },
-            select: this.__s.tabmenu.levels.container + " .select ul",
+            select: {
+                stage1: {
+                    button: this.__s.tabmenu.levels.container + " .stagecolumn .stagebanner[for='stage-tab-1']",
+                    list: this.__s.tabmenu.levels.container + " .stagecolumn .select#stage-select-1 ul"
+                },
+                stage2: {
+                    button: this.__s.tabmenu.levels.container + " .stagecolumn .stagebanner[for='stage-tab-2']",
+                    list: this.__s.tabmenu.levels.container + " .stagecolumn .select#stage-select-2 ul"
+                }
+            },
             count: this.__s.mainsection + " .numbar span.count"
         },
         button: {

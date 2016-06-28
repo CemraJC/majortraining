@@ -63,30 +63,47 @@ var inputs = new (function(){
         }
     }
 
-    this.levelSelectListener = function(e) {
-        var clicked, target = e.target;
-
-        for (var i = 0; i < 3; i++) {
-            if (target.nodeName == "LI"){
-                clicked = target;
-                break
-            } else {
-                target = target.parentElement;
-            }
+    this.stageSelectListener = function(e) {
+        var clicked = this.reverseDomSearch(e.target, "LABEL"),
+            next_stage = clicked.getAttribute("for").match(/\d$/)[0];
+            console.log(next_stage)
+        if (save_file.get('current_stage') !== next_stage) {
+            save_file.set('current_stage', next_stage);
+            display.updateReadout();
         }
-        if (!clicked) { return false; }
+    }
 
-        var new_level = clicked.getAttribute('levelnum');
-        if (display.selectLevel(new_level)) {
+    this.levelSelectListener = function(e) {
+        var clicked = this.reverseDomSearch(e.target, "LI"),
+            new_level = clicked.getAttribute('levelnum');
+        if (!clicked) { return false; }
+        if (display.selectLevel(save_file.get('current_stage'), new_level)) {
             save_file.set({
                 current_score: 0,
-                current_level: new_level
+                current_level: new_level,
+                times: []
             });
-            save_file.set('times', [])
             display.modify.inputMain('');
             game.generateNum();
             display.updateReadout();
             fontScale.recalculate();
+        }
+    }
+
+    this.reverseDomSearch = function(element, target_element_name) {
+        var target_element;
+        for (var i = 0; i < 3; i++) {
+            if (element.nodeName === target_element_name){
+                target_element = element;
+                break;
+            } else {
+                element = element.parentElement;
+            }
+        }
+        if (!element) {
+            return false;
+        } else {
+            return element;
         }
     }
 
@@ -116,11 +133,16 @@ var inputs = new (function(){
         elements.list.button.reset.addEventListener('click', this.resetListener);
         elements.list.button.skip.addEventListener('click', this.skipListener);
 
-        elements.list.text.select.addEventListener('click', this.levelSelectListener);
-        elements.list.input.main.addEventListener('keyup', this.mainInputListener);
+        elements.list.text.select.stage1.list.addEventListener('click', this.levelSelectListener.bind(this));
+        elements.list.text.select.stage2.list.addEventListener('click', this.levelSelectListener.bind(this));
+        elements.list.text.select.stage1.button.addEventListener('click', this.stageSelectListener.bind(this));
+        elements.list.text.select.stage2.button.addEventListener('click', this.stageSelectListener.bind(this));
+
         elements.list.generator.word.addEventListener('click', this.generateWordListener);
         elements.list.generator.nums.addEventListener('click', this.generateNums);
         elements.list.generator.input.word.addEventListener('keyup', this.generateNumsListener.bind(this));
+
+        elements.list.input.main.addEventListener('keyup', this.mainInputListener);
         elements.list.input.drawer.addEventListener('click', this.drawerListener);
         elements.list.input.tab_labels.addEventListener('click', this.tabsListener);
     }

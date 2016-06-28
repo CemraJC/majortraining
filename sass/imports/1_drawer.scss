@@ -229,102 +229,114 @@ label[for="drawer-toggle"] {
                     }
                 }
 
-                & .stagebanner {
-                    cursor: pointer;
-
-                    &:hover {
-                        background: $black2;
-                    }
-
-                    &:active {
-                        background: $black3;
-                    }
-                }
-
-                & .select {
+                & .stagecolumn {
+                    display: flex;
                     flex: 1;
-                    flex-shrink: 0;
-                    padding: 0.5rem 0;
-                    user-select: none;
+                    flex-direction: column;
 
-                    & i {
-                        margin: 0.7rem 1.2rem;
+                    & .stagebanner {
+                        display: block;
+                        cursor: pointer;
 
-                        font-size: 80%;
-                        letter-spacing: 1px;
+                        &:hover {
+                            background: $black2;
+                        }
+
+                        &:active {
+                            background: $black3;
+                        }
                     }
 
-                    & ul {
-                        list-style: none;
+                    & .select#stage-select-1, & .select#stage-select-2 {
+                        display: none;
+                        flex: 1;
+                        flex-shrink: 0;
+                        transition: padding 250ms, height 250ms;
+                    }
 
-                        & li {
-                            margin: 0;
-                            padding: 0.6rem 1.2rem;
+                    & .select {
+                        padding: 0.5rem 0;
+                        user-select: none;
 
-                            font-size: 95%;
-                            letter-spacing: 0.02rem;
-                            line-height: 0.9;
-                            color: $grey2;
-                            text-shadow: 0 0.01rem 0.01rem $grey1;
+                        & i {
+                            margin: 0.7rem 1.2rem;
 
-                            border-bottom: 1px solid $grey4;
-                            cursor: pointer;
-                            transition: all 100ms;
+                            font-size: 80%;
+                            letter-spacing: 1px;
+                        }
 
-                            &:hover {
-                                color: $grey3;
-                                text-shadow: 0 0 0.2rem $black1;
-                                background: $grey1;
-                            }
-                            &:active {
-                                color: $linkColor2;
-                                text-shadow: 0 0 0.01rem $linkColor3;
-                            }
-                            &[selected] {
-                                color: $white3;
-                                text-shadow: 0 0 0.01rem $black1;
+                        & ul {
+                            list-style: none;
+
+                            & li {
+                                margin: 0;
+                                padding: 0.6rem 1.2rem;
+
+                                font-size: 95%;
+                                letter-spacing: 0.02rem;
+                                line-height: 0.9;
+                                color: $grey2;
+                                text-shadow: 0 0.01rem 0.01rem $grey1;
+
+                                border-bottom: 1px solid $grey4;
+                                cursor: pointer;
+                                transition: all 100ms;
+
+                                &:hover {
+                                    color: $grey3;
+                                    text-shadow: 0 0 0.2rem $black1;
+                                    background: $grey1;
+                                }
+                                &:active {
+                                    color: $linkColor2;
+                                    text-shadow: 0 0 0.01rem $linkColor3;
+                                }
+                                &[selected] {
+                                    color: $white3;
+                                    text-shadow: 0 0 0.01rem $black1;
+
+                                    & small {
+                                        color: $grey3;
+                                    }
+                                }
 
                                 & small {
-                                    color: $grey3;
-                                }
-                            }
-
-                            & small {
-                                color: $grey2;
-                                font-family: monospace;
-                            }
-
-                            & span {
-                                vertical-align: baseline;
-                                font-size: 60%;
-
-                                &[progression="0"]::before {
-                                    content: '';
                                     color: $grey2;
+                                    font-family: monospace;
                                 }
-                                &[progression="1"]::before {
-                                    content: ' incomplete';
-                                    color: $incompleteColor;
-                                }
-                                &[progression="2"]::before {
-                                    content: ' passed';
-                                    color: $passedColor;
-                                }
-                                &[progression="3"]::before {
-                                    content: ' expert';
-                                    color: $expertColor;
-                                }
-                                &[progression="4"]::before {
-                                    content: ' master';
-                                    color: $masterColor;
-                                }
-                            }
-                            & h4 span {
-                                font-size: 60%;
-                                color: $grey2;
 
-                                &::before {
-                                    content: " Highest score: ";
+                                & span {
+                                    vertical-align: baseline;
+                                    font-size: 60%;
+
+                                    &[progression="0"]::before {
+                                        content: '';
+                                        color: $grey2;
+                                    }
+                                    &[progression="1"]::before {
+                                        content: ' incomplete';
+                                        color: $incompleteColor;
+                                    }
+                                    &[progression="2"]::before {
+                                        content: ' passed';
+                                        color: $passedColor;
+                                    }
+                                    &[progression="3"]::before {
+                                        content: ' expert';
+                                        color: $expertColor;
+                                    }
+                                    &[progression="4"]::before {
+                                        content: ' master';
+                                        color: $masterColor;
+                                    }
+                                }
+                                & h4 span {
+                                    font-size: 60%;
+                                    color: $grey2;
+
+                                    &::before {
+                                        content: " Highest score: ";
+                                    }
                                 }
                             }
                         }
@@ -332,7 +344,7 @@ label[for="drawer-toggle"] {
                 }
 
                 & .settings {
-                    padding: 0 1rem 0.8rem 1rem;
+                    padding: 0.6rem 1rem 0.8rem 1rem;
                     background: $black1;
                     flex-shrink: 0;
 
@@ -372,6 +384,7 @@ label[for="drawer-toggle"] {
                         text-shadow: 0 0 1px $white1;
                     }
                 }
+
             }
 
             &.generatorscolumn#tab-2, &.referencecolumn#tab-3 {
@@ -498,7 +511,7 @@ label[for="drawer-toggle"] {
         display: none;
     }
 
-    & input[type=radio][value='1']:checked {
+    & input[type=radio][name="drawer-tabs"][value='1']:checked {
         & ~ .tab-container .tab-panel#tab-1 {
             display: inherit;
         }
@@ -507,7 +520,7 @@ label[for="drawer-toggle"] {
         }
     }
 
-    & input[type=radio][value='2']:checked {
+    & input[type=radio][name="drawer-tabs"][value='2']:checked {
         & ~ .tab-container .tab-panel#tab-2 {
             display: inherit;
         }
@@ -516,12 +529,32 @@ label[for="drawer-toggle"] {
         }
     }
 
-    & input[type=radio][value='3']:checked {
+    & input[type=radio][name="drawer-tabs"][value='3']:checked {
         & ~ .tab-container .tab-panel#tab-3 {
             display: inherit;
         }
         & ~ .tab-buttons:before {
             left: 66%;
+        }
+    }
+
+    & .tab-container .tab-panel.levelscolumn#tab-1 {
+        & input[type=radio][name="stage-tabs"][value='1']:checked {
+            & ~ .stagebanner[for="stage-tab-1"] {
+                background: $blue3;
+            }
+            & ~ .select#stage-select-1 {
+                display: block;
+            }
+        }
+
+        & input[type=radio][name="stage-tabs"][value='2']:checked {
+            & ~ .stagebanner[for="stage-tab-2"] {
+                background: $blue3;
+            }
+            & ~ .select#stage-select-2 {
+                display: block;
+            }
         }
     }
 }

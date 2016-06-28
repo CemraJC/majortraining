@@ -43,6 +43,7 @@ var display = new (function() {
     this.updateReadout = function(){
         var obj = {
             current_level: save_file.get('current_level'),
+            current_stage: save_file.get('current_stage'),
             current_score: save_file.get('current_score')
         }
         obj.level = save_file.get('levels')[obj.current_level];
@@ -83,10 +84,9 @@ var display = new (function() {
         return "<li " + s + " levelnum='" + level_num + "'><h4>Level " + level_num + "<span>" + obj.highscore + "</span></h4>\n<small>" + obj.info + "</small><span progression=\"" + obj.state() + "\"></span></li>\n";
     }
 
-    this.selectLevel = function(level_num, override){
-        // If these were separate, would have to pass them around in an object and probably save which one?? (maybe just init)
-        var current = document.querySelector('li[selected]') || elements.list.text.select.firstChild,
-            next = document.querySelector('li[levelnum="' + level_num + '"]');
+    this.selectLevel = function(stage_num, level_num, override){
+        var current = document.querySelector('.select#stage-select-' + stage_num + ' li[selected]') || elements.list.text.select["stage"+ stage_num].firstChild,
+            next = document.querySelector('.select#stage-select-' + stage_num + ' li[levelnum="' + level_num + '"]');
 
         if ((current == next || !next) && !override) {
             return false
@@ -129,8 +129,8 @@ var display = new (function() {
         this.modify.reference(this.getReferenceList());
     }
 
-    this.updateLevelsList = function() {
-        this.modify.textSelect(this.getLevelsList());
+    this.updateLevelsList = function(stage_num) {
+        this.modify["textSelectStage" + stage_num + "List"](this.getLevelsList());
     }
 
 
@@ -188,9 +188,9 @@ var display = new (function() {
         if ( save_file.get('dark_theme') ) { this.toggleTheme() }
         if ( save_file.get('drawer_open') ) { this.toggleDrawer() }
         this.setMenuTabs();
-        this.updateLevelsList();
+        this.updateLevelsList(save_file.get('current_stage'));
         this.updateReferenceList();
         this.updateReadout();
-        this.selectLevel(save_file.get('current_level'), true);
+        this.selectLevel(save_file.get('current_stage'), save_file.get('current_level'), true);
     }
 })();

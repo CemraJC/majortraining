@@ -38,6 +38,15 @@
     .maincolumn {
         transition: all 1s;
     }
+
+    input[name=reset] {
+        transition: background 3s;
+        &:active {
+            font-weight: 600;
+            color: $white1;
+            background: $red1;
+        }
+    }
 }
 
 @media screen and (max-width: 32rem) {
