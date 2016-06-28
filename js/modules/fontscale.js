@@ -26,10 +26,13 @@ var fontScale = new (function(){
             ew = element.offsetWidth,
             ph = this.getNominalHeight(element),
             pw = this.getNominalWidth(element),
-            height_ratio = Math.max(eh/ph, 0.01),
-            width_ratio  = Math.max(pw/ew, 0.01),
-            fuzz_factor  = 0.5;
-        this.scaleByRatio(element, width_ratio);
+            height_ratio = Math.max(ph/eh, 0.01),
+            width_ratio  = Math.max(pw/ew, 0.01);
+        if (width_ratio < height_ratio) {
+            this.scaleByRatio(element, width_ratio);
+        } else {
+            this.scaleByRatio(element, height_ratio);
+        }
     }
 
     this.resetScale = function(element) {

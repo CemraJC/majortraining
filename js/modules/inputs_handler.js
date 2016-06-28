@@ -49,6 +49,9 @@ var inputs = new (function(){
         } else {
             save_file.set('drawer_open', false);
         }
+        setTimeout(function(){
+            fontScale.recalculate();
+        }, 325)
     }
 
     this.skipListener = function(e){

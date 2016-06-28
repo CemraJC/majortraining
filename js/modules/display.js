@@ -31,7 +31,7 @@ var display = new (function() {
         this.toggleAttribute(elements.list.input.drawer, 'checked')
         setTimeout(function(){
             fontScale.recalculate();
-        }, 500)
+        }, 325)
     }
 
     this.replaceOrGetContent = function(element, content) {
