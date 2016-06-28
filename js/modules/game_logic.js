@@ -1,14 +1,49 @@
 var game = new (function(){
 
+    this.generate = function(){
+        (save_file.get('current_stage') == 2) ? this.generateWord() : this.generateNum();
+        fontScale.recalculate();
+    }
 
     this.generateWord = function(){
-        return "bung";
+        display.modify.textMain(this.__generateWordFromFormat(save_file.get('levels')["stage" + save_file.get('current_stage')][save_file.get('current_level')].format));
     }
+
+    this.__generateWordFromFormat = function(format){
+        var index,
+            random_word_index,
+            words,
+            i = 0;
+
+        while (!words && i < 200){
+            index = this.__generateNumFromFormat(format);
+            words = WordGenerator.getWordsFromNum(index);
+            i++
+        }
+        random_word_index = Math.round(Math.random() * (words.length - 1));
+        if (typeof(words) === "object") {
+            return words[random_word_index];
+        } else {
+            return words;
+        }
+    }
+
+    this.checkWord = function(word, num) {
+        var nums = this.explodePossibleNumToNums(this.possibleNumFromWord(word));
+        if (num) {
+            for (var i in nums) {
+                if (nums[i] == num) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
     this.generateNum = function() {
         display.modify.textMain(this.__generateNumFromFormat(save_file.get('levels')["stage" + save_file.get('current_stage')][save_file.get('current_level')].format));
     }
-
 
     this.__generateNumFromFormat = function(format){
         format = format || "2-12"
@@ -90,10 +125,6 @@ var game = new (function(){
         return result;
     }
 
-    // Need to define for stage 2 / generators
-    this.possibleWordFromNum = function(num){
-
-    }
 
     this.__wordToLetters = function(word) {
         if (typeof(word) !== "string") {return false}
@@ -145,14 +176,15 @@ var game = new (function(){
     this.updateScore = function(){
         var obj = {
             current_score: save_file.get('current_score'),
+            current_stage: save_file.get('current_stage'),
             levels: save_file.get('levels'),
             times: save_file.get('times')
         };
         var level_i = save_file.get('current_level');
         obj.current_score = this.__calculateScore(obj)
         // Set high score if current is higher
-        if (obj.current_score > obj.levels[level_i].highscore){
-            obj.levels[level_i].highscore = obj.current_score;
+        if (obj.current_score > obj.levels["stage" + obj.current_stage][level_i].highscore){
+            obj.levels["stage" + obj.current_stage][level_i].highscore = obj.current_score;
         }
         save_file.set(obj);
     }
@@ -177,6 +209,6 @@ var game = new (function(){
 
     this.init = function(){
         this.ms = ms_array;
-        this.generateNum();
+        this.generate();
     }
 })();

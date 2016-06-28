@@ -1,6 +1,8 @@
 
 var fontScale = new (function(){
 
+    this.maxSize = 350;
+
     this.init = function(){
         this.elements = document.querySelectorAll("[fs-min-width], [fs-max-width], [fs]");
 
@@ -19,25 +21,23 @@ var fontScale = new (function(){
     }
 
     this.recalculateElement = function(element){
+        this.resetScale(element);
         var eh = element.offsetHeight,
             ew = element.offsetWidth,
             ph = this.getNominalHeight(element),
             pw = this.getNominalWidth(element),
-            height_ratio = Math.max(ph/eh, 0.01),
-            width_ratio  = Math.max(pw/ew, 0.01);
-        if (height_ratio < width_ratio) {
-            this.scaleHeight(element, height_ratio);
-        } else {
-            this.scaleWidth(element, width_ratio);
-        }
+            height_ratio = Math.max(eh/ph, 0.01),
+            width_ratio  = Math.max(pw/ew, 0.01),
+            fuzz_factor  = 0.5;
+        this.scaleByRatio(element, width_ratio);
     }
 
-    this.scaleHeight = function(element, ratio){
-        element.style.fontSize = ratio*100 + "%";
+    this.resetScale = function(element) {
+        this.scaleByRatio(element, 1);
     }
 
-    this.scaleWidth = function(element, ratio){
-        element.style.fontSize = ratio*100 + "%";
+    this.scaleByRatio = function(element, ratio){
+        element.style.fontSize = Math.min(ratio * 100, this.maxSize) + "%";
     }
 
     this.getNominalHeight = function(element){

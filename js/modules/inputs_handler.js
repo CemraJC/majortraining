@@ -68,8 +68,14 @@ var inputs = new (function(){
             next_stage = clicked.getAttribute("for").match(/\d$/)[0];
             console.log(next_stage)
         if (save_file.get('current_stage') !== next_stage) {
-            save_file.set('current_stage', next_stage);
+            save_file.set({
+                current_stage: next_stage,
+                current_level: 1
+            });
+            display.selectLevel(next_stage, 1, true);
             display.updateReadout();
+            display.updateLevelsLists();
+            game.generate();
         }
     }
 
@@ -84,7 +90,7 @@ var inputs = new (function(){
                 times: []
             });
             display.modify.inputMain('');
-            game.generateNum();
+            game.generate();
             display.updateReadout();
             fontScale.recalculate();
         }
@@ -107,23 +113,42 @@ var inputs = new (function(){
         }
     }
 
+    // This is messy...
     this.mainInputListener = function(e){
         if (e.keyCode === 13) {
             var check = display.replaceOrGetContent(elements.list.text.main.firstChild) || display.modify.textMain();
-            if (game.checkNum(check, display.modify.inputMain())){
-                display.modify.inputMain('');
-                display.goodGlow();
-                display.counter();
+            if (save_file.get('current_stage') == 1) {
+                if (game.checkNum(check, display.modify.inputMain())){
+                    display.modify.inputMain('');
+                    display.goodGlow();
+                    display.counter();
 
-                game.generateNum();
-                game.addTimestamp();
-                game.updateScore();
+                    game.generateNum();
+                    game.addTimestamp();
+                    game.updateScore();
 
-                display.updateReadout();
-                display.updateLevelsLists();
-                fontScale.recalculate();
-            } else {
-                display.badGlow();
+                    display.updateReadout();
+                    display.updateLevelsLists();
+                    fontScale.recalculate();
+                } else {
+                    display.badGlow();
+                }
+            } else if (save_file.get('current_stage') == 2) {
+                if (game.checkWord(check, display.modify.inputMain())) {
+                    display.modify.inputMain('');
+                    display.goodGlow();
+                    display.counter();
+
+                    game.generateWord();
+                    game.addTimestamp();
+                    game.updateScore();
+
+                    display.updateReadout();
+                    display.updateLevelsLists();
+                    fontScale.recalculate();
+                } else {
+                    display.badGlow();
+                }
             }
         }
     }

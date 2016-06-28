@@ -78,11 +78,35 @@ var save_file = new (function() {
             },
             stage2: {
                 1: {
-                    format: "3",
-                    info: "3 letter words only",
+                    format: "2-3",
+                    info: "2 or 3 digits in a word",
                     highscore: 0,
                     pass: 75
                 },
+                2: {
+                    format: "2-3|2-3",
+                    info: "4 to 6 digits in 2 words",
+                    highscore: 0,
+                    pass: 75
+                },
+                3: {
+                    format: "2-5",
+                    info: "2 to 5 digits in one word",
+                    highscore: 0,
+                    pass: 75
+                },
+                4: {
+                    format: "2|3|4",
+                    info: "10 digits in 3 words",
+                    highscore: 0,
+                    pass: 75
+                },
+                5: {
+                    format: "4|4|4|4|4",
+                    info: "20 digits in 5 words",
+                    highscore: 0,
+                    pass: 75
+                }
             }
         },
     }

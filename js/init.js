@@ -8,10 +8,10 @@
 
 document.addEventListener("DOMContentLoaded", function(){
     elements.init();
+    fontScale.init();
     save_file.init();
     display.init();
     inputs.init();
-    game.init();
-    fontScale.init();
     WordGenerator.init();
+    game.init();
 });

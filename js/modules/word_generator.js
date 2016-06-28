@@ -165,6 +165,18 @@ var WordGenerator = new (function() {
         return /^[a-z]+$/i.test(word);
     }
 
+
+    this.getWordsFromNum = function(num) {
+        num = parseInt(num);
+        if (!this.dictionaryLoaded) {
+            return "Need dictionary! (Go to the generator tab)";
+        } else if (this.db[num]) {
+            return this.db[num];
+        } else {
+            return false;
+        }
+    }
+
     this.getWordFromNum = function(num) {
         if (this.dictionaryLoaded && this.db[num]) {
             var working_set = this.db[num];

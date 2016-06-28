@@ -29,6 +29,9 @@ var display = new (function() {
 
     this.toggleDrawer = function() {
         this.toggleAttribute(elements.list.input.drawer, 'checked')
+        setTimeout(function(){
+            fontScale.recalculate();
+        }, 500)
     }
 
     this.replaceOrGetContent = function(element, content) {
