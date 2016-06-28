@@ -31,11 +31,13 @@ var elements = new (function() {
             select: {
                 stage1: {
                     button: this.__s.tabmenu.levels.container + " .stagecolumn .stagebanner[for='stage-tab-1']",
-                    list: this.__s.tabmenu.levels.container + " .stagecolumn .select#stage-select-1 ul"
+                    list: this.__s.tabmenu.levels.container + " .stagecolumn .select#stage-select-1 ul",
+                    radio: this.__s.tabmenu.levels.container + " .stagecolumn input#stage-tab-1"
                 },
                 stage2: {
                     button: this.__s.tabmenu.levels.container + " .stagecolumn .stagebanner[for='stage-tab-2']",
-                    list: this.__s.tabmenu.levels.container + " .stagecolumn .select#stage-select-2 ul"
+                    list: this.__s.tabmenu.levels.container + " .stagecolumn .select#stage-select-2 ul",
+                    radio: this.__s.tabmenu.levels.container + " .stagecolumn input#stage-tab-2"
                 }
             },
             count: this.__s.mainsection + " .numbar span.count"
@@ -47,7 +49,7 @@ var elements = new (function() {
         },
         input: {
             main: this.__s.mainsection + " input[name=main_input]",
-            tabs: "#drawer input[type=radio]",
+            tabs: "#drawer input[type=radio][name='drawer-tabs']",
             tab_labels: "#drawer .tab-buttons",
             drawer: "input[type=checkbox]#drawer-toggle",
             local_dict: {

@@ -84,16 +84,25 @@ var display = new (function() {
     }
 
     this.selectLevel = function(stage_num, level_num, override){
-        var current = document.querySelector('.select#stage-select-' + stage_num + ' li[selected]') || elements.list.text.select["stage"+ stage_num].firstChild,
-            next = document.querySelector('.select#stage-select-' + stage_num + ' li[levelnum="' + level_num + '"]');
+        var current_lvl = document.querySelector('.select#stage-select-' + stage_num + ' li[selected]') || elements.list.text.select["stage"+ stage_num].firstChild,
+            next_lvl = document.querySelector('.select#stage-select-' + stage_num + ' li[levelnum="' + level_num + '"]'),
+            current_stage = document.querySelector('input[checked]#stage-tab-' + stage_num) || elements.list.text.select["stage" + stage_num].radio,
+            next_stage = elements.list.text.select["stage" + stage_num].radio;
 
-        if ((current == next || !next) && !override) {
-            return false
+        if ((current_stage === next_stage || !next_stage) && !override) {
+            // Well, cram. Now what? Do nothing?
         } else {
-            current.removeAttribute('selected');
-            next.setAttribute('selected', '');
-            return true
+            current_stage.removeAttribute('checked');
+            next_stage.setAttribute('checked', '');
         };
+
+        if ((current_lvl === next_lvl || !next_lvl) && !override) {
+            // Well, plerm. Now what? Do nothing?
+        } else {
+            current_lvl.removeAttribute('selected');
+            next_lvl.setAttribute('selected', '');
+        };
+        return true
     }
 
     this.getLevelsList = function(stage_num) {
