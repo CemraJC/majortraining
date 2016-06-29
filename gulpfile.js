@@ -44,13 +44,6 @@ gulp.task('sass', function(){
 
 gulp.task('jekyll', function(callback){
     runJekyll(['build'], callback);
-
-    gulp.src("README(gh-pages).md")
-        .pipe(m.rename({
-            basename: "README",
-            extname: ".md"
-        }))
-        .pipe(gulp.dest(path.site));
 });
 
 function runJekyll(args, callback){
