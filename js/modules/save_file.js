@@ -79,13 +79,13 @@ var save_file = new (function() {
             stage2: {
                 1: {
                     format: "2-3",
-                    info: "2 or 3 digits in a word",
+                    info: "1 word with 2 or 3 digits",
                     highscore: 0,
                     pass: 75
                 },
                 2: {
                     format: "2-3|2-3",
-                    info: "4 to 6 digits in 2 words",
+                    info: "2 words with 2 or 3 digits each",
                     highscore: 0,
                     pass: 75
                 },

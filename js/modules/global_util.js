@@ -18,6 +18,18 @@ function reload() {
     window.location.reload();
 }
 
+function removeEmpty(array){
+    var result = [];
+    for (var i = 0; i < array.length; i++) {
+        if (array[i].length <= 0) {
+            continue;
+        } else {
+            result.push(array[i])
+        }
+    };
+    return result;
+}
+
 function removeSuccessiveDuplicates(array){
     var result = []
     for (var i = 0; i < array.length; i++) {

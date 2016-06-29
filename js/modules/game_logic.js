@@ -16,6 +16,10 @@ var game = new (function(){
             words = [],
             i = 0;
 
+        if (!WordGenerator.dictionaryLoaded) {
+            return WordGenerator.getWordsFromNum(0);
+        }
+
         // Inefficient
         while (words.length <= 0 && i < 200){
             index = this.__generateNumFromFormat(format).split(' ');
@@ -32,22 +36,26 @@ var game = new (function(){
             i++
         }
         return words.join(' ');
-        if (typeof(words) === "object") {
-            return words[random_word_index];
-        } else {
-        }
     }
 
-    this.checkWord = function(word, num) {
-        var nums = this.explodePossibleNumToNums(this.possibleNumFromWord(word));
-        if (num) {
-            for (var i in nums) {
-                if (nums[i] == num) {
-                    return true;
+    this.checkWord = function(words, nums) {
+        nums = removeEmpty(nums.split(' '));
+        words = removeEmpty(words.split(' '));
+
+        for (var i in words) {
+            var valid = false;
+            if(!nums[i] || !words[i]) { return false }
+            check_nums = this.explodePossibleNumToNums(this.possibleNumFromWord(words[i]));
+            for (var n in check_nums) {
+                if (check_nums[n] == nums[i]) {
+                    valid = true;
+                    break;
                 }
             }
+            if (valid) { continue }
+            return false;
         }
-        return false;
+        return true;
     }
 
 
