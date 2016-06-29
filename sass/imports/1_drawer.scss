@@ -434,7 +434,7 @@ label[for="drawer-toggle"] {
                         margin-bottom: 0.5rem;
                     }
 
-                    input[type=file], p.submit_dict {
+                    .submit_dict, .prompt_dict {
                         display: none;
                     }
 
@@ -449,7 +449,7 @@ label[for="drawer-toggle"] {
                     }
 
                     & button.prompt_dict {
-                        display: block;
+                        // display: block;
                         margin: 1rem auto;
                     }
                 }

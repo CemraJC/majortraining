@@ -39,6 +39,8 @@ var WordGenerator = new (function() {
                 display.modify.inputPrompt_dictButton("Download (" + (size/1000000).toFixed(2) + " MB" + ")");
             }
         })
+        elements.list.input.prompt_dict.message.style.display = "block";
+        elements.list.input.prompt_dict.button.style.display = "block";
         elements.list.input.prompt_dict.button.addEventListener('click', function(){
             try {
                 WordGenerator.ajaxMakeRequest(WordGenerator.dictUrl, WordGenerator.onDictionaryGet, WordGenerator.onDictionaryError)
