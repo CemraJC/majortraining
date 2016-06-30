@@ -16,7 +16,12 @@ var display = new (function() {
     }
 
     this.getElementContent = function(element) {
-        return element[this.getContentProperty(element)];
+        step_downs = ["SPAN", "I", "B"];
+        if (element.firstChild && step_downs.indexOf(element.firstChild.nodeName) >= 0) {
+            return element.firstChild[this.getContentProperty(element)];
+        } else {
+            return element[this.getContentProperty(element)];
+        }
     }
 
     this.toggleAttribute = function(element, attribute) {
