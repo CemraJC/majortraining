@@ -352,11 +352,14 @@ label[for="drawer-toggle"] {
                     & h5 {
                         display: inline-block;
                         margin: 0.2rem 0 0.5rem 0;
-                        transition: transform 1s 20s, font-size 2s 20s;
 
                         &:hover {
-                            font-size: 200%;
-                            transform: rotateX(15deg) rotateY(50deg) rotateZ(5*360deg);
+                            background: $black1;
+                            animation: spinner 6s 30s infinite linear;
+                            &:after {
+                                content: "";
+                                animation: dancing_content 20s 20s infinite linear;
+                            }
                         }
                     }
 

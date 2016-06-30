@@ -54,8 +54,9 @@ span.dancing_man {
     &:before {
         content: "...";
         font-family: monospace;
+        letter-spacing: 1px;
         width: 100%;
-        animation: dancing_content 2s infinite linear;
+        animation: dancing_content 20s infinite linear;
     }
 }
 
@@ -70,21 +71,57 @@ span.spinner {
 }
 
 @keyframes dancing_content {
-    0% {
-        content: "/-(0.0)-/"
-    }
-    25% {
-        content: "\\-(0.0)-\\"
-    }
-    50% {
-        content: "\\-(0.0)-\\"
-    }
-    75% {
-        content: "\\-(0.0)-\\"
-    }
-    100% {
-        content: "\\-(0.0)-\\"
-    }
+    0% { content: "^(0-0^)"; }
+    2% { content: "^(0-0^)"; }
+    4% { content: "<(0-0<)"; }
+    6% { content: "^(0-0^)"; }
+    8% { content: "<(0-0<)"; }
+    10% { content: "(^0-0)^"; }
+    12% { content: "(>0-0)>"; }
+    14% { content: "(^0-0)^"; }
+    16% { content: "(>0-0)>"; }
+    18% { content: "^(0-0^)"; }
+    20% { content: "<(0-0<)"; }
+    22% { content: "^(0-0^)"; }
+    24% { content: "<(0-0<)"; }
+    26% { content: "(^0-0)^"; }
+    28% { content: "(>0-0)>"; }
+    30% { content: "(^0-0)^"; }
+    32% { content: "(>0-0)>"; }
+    34% { content: "^(0-0^)"; }
+    36% { content: "<(0-0<)"; }
+    38% { content: "^(0-0^)"; }
+    40% { content: "<(0-0<)"; }
+    42% { content: "(^0-0)^"; }
+    44% { content: "(>0-0)>"; }
+    46% { content: "(^0-0)^"; }
+    48% { content: "(>0-0)>"; }
+    50% { content: "^(0-0^)"; }
+    52% { content: "<(0-o<)"; }
+    54% { content: "^(0-0^)"; }
+    56% { content: "<(0-0<)"; }
+    58% { content: "(^0-0)^"; }
+    60% { content: "(>0-0)>"; }
+    62% { content: "(^0-0)^"; }
+    64% { content: "(>0-0)>"; }
+    66% { content: "^(0-0^)"; }
+    68% { content: "<(0-0<)"; }
+    70% { content: "^(0-0^)"; }
+    72% { content: "<(0-0<)"; }
+    74% { content: "(^0-0)^"; }
+    76% { content: "(>0-0)>"; }
+    78% { content: "(^0-0)^"; }
+    80% { content: "(>0-0)>"; }
+    82% { content: "^(0-0^)"; }
+    84% { content: "<(0-0<)"; }
+    86% { content: "^(0-0^)"; }
+    88% { content: "<(0-0<)"; }
+    90% { content: "(^0-0)^"; }
+    92% { content: "(>0-0)>"; }
+    94% { content: "(^0-0)^"; }
+    96% { content: "(>0-0)>"; }
+    98% { content: "^(0-0^)"; }
+    100% { content: "<(0-0<)"; }
 }
 
 @keyframes spinner {
