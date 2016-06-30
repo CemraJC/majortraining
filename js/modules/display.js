@@ -142,6 +142,7 @@ var display = new (function() {
     }
 
     this.updateLevelsLists = function(stage_nums) {
+        console.log("Updating", stage_nums)
         for (var i in stage_nums) {
             this.modify["textSelectStage" + stage_nums[i] + "List"](this.getLevelsList(stage_nums[i]));
         }

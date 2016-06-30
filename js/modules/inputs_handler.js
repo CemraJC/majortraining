@@ -129,12 +129,12 @@ var inputs = new (function(){
                     display.goodGlow();
                     display.counter();
 
-                    game.generateNum();
+                    game.generate();
                     game.addTimestamp();
                     game.updateScore();
 
                     display.updateReadout();
-                    display.updateLevelsLists();
+                    display.updateLevelsLists([1, 2]);
                     fontScale.recalculate();
                 } else {
                     display.badGlow();
@@ -145,12 +145,12 @@ var inputs = new (function(){
                     display.goodGlow();
                     display.counter();
 
-                    game.generateWord();
+                    game.generate();
                     game.addTimestamp();
                     game.updateScore();
 
                     display.updateReadout();
-                    display.updateLevelsLists();
+                    display.updateLevelsLists([1, 2]);
                     fontScale.recalculate();
                 } else {
                     display.badGlow();

@@ -100,7 +100,6 @@ var game = new (function(){
     this.checkNum = function(num, word) {
         num = stripSpaces(num);
         word = stripSpaces(word);
-        console.log(num, word)
         return this.__matchPossibleNum(num, this.possibleNumFromWord(word));
     }
 
