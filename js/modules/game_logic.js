@@ -1,12 +1,18 @@
 var game = new (function(){
 
     this.generate = function(){
-        (save_file.get('current_stage') == 2) ? this.generateWord() : this.generateNum();
+        var generated = false, limit = 0;
+        while ((!generated || generated == save_file.get("last_generated")) && limit < 50) {
+            generated = (save_file.get('current_stage') == 2) ? this.generateWord() : this.generateNum();
+            limit++
+        }
+        display.modify.textMain(generated);
+        save_file.set('last_generated', generated);
         fontScale.recalculate();
     }
 
     this.generateWord = function(){
-        display.modify.textMain(this.__generateWordFromFormat(save_file.get('levels')["stage" + save_file.get('current_stage')][save_file.get('current_level')].format));
+        return this.__generateWordFromFormat(save_file.get('levels')["stage" + save_file.get('current_stage')][save_file.get('current_level')].format);
     }
 
     this.__generateWordFromFormat = function(format){
@@ -60,7 +66,7 @@ var game = new (function(){
 
 
     this.generateNum = function() {
-        display.modify.textMain(this.__generateNumFromFormat(save_file.get('levels')["stage" + save_file.get('current_stage')][save_file.get('current_level')].format));
+        return this.__generateNumFromFormat(save_file.get('levels')["stage" + save_file.get('current_stage')][save_file.get('current_level')].format);
     }
 
     this.__generateNumFromFormat = function(format){

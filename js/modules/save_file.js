@@ -10,6 +10,7 @@ var save_file = new (function() {
         master_scale: 50,
         drawer_open: false,
         tab_selected: "1",
+        last_generated: "",
         times: [timestamp()],
         dark_theme: false,
 
