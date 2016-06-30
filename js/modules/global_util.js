@@ -30,6 +30,11 @@ function removeEmpty(array){
     return result;
 }
 
+function stripSpaces(string) {
+    if (!string) { return null; }
+    return string.replace(/\ +/g, '');
+}
+
 function removeSuccessiveDuplicates(array){
     var result = []
     for (var i = 0; i < array.length; i++) {
