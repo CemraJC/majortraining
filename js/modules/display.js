@@ -58,9 +58,10 @@ var display = new (function() {
         return true;
     }
 
-    this.counter = function() {
-        var read = parseInt(elements.list.text.count.innerHTML) || 0;
-        elements.list.text.count.innerHTML = read + 1;
+    this.counter = function(set) {
+        var read = (set >= 0) ? set : parseInt(elements.list.text.count.innerHTML) + 1;
+        read = (read >= 0) ? read : 0;
+        elements.list.text.count.innerHTML = read;
     }
 
     this.toggleTheme = function() {

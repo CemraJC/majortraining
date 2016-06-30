@@ -69,7 +69,6 @@ var inputs = new (function(){
     this.stageSelectListener = function(e) {
         var clicked = this.reverseDomSearch(e.target, "LABEL"),
             next_stage = clicked.getAttribute("for").match(/\d$/)[0];
-            console.log(next_stage)
         if (save_file.get('current_stage') !== next_stage) {
             save_file.set({
                 current_stage: next_stage,
@@ -78,6 +77,7 @@ var inputs = new (function(){
             display.selectLevel(next_stage, 1, true);
             display.updateReadout();
             display.updateLevelsLists();
+            display.counter(0);
             game.generate();
         }
     }
@@ -93,6 +93,7 @@ var inputs = new (function(){
                 times: []
             });
             display.modify.inputMain('');
+            display.counter(0);
             game.generate();
             display.updateReadout();
             fontScale.recalculate();
