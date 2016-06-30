@@ -27,8 +27,10 @@ var inputs = new (function(){
     }
 
     this.generateWordListener = function(e){
-        var word = WordGenerator.getWord(display.modify.generatorInputNumber());
-        display.modify.generatorOutputWord(word);
+        if ((e.type == "keyup" && e.keyCode === 13) || e.type == "click") {
+            var word = WordGenerator.getWord(display.modify.generatorInputNumber());
+            display.modify.generatorOutputWord(word);
+        }
     }
 
     this.tabsListener = function(e){
@@ -170,6 +172,7 @@ var inputs = new (function(){
         elements.list.generator.word.addEventListener('click', this.generateWordListener);
         elements.list.generator.nums.addEventListener('click', this.generateNums);
         elements.list.generator.input.word.addEventListener('keyup', this.generateNumsListener.bind(this));
+        elements.list.generator.input.number.addEventListener('keyup', this.generateWordListener.bind(this));
 
         elements.list.input.main.addEventListener('keyup', this.mainInputListener);
         elements.list.input.drawer.addEventListener('click', this.drawerListener);

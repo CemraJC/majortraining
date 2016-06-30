@@ -105,7 +105,6 @@ var game = new (function(){
     }
 
     this.possibleNumFromWord = function(word){
-        // debugger;
         var letters = this.__wordToLetters(word);
         var possible_num = [];
         for (var i = 0; i < letters.length; i++) {
