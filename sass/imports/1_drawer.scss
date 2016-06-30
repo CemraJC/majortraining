@@ -393,7 +393,7 @@ label[for="drawer-toggle"] {
                     flex-shrink: 0;
                     width: 90%;
                     font-size: 95%;
-                    line-height: 1.6;
+                    line-height: 1.3;
 
                     & p {
                         margin: 0.3rem 0;
@@ -459,7 +459,7 @@ label[for="drawer-toggle"] {
                 flex: 1.2;
                 width: 100%;
 
-                color: $white1;
+                color: $white3;
 
                 transition: all 1s;
 
@@ -478,6 +478,7 @@ label[for="drawer-toggle"] {
                             padding: 0.8rem 0rem;
                             display: none;
                         }
+
 
                         & thead th {
                             padding: 0.8rem 0.2rem;
