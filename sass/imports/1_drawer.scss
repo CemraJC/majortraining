@@ -154,7 +154,7 @@ label[for="drawer-toggle"] {
             cursor: pointer;
             user-select: none;
 
-            color: $grey5;
+            color: $grey2;
             text-align: center;
             vertical-align: -3rem;
             font-size: 60%;
@@ -164,6 +164,13 @@ label[for="drawer-toggle"] {
             background: $gblack2;
 
             transition: text-shadow 250ms, border-bottom 200ms;
+
+            & span {
+                color: $grey3;
+                margin: 0.2rem 0;
+                display: block;
+                font-size: 225%;
+            }
 
             &:hover {
                 text-shadow: 0 0 1px $white3;
@@ -462,7 +469,7 @@ label[for="drawer-toggle"] {
                 flex: 1.2;
                 width: 100%;
 
-                color: $white3;
+                color: $white2;
 
                 transition: all 1s;
 

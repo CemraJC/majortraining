@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'major-training-glyphs';
+    src:    url('../fonts/major-training-glyphs.eot?5ta01x');
+    src:    url('../fonts/major-training-glyphs.eot?5ta01x#iefix') format('embedded-opentype'),
+        url('../fonts/major-training-glyphs.ttf?5ta01x') format('truetype'),
+        url('../fonts/major-training-glyphs.woff?5ta01x') format('woff'),
+        url('../fonts/major-training-glyphs.svg?5ta01x#major-training-glyphs') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="ico-"], [class*=" ico-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'major-training-glyphs' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    vertical-align: middle;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ico-settings:before {
+    content: "\e900";
+}
+.ico-reference:before {
+    content: "\e901";
+}
+.ico-generator:before {
+    content: "\e902";
+}
+.ico-levels:before {
+    content: "\e903";
+}
+.ico-preferences:before {
+    content: "\e904";
+}
+

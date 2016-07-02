@@ -77,7 +77,7 @@ gulp.task("watch", function(){
         console.log('JavaScript ' + event.path + ' was ' + event.type);
     })
 
-    gulp.watch(path.sass + '**/*.scss', ['sass'])
+    gulp.watch(path.sass + '**/*css', ['sass'])
     .on('change', function(event){
         console.log('Stylesheet ' + event.path + ' was ' + event.type);
     });
