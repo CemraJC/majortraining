@@ -122,6 +122,10 @@ var inputs = new (function(){
     // This is messy...
     this.mainInputListener = function(e){
         if (e.keyCode === 13) {
+            if (e.shiftKey) {
+                game.generate();
+                return true;
+            }
             var check = display.replaceOrGetContent(elements.list.text.main.firstChild) || display.modify.textMain();
             if (save_file.get('current_stage') == 1) {
                 if (game.checkNum(check, display.modify.inputMain())){

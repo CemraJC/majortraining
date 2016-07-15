@@ -20,25 +20,25 @@ var save_file = new (function() {
                     format: "2",
                     info: "2 digit numbers only",
                     highscore: 0,
-                    pass: 75
+                    pass: 50
                 },
                 2: {
                     format: "3",
                     info: "3 digit numbers only",
                     highscore: 0,
-                    pass: 75
+                    pass: 70
                 },
                 3: {
                     format: "2-3",
                     info: "2 and 3 digit numbers",
                     highscore: 0,
-                    pass: 75
+                    pass: 60
                 },
                 4: {
                     format: "3|3",
                     info: "2 groups of 3 digit numbers",
                     highscore: 0,
-                    pass: 75
+                    pass: 200
                 },
                 5: {
                     format: "4",
@@ -65,7 +65,7 @@ var save_file = new (function() {
                     pass: 75
                 },
                 9: {
-                    format: "5|5|5|5|5",
+                    format: "4|4|4|4|4",
                     info: "Credit card numbers",
                     highscore: 0,
                     pass: 75
