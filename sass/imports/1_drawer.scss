@@ -238,7 +238,8 @@ label[for="drawer-toggle"] {
 
                 & .stagecolumn {
                     display: flex;
-                    flex: 1;
+                    // flex: 1;
+                    flex-grow: 1;
                     flex-shrink: 0;
                     flex-direction: column;
 
