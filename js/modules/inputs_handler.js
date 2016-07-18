@@ -60,6 +60,20 @@ var inputs = new (function(){
         game.generate();
     }
 
+    this.resetListenerTouchEnd = function(e){
+        clearTimeout(resetTimeout);
+        return false;
+    }
+
+    this.resetListenerTouchStart = function(e){
+        resetTimeout = window.setTimeout(function(){
+            save_file.reset();
+            WordGenerator.clearDictionaryFromLocalStorage();
+            reload();
+        }, 3500);
+        return false;
+    }
+
     this.resetListener = function(e){
         if (e.detail >= 2) {
             save_file.reset();
@@ -164,9 +178,12 @@ var inputs = new (function(){
     }
 
     this.init = function(){
+        var resetTimeout;
         elements.list.button.theme.addEventListener('click', this.themeListener);
         elements.list.button.reset.addEventListener('click', this.resetListener);
         elements.list.button.skip.addEventListener('click', this.skipListener);
+        elements.list.button.reset.addEventListener('touchstart', this.resetListenerTouchStart);
+        elements.list.button.reset.addEventListener('touchend', this.resetListenerTouchEnd);
 
         elements.list.text.select.stage1.list.addEventListener('click', this.levelSelectListener.bind(this));
         elements.list.text.select.stage2.list.addEventListener('click', this.levelSelectListener.bind(this));
