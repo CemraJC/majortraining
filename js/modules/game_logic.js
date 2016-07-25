@@ -99,7 +99,6 @@ var game = new (function(){
 
     this.checkNum = function(num, word) {
         num = stripSpaces(num);
-        word = stripSpaces(word);
         return this.__matchPossibleNum(num, this.possibleNumFromWord(word));
     }
 
@@ -157,13 +156,14 @@ var game = new (function(){
             exploded,
             index;
         exploded = removeSuccessiveDuplicates(word.trim().toLowerCase().split(''));
+        debugger;
 
         for (var i = 0; i < exploded.length; i++) {
             index = this.ms.multi.indexOf(exploded[i] + exploded[i + 1]);
             if (index >= 0) {
                 letters.push(this.ms.multi[index]);
                 i++ // Skip the already-processed letter
-            } else {
+            } else if (exploded[i].match(/[a-z]+/i) != null) {
                 letters.push(exploded[i])
             }
         };
