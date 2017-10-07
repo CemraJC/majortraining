@@ -1,4 +1,6 @@
 
+var DEBUGGING = true // Important flag for save actions (halt if true)
+
 var save_file = new (function() {
     // This is the data that gets saved between game states. Functions for manipulating are in save_file.
     this.__appdata__ = {
@@ -16,6 +18,12 @@ var save_file = new (function() {
 
         levels: {
             stage1: {
+                0: {
+                    format: "1",
+                    info: "Practise with single numbers",
+                    highscore: 0,
+                    pass: 50
+                },
                 1: {
                     format: "2",
                     info: "2 digit numbers only",
@@ -38,75 +46,81 @@ var save_file = new (function() {
                     format: "3|3",
                     info: "2 groups of 3 digit numbers",
                     highscore: 0,
-                    pass: 200
+                    pass: 40
                 },
                 5: {
                     format: "4",
                     info: "4 digit numbers only",
                     highscore: 0,
-                    pass: 75
+                    pass: 30
                 },
                 6: {
                     format: "2-4|2-4",
                     info: "2 groups of 2-4 digit numbers",
                     highscore: 0,
-                    pass: 75
+                    pass: 30
                 },
                 7: {
                     format: "2-3|2-3|2-3|2-3",
                     info: "4 groups of 2-3 digit numbers",
                     highscore: 0,
-                    pass: 75
+                    pass: 20
                 },
                 8: {
                     format: "4|3|3",
                     info: "Phone numbers",
                     highscore: 0,
-                    pass: 75
+                    pass: 10
                 },
                 9: {
-                    format: "4|4|4|4|4",
+                    format: "4|4|4|4",
                     info: "Credit card numbers",
                     highscore: 0,
-                    pass: 75
+                    pass: 5
                 },
                 10: {
                     format: "40",
                     info: "40 digit mega numbers",
                     highscore: 0,
-                    pass: 75
+                    pass: 5
                 }
             },
             stage2: {
+                0: {
+                    format: "1",
+                    info: "Practise with single letters",
+                    highscore: 0,
+                    pass: 75
+                },
                 1: {
                     format: "2-3",
                     info: "1 word with 2 or 3 digits",
                     highscore: 0,
-                    pass: 75
+                    pass: 60
                 },
                 2: {
                     format: "2-3|2-3",
                     info: "2 words with 2 or 3 digits each",
                     highscore: 0,
-                    pass: 75
+                    pass: 30
                 },
                 3: {
                     format: "2-5",
                     info: "2 to 5 digits in one word",
                     highscore: 0,
-                    pass: 75
+                    pass: 15
                 },
                 4: {
                     format: "2|3|4",
                     info: "10 digits in 3 words",
                     highscore: 0,
-                    pass: 75
+                    pass: 15
                 },
                 5: {
                     format: "4|4|4|4|4",
                     info: "20 digits in 5 words",
                     highscore: 0,
-                    pass: 75
+                    pass: 10
                 }
             }
         },
@@ -118,7 +132,11 @@ var save_file = new (function() {
     }
 
     this.load = function() {
-        var read = JSON.parse(window.localStorage.getItem(this.__appdata__.storage_key));
+        if (!DEBUGGING) { // Disable loading of save if debugging
+            var read = JSON.parse(window.localStorage.getItem(this.__appdata__.storage_key));
+        } else {
+            read = null
+        }
         if (typeof(read) == "object" && read !== null) {
             this.__appdata__ = read;
         } else {
