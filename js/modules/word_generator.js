@@ -196,6 +196,13 @@ var WordGenerator = new (function() {
     }
     this.getWord = this.getWordFromNum;
 
+    this.getLetterFromNum = function(num) {
+        // Expecting single digit only
+        avail = ms_array.valid.length
+        choice = Math.floor(Math.random() * avail)
+        return ms_array["valid"][choice]
+    }
+
 
     this.init = function() {
         this.requestDictionary();

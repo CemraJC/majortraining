@@ -22,6 +22,11 @@ var game = new (function(){
             words = [],
             i = 0;
 
+        // Very specific to one one practise element
+        if (format == 1) {
+            return WordGenerator.getLetterFromNum(this.__generateNumFromFormat(format))
+        }
+
         if (!WordGenerator.dictionaryLoaded) {
             return WordGenerator.getWordsFromNum(0);
         }
@@ -156,7 +161,6 @@ var game = new (function(){
             exploded,
             index;
         exploded = removeSuccessiveDuplicates(word.trim().toLowerCase().split(''));
-        debugger;
 
         for (var i = 0; i < exploded.length; i++) {
             index = this.ms.multi.indexOf(exploded[i] + exploded[i + 1]);
