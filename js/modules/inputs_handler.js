@@ -88,9 +88,9 @@ var inputs = new (function(){
         if (save_file.get('current_stage') !== next_stage) {
             save_file.set({
                 current_stage: next_stage,
-                current_level: 1
+                current_level: 0
             });
-            display.selectLevel(next_stage, 1, true);
+            display.selectLevel(next_stage, 0, true);
             display.updateReadout();
             display.updateLevelsLists();
             display.counter(0);

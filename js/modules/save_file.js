@@ -1,5 +1,5 @@
 
-var DEBUGGING = true // Important flag for save actions (halt if true)
+var DEBUGGING = false // Important flag for save actions (halt if true)
 
 var save_file = new (function() {
     // This is the data that gets saved between game states. Functions for manipulating are in save_file.
