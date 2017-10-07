@@ -6,7 +6,7 @@ var save_file = new (function() {
     this.__appdata__ = {
         storage_key: "major_training_242e9989-ffa2-48b6-8f46-4b7dfc6c590a",
         current_stage: 1,
-        current_level: 1,
+        current_level: 0,
         current_score: 0,
         expert_scale: 30,
         master_scale: 50,
