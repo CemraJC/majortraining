@@ -6,4 +6,4 @@ If you're here for the offline usage, you're in luck! Just click the green "Down
 
 &darr; **If you want to get to the actual website** &darr;
 
-### <big>[Click Here](http://www.majortraining.cf)</big>
+### <big>[Click Here](http://cemrajc.github.io/majortraining/)</big>
